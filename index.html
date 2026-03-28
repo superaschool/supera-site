@@ -1,0 +1,2394 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Supera — Transforma tu Aprendizaje</title>
+    <meta name="description" content="Aprende inteligencia artificial en español con Supera. Cursos prácticos diseñados para impulsar tu carrera.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* CSS Variables for theming */
+        :root {
+            /* Brand Colors */
+            --supera-orange: #EA8E3F;
+            --supera-orange-light: #F4A855;
+            --supera-orange-dark: #D47A2E;
+            --supera-teal: #139294;
+            --supera-teal-light: #1BA8AA;
+            --supera-teal-dark: #0E7A7C;
+            --supera-cream: #FDFCFC;
+            --supera-cream-dark: #F5F3F0;
+            --supera-dark: #1A1A2E;
+            --supera-gray: #4A4A5A;
+            --supera-gray-light: #6A6A7A;
+            
+            /* Light theme (default) */
+            --bg-primary: #FDFCFC;
+            --bg-secondary: #FFFFFF;
+            --bg-card: #FFFFFF;
+            --bg-dark: #1A1A2E;
+            --text-primary: #1A1A2E;
+            --text-secondary: #4A4A5A;
+            --text-light: #FFFFFF;
+            --border-color: rgba(26, 26, 46, 0.1);
+            --shadow-color: rgba(234, 142, 63, 0.25);
+            --shadow-color-teal: rgba(19, 146, 148, 0.25);
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #1A1A2E;
+            --bg-secondary: #2A2A3E;
+            --bg-card: #2A2A3E;
+            --bg-dark: #1A1A2E;
+            --text-primary: #FDFCFC;
+            --text-secondary: #B0B0C0;
+            --text-light: #FDFCFC;
+            --border-color: rgba(253, 252, 252, 0.1);
+            --shadow-color: rgba(234, 142, 63, 0.15);
+            --shadow-color-teal: rgba(19, 146, 148, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Outfit', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Utility Classes */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Gradient Text */
+        .gradient-text {
+            background: linear-gradient(135deg, var(--supera-orange) 0%, var(--supera-orange-light) 25%, var(--supera-teal) 50%, var(--supera-teal-light) 75%, var(--supera-orange) 100%);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 6s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        /* Glass Effect */
+        .glass {
+            background: rgba(253, 252, 252, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+
+        [data-theme="dark"] .glass {
+            background: rgba(42, 42, 62, 0.9);
+        }
+
+        /* Buttons */
+        .btn-primary {
+            background: linear-gradient(135deg, var(--supera-orange) 0%, var(--supera-orange-dark) 100%);
+            color: white;
+            padding: 14px 32px;
+            border-radius: 50px;
+            border: none;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px -10px rgba(234, 142, 63, 0.5);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--supera-teal);
+            padding: 12px 30px;
+            border-radius: 50px;
+            border: 2px solid var(--supera-teal);
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+
+        .btn-secondary:hover {
+            background: var(--supera-teal);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        [data-theme="dark"] .btn-secondary:hover {
+            color: var(--text-light);
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 16px 0;
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo-text {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--text-primary);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-weight: 500;
+            font-size: 14px;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--supera-orange);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--supera-orange), var(--supera-teal));
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: transparent;
+            border: 2px solid var(--supera-teal);
+            color: var(--supera-teal);
+        }
+
+        [data-theme="dark"] .theme-toggle {
+            border-color: var(--supera-orange);
+            color: var(--supera-orange);
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            background: var(--supera-teal);
+            color: white;
+        }
+
+        [data-theme="dark"] .theme-toggle:hover {
+            background: var(--supera-orange);
+            color: white;
+        }
+
+        .theme-icon {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Mobile Menu Toggle */
+        .mobile-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+            padding: 8px;
+            background: none;
+            border: none;
+        }
+
+        .mobile-toggle span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--text-primary);
+            transition: all 0.3s ease;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            height: 100vh;
+            background: var(--bg-primary);
+            z-index: 999;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 32px;
+            transition: right 0.4s ease;
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-menu a {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .mobile-close {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--text-primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 120px 24px 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.5;
+            animation: float 10s ease-in-out infinite;
+        }
+
+        .blob-orange {
+            background: radial-gradient(circle, var(--supera-orange) 0%, transparent 70%);
+            width: 400px;
+            height: 400px;
+            top: 10%;
+            left: -10%;
+        }
+
+        .blob-teal {
+            background: radial-gradient(circle, var(--supera-teal) 0%, transparent 70%);
+            width: 350px;
+            height: 350px;
+            top: 30%;
+            right: -5%;
+            animation-delay: 2s;
+        }
+
+        .blob-orange-2 {
+            background: radial-gradient(circle, var(--supera-orange) 0%, transparent 70%);
+            width: 300px;
+            height: 300px;
+            bottom: 10%;
+            left: 20%;
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(20px, -30px) scale(1.1); }
+            50% { transform: translate(-10px, 20px) scale(0.9); }
+            75% { transform: translate(30px, 10px) scale(1.05); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            max-width: 800px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0;
+            padding: 0;
+            background: transparent;
+            border-radius: 0;
+            margin: 0 auto 16px auto;
+        }
+
+        .hero-badge span:first-child {
+            display: none;
+        }
+
+        .hero-badge-text {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            opacity: 0.8;
+        }
+
+        [data-theme="dark"] .hero-badge-text {
+            color: var(--supera-orange-light);
+        }
+
+        .hero-title {
+            font-size: clamp(40px, 8vw, 72px);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 24px;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(28px, 5vw, 48px);
+            font-weight: 300;
+            color: var(--supera-teal);
+            margin-bottom: 24px;
+        }
+
+        .hero-description {
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            justify-content: center;
+            margin-bottom: 60px;
+        }
+
+        .hero-trust {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .hero-trust span {
+            font-size: 14px;
+            color: var(--text-secondary);
+            opacity: 0.6;
+        }
+
+        .trust-logos {
+            display: flex;
+            gap: 32px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .trust-logo {
+            font-weight: 700;
+            font-size: 18px;
+            color: var(--text-primary);
+            opacity: 0.4;
+        }
+
+        /* Stats Section */
+        .stats {
+            background: var(--supera-dark);
+            padding: 80px 24px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 48px;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: var(--supera-orange);
+            font-weight: 500;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 120px 24px;
+            background: var(--bg-primary);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-label {
+            display: inline-block;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--supera-orange);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-size: clamp(32px, 5vw, 48px);
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+        }
+
+        .section-description {
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .feature-card {
+            background: var(--bg-card);
+            padding: 40px 32px;
+            border-radius: 24px;
+            border: 1px solid var(--border-color);
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 25px 50px -12px var(--shadow-color);
+        }
+
+        .feature-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, rgba(234, 142, 63, 0.2) 0%, rgba(234, 142, 63, 0.05) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .feature-icon svg {
+            width: 28px;
+            height: 28px;
+            color: var(--supera-orange);
+        }
+
+        .feature-card:nth-child(even) .feature-icon {
+            background: linear-gradient(135deg, rgba(19, 146, 148, 0.2) 0%, rgba(19, 146, 148, 0.05) 100%);
+        }
+
+        .feature-card:nth-child(even) .feature-icon svg {
+            color: var(--supera-teal);
+        }
+
+        .feature-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+        }
+
+        .feature-description {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* Courses Section */
+        .courses {
+            padding: 120px 24px;
+            background: var(--supera-cream-dark);
+        }
+
+        [data-theme="dark"] .courses {
+            background: #252540;
+        }
+
+        .courses-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 60px;
+            flex-wrap: wrap;
+            gap: 24px;
+        }
+
+        .courses-header .section-header {
+            text-align: left;
+            margin-bottom: 0;
+        }
+
+        .courses-header .section-description {
+            margin: 0;
+        }
+
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .course-card {
+            background: var(--bg-card);
+            border-radius: 24px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+
+        .course-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+        }
+
+        .course-image {
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 72px;
+            position: relative;
+        }
+
+        .course-image-1 { background: linear-gradient(135deg, var(--supera-orange) 0%, var(--supera-orange-light) 100%); }
+        .course-image-2 { background: linear-gradient(135deg, var(--supera-teal) 0%, var(--supera-teal-light) 100%); }
+        .course-image-3 { background: linear-gradient(135deg, var(--supera-dark) 0%, var(--supera-gray) 100%); }
+
+        .course-badge {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            padding: 6px 12px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 600;
+            color: white;
+        }
+
+        .course-content {
+            padding: 24px;
+        }
+
+        .course-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .course-description {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+            line-height: 1.6;
+        }
+
+        .course-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .course-duration {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .course-link {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--supera-orange);
+            text-decoration: none;
+        }
+
+        .course-card:nth-child(2) .course-link {
+            color: var(--supera-teal);
+        }
+
+        /* Pricing Section */
+        .pricing {
+            padding: 120px 24px;
+            background: var(--bg-primary);
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .pricing-card {
+            background: var(--bg-card);
+            border-radius: 24px;
+            padding: 40px 32px;
+            border: 1px solid var(--border-color);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 30px 60px -15px var(--shadow-color-teal);
+        }
+
+        .pricing-card.popular {
+            background: var(--supera-dark);
+            border-color: var(--supera-orange);
+            transform: scale(1.05);
+        }
+
+        .pricing-card.popular:hover {
+            transform: scale(1.05) translateY(-8px);
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--supera-orange) 0%, var(--supera-orange-dark) 100%);
+            color: white;
+            padding: 6px 20px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .pricing-name {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .pricing-card.popular .pricing-name {
+            color: white;
+        }
+
+        .pricing-desc {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+        }
+
+        .pricing-card.popular .pricing-desc {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .pricing-price {
+            margin-bottom: 32px;
+        }
+
+        .pricing-amount {
+            font-size: 48px;
+            font-weight: 800;
+            color: var(--text-primary);
+        }
+
+        .pricing-card.popular .pricing-amount {
+            color: white;
+        }
+
+        .pricing-period {
+            font-size: 16px;
+            color: var(--text-secondary);
+        }
+
+        .pricing-card.popular .pricing-period {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 32px;
+        }
+
+        .pricing-features li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .pricing-card.popular .pricing-features li {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .pricing-features li svg {
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+        }
+
+        .pricing-features li svg.check-teal {
+            color: var(--supera-teal);
+        }
+
+        .pricing-features li svg.check-orange {
+            color: var(--supera-orange);
+        }
+
+        .pricing-btn {
+            width: 100%;
+            padding: 14px 24px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+        }
+
+        .pricing-btn-outline {
+            background: transparent;
+            border: 2px solid var(--text-primary);
+            color: var(--text-primary);
+        }
+
+        .pricing-btn-outline:hover {
+            background: var(--text-primary);
+            color: var(--bg-primary);
+        }
+
+        .pricing-btn-primary {
+            background: linear-gradient(135deg, var(--supera-orange) 0%, var(--supera-orange-dark) 100%);
+            color: white;
+        }
+
+        .pricing-btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px -10px rgba(234, 142, 63, 0.5);
+        }
+
+        .pricing-note {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            padding: 120px 24px;
+            background: var(--supera-cream-dark);
+        }
+
+        [data-theme="dark"] .testimonials {
+            background: #252540;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .testimonial-card {
+            background: var(--bg-card);
+            border-radius: 20px;
+            padding: 32px;
+            border: 1px solid var(--border-color);
+            transition: all 0.4s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.1);
+        }
+
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .testimonial-avatar {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: 700;
+            color: white;
+        }
+
+        .avatar-1 { background: linear-gradient(135deg, var(--supera-orange) 0%, var(--supera-orange-light) 100%); }
+        .avatar-2 { background: linear-gradient(135deg, var(--supera-teal) 0%, var(--supera-teal-light) 100%); }
+        .avatar-3 { background: linear-gradient(135deg, var(--supera-dark) 0%, var(--supera-gray) 100%); }
+
+        .testimonial-name {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .testimonial-role {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .testimonial-text {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .testimonial-stars {
+            display: flex;
+            gap: 4px;
+        }
+
+        .testimonial-stars svg {
+            width: 20px;
+            height: 20px;
+            color: var(--supera-orange);
+        }
+
+        /* CTA Section */
+        .cta {
+            padding: 120px 24px;
+            background: var(--supera-dark);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-bg {
+            position: absolute;
+            inset: 0;
+        }
+
+        .cta-blob-1 {
+            position: absolute;
+            top: -50%;
+            left: -20%;
+            width: 80%;
+            height: 150%;
+            background: radial-gradient(circle, var(--supera-orange) 0%, transparent 60%);
+            opacity: 0.2;
+        }
+
+        .cta-blob-2 {
+            position: absolute;
+            bottom: -50%;
+            right: -20%;
+            width: 80%;
+            height: 150%;
+            background: radial-gradient(circle, var(--supera-teal) 0%, transparent 60%);
+            opacity: 0.2;
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .cta-title {
+            font-size: clamp(32px, 5vw, 56px);
+            font-weight: 800;
+            color: white;
+            margin-bottom: 24px;
+        }
+
+        .cta-description {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 40px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            justify-content: center;
+        }
+
+        .btn-white {
+            background: white;
+            color: var(--supera-dark);
+            padding: 14px 32px;
+            border-radius: 50px;
+            border: none;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+
+        .btn-white:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px -10px rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-outline-white {
+            background: transparent;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+
+        .btn-outline-white:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Footer */
+        .footer {
+            padding: 80px 24px 40px;
+            background: var(--supera-dark);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+            text-decoration: none;
+        }
+
+        .footer-brand-text {
+            font-size: 24px;
+            font-weight: 800;
+            color: white;
+        }
+
+        .footer-description {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.7;
+        }
+
+        .footer-column h4 {
+            font-size: 14px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--supera-orange);
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 12px;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.6);
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            border-color: var(--supera-orange);
+            color: var(--supera-orange);
+        }
+
+        .social-link svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .footer-bottom {
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-copyright {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .footer-legal {
+            display: flex;
+            gap: 24px;
+        }
+
+        .footer-legal a {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.4);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-legal a:hover {
+            color: white;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-backdrop {
+            position: absolute;
+            inset: 0;
+            background: rgba(26, 26, 46, 0.8);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            position: relative;
+            background: var(--bg-card);
+            border-radius: 24px;
+            padding: 48px;
+            max-width: 480px;
+            width: 100%;
+            z-index: 1;
+            animation: modalIn 0.4s ease;
+        }
+
+        @keyframes modalIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9) translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+        }
+
+        .modal-close:hover {
+            background: var(--supera-cream-dark);
+            color: var(--text-primary);
+        }
+
+        [data-theme="dark"] .modal-close:hover {
+            background: #3A3A4E;
+        }
+
+        .modal-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(234, 142, 63, 0.2) 0%, rgba(19, 146, 148, 0.2) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+        }
+
+        .modal-icon svg {
+            width: 28px;
+            height: 28px;
+            color: var(--supera-orange);
+        }
+
+        .modal-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        .modal-description {
+            font-size: 14px;
+            color: var(--text-secondary);
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 14px 18px;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            font-size: 15px;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--supera-orange);
+            box-shadow: 0 0 0 3px rgba(234, 142, 63, 0.2);
+        }
+
+        .form-select {
+            width: 100%;
+            padding: 14px 18px;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            font-size: 15px;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%234A4A5A' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 14px center;
+            background-size: 16px;
+        }
+
+        .form-select:focus {
+            outline: none;
+            border-color: var(--supera-orange);
+        }
+
+        .form-submit {
+            width: 100%;
+            margin-top: 8px;
+        }
+
+        .form-note {
+            font-size: 12px;
+            color: var(--text-secondary);
+            text-align: center;
+            margin-top: 16px;
+        }
+
+        /* Toast Notifications */
+        .toast-container {
+            position: fixed;
+            top: 100px;
+            right: 24px;
+            z-index: 3000;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .toast {
+            background: var(--supera-dark);
+            color: white;
+            padding: 16px 24px;
+            border-radius: 12px;
+            border-left: 4px solid var(--supera-orange);
+            box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transform: translateX(120%);
+            transition: transform 0.4s ease;
+        }
+
+        .toast.show {
+            transform: translateX(0);
+        }
+
+        .toast-icon {
+            width: 20px;
+            height: 20px;
+            color: var(--supera-orange);
+        }
+
+        /* Scroll Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .features-grid,
+            .courses-grid,
+            .testimonials-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .pricing-grid {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+            }
+
+            .pricing-card.popular {
+                transform: none;
+                order: -1;
+            }
+
+            .pricing-card.popular:hover {
+                transform: translateY(-8px);
+            }
+
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-toggle {
+                display: flex;
+            }
+
+            .mobile-menu {
+                display: flex;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .features-grid,
+            .courses-grid,
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .courses-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .modal-content {
+                padding: 32px 24px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 36px;
+            }
+
+            .hero-subtitle {
+                font-size: 24px;
+            }
+
+            .stat-number {
+                font-size: 36px;
+            }
+
+            .stats-grid {
+                gap: 24px;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+        }
+
+        /* Accessibility */
+        *:focus-visible {
+            outline: 2px solid var(--supera-orange);
+            outline-offset: 2px;
+        }
+
+        /* Reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="mobile-close" onclick="toggleMobileMenu()" aria-label="Cerrar menú">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+        </button>
+        <a href="#inicio" onclick="toggleMobileMenu()">Inicio</a>
+        <a href="#cursos" onclick="toggleMobileMenu()">Cursos</a>
+        <a href="#caracteristicas" onclick="toggleMobileMenu()">Características</a>
+        <a href="#precios" onclick="toggleMobileMenu()">Precios</a>
+        <a href="#contacto" onclick="toggleMobileMenu()">Contacto</a>
+        <button class="btn-primary" onclick="openModal('newsletterModal'); toggleMobileMenu()">Comienza Ahora</button>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar glass" id="navbar">
+        <div class="container nav-container">
+            <a href="#inicio" class="logo">
+                <!-- Supera Flame Icon SVG -->
+                <svg width="40" height="40" viewBox="190 415 170 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M 294.345 552.785 C 293.358 553.914 293.663 556.131 293.559 557.55 C 293.335 560.635 292.783 563.507 291.515 566.345 C 289.952 569.848 287.424 573.138 284.733 575.85 C 283.041 577.554 280.055 579.067 278.815 581.092 C 278.521 581.572 278.646 582.156 278.365 582.633 C 277.662 582.837 272.954 584.391 274.476 585.055 C 250.855 585.424 226.517 578.896 212.006 558.872 C 208.789 554.433 206.513 549.445 204.641 544.329 C 213.851 542.648 222.94 539.821 232.07 537.72 C 236.322 536.741 241.182 534.965 245.559 536.038 C 251.559 537.509 254.807 543.607 259.195 547.404 C 268.154 555.158 283.59 559.646 294.345 552.785 Z" fill="#EA8E3F"/>
+                    <path d="M 221.936 453.916 C 222.602 456.111 222.916 458.35 223.918 460.461 C 224.992 462.723 226.555 464.488 228.093 466.415 C 227.496 466.261 227.002 466.68 226.41 466.59 C 225.865 466.507 225.449 465.174 224.769 466.032 C 224.093 466.884 225.921 469.24 226.44 469.934 C 228.302 472.427 230.758 474.249 233.489 475.689 C 241.598 479.963 250.138 483.287 258.879 486 C 262.077 486.993 265.776 488.302 269.098 488.695 C 269.617 488.757 272.153 489.327 272.422 488.921 C 272.516 488.779 271.64 488.066 271.529 487.95 C 272.038 487.879 272.277 487.777 272.591 487.365 C 283.996 492.182 296.237 494.943 307.83 499.294 C 311.988 500.854 316.088 502.211 319.98 504.396 C 325.725 507.623 330.009 512.995 332.729 518.907 C 334.076 521.834 334.978 524.947 335.553 528.114 C 336.392 532.729 336.388 537.613 335.887 542.261 C 335.288 547.817 334.229 554.081 331.284 558.947 C 332.101 556.481 329.67 552.88 328.82 550.619 C 329.246 549.807 328.867 548.878 328.566 548.085 C 327.614 545.577 326.302 542.959 324.538 540.923 C 317.734 533.067 307.764 529.255 298.181 525.961 C 294.828 524.809 291.451 523.697 287.969 522.992 C 286.847 522.766 282.293 522.216 285.021 523.926 C 284.77 524.313 284.578 524.637 284.462 525.084 C 282.845 524.455 281.514 523.213 279.88 522.568 C 277.776 521.738 275.435 521.357 273.276 520.665 C 264.64 517.894 255.86 515.318 247.389 512.071 C 241.216 509.704 234.741 507.669 229.586 503.346 C 221.59 496.64 218.237 486.694 217.56 476.589 C 217.177 470.857 217.928 464.739 219.762 459.292 C 220.266 457.796 220.849 455.01 221.936 453.916 Z" fill="#F4A855"/>
+                    <path d="M 223.738 449.836 C 225.161 450.786 225.23 453.304 225.955 454.783 C 227.264 457.455 229.292 460.178 231.57 462.102 C 237.122 466.794 243.764 470.291 250.356 473.295 C 252.589 474.313 255.283 474.851 257.384 476.06 C 260.468 481.413 267.136 484.94 272.591 487.365 C 272.277 487.777 272.038 487.879 271.529 487.95 C 267.285 487.532 263.037 484.451 259.101 482.886 C 248.172 478.539 237.08 474.174 228.093 466.415 C 226.555 464.488 224.992 462.723 223.918 460.461 C 222.916 458.35 222.602 456.111 221.936 453.916 C 222.04 452.372 223.089 451.165 223.738 449.836 Z" fill="#C04218"/>
+                    <path d="M 280.512 427.204 C 280.32 427.573 280.17 427.953 279.999 428.332 C 267.177 428.972 255.906 441.505 253.369 453.503 C 252.831 456.043 252.793 458.727 253.147 461.297 C 253.278 462.249 254.078 463.619 253.836 464.499 C 252.793 468.362 255.708 472.814 257.384 476.06 C 255.283 474.851 252.589 474.313 250.356 473.295 C 243.764 470.291 237.122 466.794 231.57 462.102 C 229.292 460.178 227.264 457.455 225.955 454.783 C 225.23 453.304 225.161 450.786 223.738 449.836 C 227.219 443.663 233.113 439.35 239.293 436.136 C 251.991 429.532 266.361 427.293 280.512 427.204 Z" fill="#E37830"/>
+                    <path d="M 228.093 466.415 C 237.08 474.174 248.172 478.539 259.101 482.886 C 263.037 484.451 267.285 487.532 271.529 487.95 C 271.64 488.066 272.516 488.779 272.422 488.921 C 272.153 489.327 269.617 488.757 269.098 488.695 C 265.776 488.302 262.077 486.993 258.879 486 C 250.138 483.287 241.598 479.963 233.489 475.689 C 230.758 474.249 228.302 472.427 226.44 469.934 C 225.921 469.24 224.093 466.884 224.769 466.032 C 225.449 465.174 225.865 466.507 226.41 466.59 C 227.002 466.68 227.496 466.261 228.093 466.415 Z" fill="#F6B961"/>
+                    <path d="M 279.999 428.332 C 280.133 429.835 276.223 431 275.019 431.826 C 270.532 434.907 266.612 438.935 263.983 443.732 C 262.09 447.185 260.602 451.088 260.28 455.041 C 260.208 455.926 259.678 458.739 260.92 458.852 C 258.958 459.95 257.061 460.839 255.475 462.492 C 254.9 463.152 254.372 463.811 253.836 464.499 C 254.078 463.619 253.278 462.249 253.147 461.297 C 252.793 458.727 252.831 456.043 253.369 453.503 C 255.906 441.505 267.177 428.972 279.999 428.332 Z" fill="#B33F1D"/>
+                    <path d="M 279.999 428.332 C 280.17 427.953 280.32 427.573 280.512 427.204 C 303.505 426.885 327.665 433.005 340.993 453.427 C 343.545 457.337 347.009 462.538 347.749 467.237 C 339.123 468.688 330.358 471.569 321.861 473.769 C 317.712 474.843 312.935 476.58 308.639 475.533 C 301.908 473.892 298.098 467.245 292.853 463.212 C 285.862 457.836 276.186 455.613 267.514 456.891 C 265.206 457.231 263.116 458.137 260.92 458.852 C 259.678 458.739 260.208 455.926 260.28 455.041 C 260.602 451.088 262.09 447.185 263.983 443.732 C 266.612 438.935 270.532 434.907 275.019 431.826 C 276.223 431 280.133 429.835 279.999 428.332 Z" fill="#E88C3E"/>
+                    <path d="M 278.365 582.633 C 293.495 577.17 304.235 561.815 300.869 545.495 C 300.644 545.43 300.372 543.523 300.286 543.197 C 299.61 540.63 298.398 538.409 297.315 536.01 C 299.688 535.475 302.938 537.603 305.087 538.503 C 312.329 541.536 321.162 546.72 325.606 553.384 C 327.077 555.589 328.002 558.117 328.968 560.566 C 329.171 561.078 329.038 562.064 329.364 562.463 C 327.261 566.646 323.309 569.965 319.682 572.76 C 306.857 582.639 289.923 583.849 274.476 585.055 C 272.954 584.391 277.662 582.837 278.365 582.633 Z" fill="#E27932"/>
+                    <path d="M 294.345 552.785 C 297.62 550.817 298.906 548.559 300.869 545.495 C 304.235 561.815 293.495 577.17 278.365 582.633 C 278.646 582.156 278.521 581.572 278.815 581.092 C 280.055 579.067 283.041 577.554 284.733 575.85 C 287.424 573.138 289.952 569.848 291.515 566.345 C 292.783 563.507 293.335 560.635 293.559 557.55 C 293.663 556.131 293.358 553.914 294.345 552.785 Z" fill="#AF411F"/>
+                    <path d="M 328.82 550.619 C 326.76 545.908 321.957 542.226 317.823 539.446 C 307.636 532.595 295.739 529.606 285.021 523.926 C 282.293 522.216 286.847 522.766 287.969 522.992 C 291.451 523.697 294.828 524.809 298.181 525.961 C 307.764 529.255 317.734 533.067 324.538 540.923 C 326.302 542.959 327.614 545.577 328.566 548.085 C 328.867 548.878 329.246 549.807 328.82 550.619 Z" fill="#F5B85A"/>
+                    <path d="M 285.021 523.926 C 295.739 529.606 307.636 532.595 317.823 539.446 C 321.957 542.226 326.76 545.908 328.82 550.619 C 329.67 552.88 332.101 556.481 331.284 558.947 C 330.991 560.15 330.179 561.538 329.364 562.463 C 329.038 562.064 329.171 561.078 328.968 560.566 C 328.002 558.117 327.077 555.589 325.606 553.384 C 321.162 546.72 312.329 541.536 305.087 538.503 C 302.938 537.603 299.688 535.475 297.315 536.01 C 295.044 533.413 293 530.927 290.228 528.805 C 288.456 527.449 286.058 526.603 284.462 525.084 C 284.578 524.637 284.77 524.313 285.021 523.926 Z" fill="#B63F1A"/>
+                </svg>
+                <span class="logo-text">Supera<span style="color: var(--supera-orange);">.</span></span>
+            </a>
+            
+            <div class="nav-links">
+                <a href="#inicio" class="nav-link">Inicio</a>
+                <a href="#cursos" class="nav-link">Cursos</a>
+                <a href="#caracteristicas" class="nav-link">Características</a>
+                <a href="#precios" class="nav-link">Precios</a>
+                <a href="#contacto" class="nav-link">Contacto</a>
+                
+                <!-- Dark Mode Toggle -->
+                <button class="theme-toggle" onclick="toggleTheme()" aria-label="Cambiar tema">
+                    <!-- Sun icon (shown in dark mode) -->
+                    <svg id="sunIcon" class="theme-icon hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                    <!-- Moon icon (shown in light mode) -->
+                    <svg id="moonIcon" class="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+                
+                <button class="btn-primary" onclick="openModal('newsletterModal')">Comienza Ahora</button>
+            </div>
+            
+            <button class="mobile-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menú">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero">
+        <div class="hero-bg">
+            <div class="blob blob-orange"></div>
+            <div class="blob blob-teal"></div>
+            <div class="blob blob-orange-2"></div>
+        </div>
+        
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span></span>
+                <span class="hero-badge-text">Educación IA para Hispanohablantes</span>
+            </div>
+            
+            <h1 class="hero-title">
+                <span class="gradient-text">Transforma tu</span><br>
+                Aprendizaje
+            </h1>
+            <h2 class="hero-subtitle">Enciende tu Éxito</h2>
+            
+            <p class="hero-description">
+                Aprende inteligencia artificial en español con cursos prácticos diseñados para impulsar tu carrera. 
+                De principiante a experto, a tu ritmo.
+            </p>
+            
+            <div class="hero-buttons">
+                <button class="btn-primary" onclick="openModal('newsletterModal')">
+                    Comienza Ahora
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                </button>
+                <button class="btn-secondary" onclick="scrollToSection('cursos')">
+                    Ver Cursos
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="hero-trust">
+                <span>Confiado por estudiantes de:</span>
+                <div class="trust-logos">
+                    <span class="trust-logo">Google</span>
+                    <span class="trust-logo">Microsoft</span>
+                    <span class="trust-logo">Meta</span>
+                    <span class="trust-logo">Amazon</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats" id="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item reveal">
+                    <div class="stat-number" data-count="15000">0</div>
+                    <div class="stat-label">Estudiantes</div>
+                </div>
+                <div class="stat-item reveal">
+                    <div class="stat-number"><span data-count="94">0</span>%</div>
+                    <div class="stat-label">Empleabilidad</div>
+                </div>
+                <div class="stat-item reveal">
+                    <div class="stat-number" data-count="50">0</div>
+                    <div class="stat-label">Cursos</div>
+                </div>
+                <div class="stat-item reveal">
+                    <div class="stat-number">4.9</div>
+                    <div class="stat-label">Valoración</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="caracteristicas" class="features">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-label">Características</span>
+                <h2 class="section-title">¿Por qué Supera?</h2>
+                <p class="section-description">La plataforma de aprendizaje de IA diseñada específicamente para la comunidad hispanohablante</p>
+            </div>
+            
+            <div class="features-grid">
+                <!-- Feature 1 -->
+                <div class="feature-card reveal" onclick="showFeatureDetails('aprende')">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Aprende IA</h3>
+                    <p class="feature-description">Domina los fundamentos de la inteligencia artificial, desde machine learning hasta deep learning, con proyectos prácticos.</p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="feature-card reveal" onclick="showFeatureDetails('automatizacion')">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Automatización</h3>
+                    <p class="feature-description">Aprende a automatizar tareas repetitivas y aumenta tu productividad con herramientas de IA de última generación.</p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="feature-card reveal" onclick="showFeatureDetails('prompts')">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Ingeniería de Prompts</h3>
+                    <p class="feature-description">Conviértete en experto en comunicación con IA. Aprende a diseñar prompts efectivos para obtener resultados profesionales.</p>
+                </div>
+
+                <!-- Feature 4 -->
+                <div class="feature-card reveal" onclick="showFeatureDetails('proyectos')">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                            <line x1="16" y1="13" x2="8" y2="13"></line>
+                            <line x1="16" y1="17" x2="8" y2="17"></line>
+                            <polyline points="10 9 9 9 8 9"></polyline>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Proyectos Prácticos</h3>
+                    <p class="feature-description">Construye un portafolio sólido con proyectos reales que demuestren tus habilidades a empleadores potenciales.</p>
+                </div>
+
+                <!-- Feature 5 -->
+                <div class="feature-card reveal" onclick="showFeatureDetails('comunidad')">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="9" cy="7" r="4"></circle>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Comunidad Latina</h3>
+                    <p class="feature-description">Únete a una comunidad vibrante de hispanohablantes apasionados por la IA. Networking, colaboración y crecimiento juntos.</p>
+                </div>
+
+                <!-- Feature 6 -->
+                <div class="feature-card reveal" onclick="showFeatureDetails('certificacion')">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="8" r="7"></circle>
+                            <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Certificación Oficial</h3>
+                    <p class="feature-description">Obtén certificados reconocidos por la industria que validan tus habilidades y potencian tu currículum profesional.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Courses Section -->
+    <section id="cursos" class="courses">
+        <div class="container">
+            <div class="courses-header reveal">
+                <div class="section-header">
+                    <span class="section-label">Cursos</span>
+                    <h2 class="section-title">Explora nuestros cursos</h2>
+                    <p class="section-description">Desde fundamentos hasta especialización avanzada, tenemos el curso perfecto para tu nivel.</p>
+                </div>
+                <button class="btn-secondary" onclick="scrollToSection('precios')">
+                    Ver todos los cursos
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="courses-grid">
+                <!-- Course 1 -->
+                <div class="course-card reveal">
+                    <div class="course-image course-image-1">
+                        <span>🤖</span>
+                        <span class="course-badge">Principiante</span>
+                    </div>
+                    <div class="course-content">
+                        <h3 class="course-title">IA para Principiantes</h3>
+                        <p class="course-description">Domina los conceptos fundamentales de la inteligencia artificial sin necesidad de experiencia previa.</p>
+                        <div class="course-footer">
+                            <div class="course-duration">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                8 semanas
+                            </div>
+                            <a href="#" class="course-link" onclick="showToast('Detalles del curso próximamente', 'info')">Ver más →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Course 2 -->
+                <div class="course-card reveal">
+                    <div class="course-image course-image-2">
+                        <span>⚡</span>
+                        <span class="course-badge">Intermedio</span>
+                    </div>
+                    <div class="course-content">
+                        <h3 class="course-title">Automatización con IA</h3>
+                        <p class="course-description">Aprende a automatizar flujos de trabajo complejos y aumenta tu productividad exponencialmente.</p>
+                        <div class="course-footer">
+                            <div class="course-duration">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                6 semanas
+                            </div>
+                            <a href="#" class="course-link" onclick="showToast('Detalles del curso próximamente', 'info')">Ver más →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Course 3 -->
+                <div class="course-card reveal">
+                    <div class="course-image course-image-3">
+                        <span>🚀</span>
+                        <span class="course-badge">Avanzado</span>
+                    </div>
+                    <div class="course-content">
+                        <h3 class="course-title">Prompt Engineering Pro</h3>
+                        <p class="course-description">Conviértete en experto en diseño de prompts y desbloquea todo el potencial de los LLMs.</p>
+                        <div class="course-footer">
+                            <div class="course-duration">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                4 semanas
+                            </div>
+                            <a href="#" class="course-link" onclick="showToast('Detalles del curso próximamente', 'info')">Ver más →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="precios" class="pricing">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-label">Precios</span>
+                <h2 class="section-title">Inversión en tu futuro</h2>
+                <p class="section-description">Acceso ilimitado a todo nuestro catálogo de cursos por una tarifa mensual accesible.</p>
+            </div>
+
+            <div class="pricing-grid">
+                <!-- Basic Plan -->
+                <div class="pricing-card reveal">
+                    <h3 class="pricing-name">Básico</h3>
+                    <p class="pricing-desc">Para empezar tu viaje en IA</p>
+                    <div class="pricing-price">
+                        <span class="pricing-amount">$9</span>
+                        <span class="pricing-period">/mes</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>
+                            <svg class="check-teal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            Acceso a 10 cursos básicos
+                        </li>
+                        <li>
+                            <svg class="check-teal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            Certificados de finalización
+                        </li>
+                        <li>
+                            <svg class="check-teal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            Foro de la comunidad
+                        </li>
+                    </ul>
+                    <button class="pricing-btn pricing-btn-outline" onclick="openModal('newsletterModal')">Elegir Plan</button>
+                </div>
+
+                <!-- Popular Plan -->
+                <div class="pricing-card popular reveal">
+                    <span class="popular-badge">Más Popular</span>
+                    <h3 class="pricing-name">Profesional</h3>
+                    <p class="pricing-desc">El favorito de nuestros estudiantes</p>
+                    <div class="pricing-price">
+                        <span class="pricing-amount">$19</span>
+                        <span class="pricing-period">/mes</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>
+                            <svg class="check-orange" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            Acceso a todos los cursos
+                        </li>
+                        <li>
+                            <svg class="check-orange" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            Certificados verificados
+                        </li>
+                        <li>
+                            <svg class="check-orange" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            Sesiones de mentoría en vivo
+                        </li>
+                        <li>
+                            <svg class="check-orange" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            Proyectos con revisión personalizada
+                        </li>
+                    </ul>
+                    <button class="pricing-btn pricing-btn-primary" onclick="openModal('newsletterModal')">Suscribirse $19/mes</button>
+                </div>
+
+                <!-- Enterprise Plan -->
+                <div class="pricing-card reveal">
+                    <h3 class="pricing-name">Empresas</h3>
+                    <p class="pricing-desc">Para equipos y organizaciones</p>
+                    <div class="pricing-price">
+                        <span class="pricing-amount">$49</span>
+                        <span class="pricing-period">/mes</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>
+                            <svg class="check-teal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            Todo el plan Profesional
+                        </li>
+                        <li>
+                            <svg class="check-teal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            Hasta 10 usuarios
+                        </li>
+                        <li>
+                            <svg class="check-teal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            Capacitación personalizada
+                        </li>
+                        <li>
+                            <svg class="check-teal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            Soporte prioritario
+                        </li>
+                    </ul>
+                    <button class="pricing-btn pricing-btn-outline" onclick="openModal('newsletterModal')">Contactar Ventas</button>
+                </div>
+            </div>
+
+            <p class="pricing-note reveal">Cancela en cualquier momento. Sin compromisos.</p>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-label">Testimonios</span>
+                <h2 class="section-title">Lo que dicen nuestros estudiantes</h2>
+            </div>
+
+            <div class="testimonials-grid">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-card reveal">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar avatar-1">M</div>
+                        <div>
+                            <div class="testimonial-name">María González</div>
+                            <div class="testimonial-role">Marketing Digital → IA Specialist</div>
+                        </div>
+                    </div>
+                    <p class="testimonial-text">"Supera cambió mi carrera completamente. En 3 meses pasé de no saber nada de IA a trabajar como especialista en una startup de tecnología."</p>
+                    <div class="testimonial-stars">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="testimonial-card reveal">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar avatar-2">C</div>
+                        <div>
+                            <div class="testimonial-name">Carlos Ruiz</div>
+                            <div class="testimonial-role">Estudiante → AI Developer</div>
+                        </div>
+                    </div>
+                    <p class="testimonial-text">"La comunidad hispanohablante es increíble. Aprender en tu idioma nativo hace toda la diferencia. Los mentores son de primera."</p>
+                    <div class="testimonial-stars">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="testimonial-card reveal">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar avatar-3">A</div>
+                        <div>
+                            <div class="testimonial-name">Ana Martínez</div>
+                            <div class="testimonial-role">Empresaria → Tech Founder</div>
+                        </div>
+                    </div>
+                    <p class="testimonial-text">"Implementé IA en mi negocio gracias a Supera. Ahorramos 40% en costos operativos y aumentamos la productividad del equipo."</p>
+                    <div class="testimonial-stars">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="cta-bg">
+            <div class="cta-blob-1"></div>
+            <div class="cta-blob-2"></div>
+        </div>
+        <div class="cta-content reveal">
+            <h2 class="cta-title">¿Listo para transformar tu carrera?</h2>
+            <p class="cta-description">Únete a miles de estudiantes que ya están construyendo el futuro con IA. Tu viaje comienza hoy.</p>
+            <div class="cta-buttons">
+                <button class="btn-white" onclick="openModal('newsletterModal')">
+                    Comienza Gratis
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                </button>
+                <button class="btn-outline-white" onclick="showToast('Demo próximamente', 'info')">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <polygon points="10 8 16 12 10 16 10 8"></polygon>
+                    </svg>
+                    Ver Demo
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contacto" class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <a href="#inicio" class="footer-brand">
+                        <svg width="32" height="32" viewBox="190 415 170 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M 294.345 552.785 C 293.358 553.914 293.663 556.131 293.559 557.55 C 293.335 560.635 292.783 563.507 291.515 566.345 C 289.952 569.848 287.424 573.138 284.733 575.85 C 283.041 577.554 280.055 579.067 278.815 581.092 C 278.521 581.572 278.646 582.156 278.365 582.633 C 277.662 582.837 272.954 584.391 274.476 585.055 C 250.855 585.424 226.517 578.896 212.006 558.872 C 208.789 554.433 206.513 549.445 204.641 544.329 C 213.851 542.648 222.94 539.821 232.07 537.72 C 236.322 536.741 241.182 534.965 245.559 536.038 C 251.559 537.509 254.807 543.607 259.195 547.404 C 268.154 555.158 283.59 559.646 294.345 552.785 Z" fill="#EA8E3F"/>
+                            <path d="M 221.936 453.916 C 222.602 456.111 222.916 458.35 223.918 460.461 C 224.992 462.723 226.555 464.488 228.093 466.415 C 227.496 466.261 227.002 466.68 226.41 466.59 C 225.865 466.507 225.449 465.174 224.769 466.032 C 224.093 466.884 225.921 469.24 226.44 469.934 C 228.302 472.427 230.758 474.249 233.489 475.689 C 241.598 479.963 250.138 483.287 258.879 486 C 262.077 486.993 265.776 488.302 269.098 488.695 C 269.617 488.757 272.153 489.327 272.422 488.921 C 272.516 488.779 271.64 488.066 271.529 487.95 C 272.038 487.879 272.277 487.777 272.591 487.365 C 283.996 492.182 296.237 494.943 307.83 499.294 C 311.988 500.854 316.088 502.211 319.98 504.396 C 325.725 507.623 330.009 512.995 332.729 518.907 C 334.076 521.834 334.978 524.947 335.553 528.114 C 336.392 532.729 336.388 537.613 335.887 542.261 C 335.288 547.817 334.229 554.081 331.284 558.947 C 332.101 556.481 329.67 552.88 328.82 550.619 C 329.246 549.807 328.867 548.878 328.566 548.085 C 327.614 545.577 326.302 542.959 324.538 540.923 C 317.734 533.067 307.764 529.255 298.181 525.961 C 294.828 524.809 291.451 523.697 287.969 522.992 C 286.847 522.766 282.293 522.216 285.021 523.926 C 284.77 524.313 284.578 524.637 284.462 525.084 C 282.845 524.455 281.514 523.213 279.88 522.568 C 277.776 521.738 275.435 521.357 273.276 520.665 C 264.64 517.894 255.86 515.318 247.389 512.071 C 241.216 509.704 234.741 507.669 229.586 503.346 C 221.59 496.64 218.237 486.694 217.56 476.589 C 217.177 470.857 217.928 464.739 219.762 459.292 C 220.266 457.796 220.849 455.01 221.936 453.916 Z" fill="#F4A855"/>
+                            <path d="M 223.738 449.836 C 225.161 450.786 225.23 453.304 225.955 454.783 C 227.264 457.455 229.292 460.178 231.57 462.102 C 237.122 466.794 243.764 470.291 250.356 473.295 C 252.589 474.313 255.283 474.851 257.384 476.06 C 260.468 481.413 267.136 484.94 272.591 487.365 C 272.277 487.777 272.038 487.879 271.529 487.95 C 267.285 487.532 263.037 484.451 259.101 482.886 C 248.172 478.539 237.08 474.174 228.093 466.415 C 226.555 464.488 224.992 462.723 223.918 460.461 C 222.916 458.35 222.602 456.111 221.936 453.916 C 222.04 452.372 223.089 451.165 223.738 449.836 Z" fill="#C04218"/>
+                            <path d="M 280.512 427.204 C 280.32 427.573 280.17 427.953 279.999 428.332 C 267.177 428.972 255.906 441.505 253.369 453.503 C 252.831 456.043 252.793 458.727 253.147 461.297 C 253.278 462.249 254.078 463.619 253.836 464.499 C 252.793 468.362 255.708 472.814 257.384 476.06 C 255.283 474.851 252.589 474.313 250.356 473.295 C 243.764 470.291 237.122 466.794 231.57 462.102 C 229.292 460.178 227.264 457.455 225.955 454.783 C 225.23 453.304 225.161 450.786 223.738 449.836 C 227.219 443.663 233.113 439.35 239.293 436.136 C 251.991 429.532 266.361 427.293 280.512 427.204 Z" fill="#E37830"/>
+                            <path d="M 228.093 466.415 C 237.08 474.174 248.172 478.539 259.101 482.886 C 263.037 484.451 267.285 487.532 271.529 487.95 C 271.64 488.066 272.516 488.779 272.422 488.921 C 272.153 489.327 269.617 488.757 269.098 488.695 C 265.776 488.302 262.077 486.993 258.879 486 C 250.138 483.287 241.598 479.963 233.489 475.689 C 230.758 474.249 228.302 472.427 226.44 469.934 C 225.921 469.24 224.093 466.884 224.769 466.032 C 225.449 465.174 225.865 466.507 226.41 466.59 C 227.002 466.68 227.496 466.261 228.093 466.415 Z" fill="#F6B961"/>
+                            <path d="M 279.999 428.332 C 280.133 429.835 276.223 431 275.019 431.826 C 270.532 434.907 266.612 438.935 263.983 443.732 C 262.09 447.185 260.602 451.088 260.28 455.041 C 260.208 455.926 259.678 458.739 260.92 458.852 C 258.958 459.95 257.061 460.839 255.475 462.492 C 254.9 463.152 254.372 463.811 253.836 464.499 C 254.078 463.619 253.278 462.249 253.147 461.297 C 252.793 458.727 252.831 456.043 253.369 453.503 C 255.906 441.505 267.177 428.972 279.999 428.332 Z" fill="#B33F1D"/>
+                            <path d="M 279.999 428.332 C 280.17 427.953 280.32 427.573 280.512 427.204 C 303.505 426.885 327.665 433.005 340.993 453.427 C 343.545 457.337 347.009 462.538 347.749 467.237 C 339.123 468.688 330.358 471.569 321.861 473.769 C 317.712 474.843 312.935 476.58 308.639 475.533 C 301.908 473.892 298.098 467.245 292.853 463.212 C 285.862 457.836 276.186 455.613 267.514 456.891 C 265.206 457.231 263.116 458.137 260.92 458.852 C 259.678 458.739 260.208 455.926 260.28 455.041 C 260.602 451.088 262.09 447.185 263.983 443.732 C 266.612 438.935 270.532 434.907 275.019 431.826 C 276.223 431 280.133 429.835 279.999 428.332 Z" fill="#E88C3E"/>
+                            <path d="M 278.365 582.633 C 293.495 577.17 304.235 561.815 300.869 545.495 C 300.644 545.43 300.372 543.523 300.286 543.197 C 299.61 540.63 298.398 538.409 297.315 536.01 C 299.688 535.475 302.938 537.603 305.087 538.503 C 312.329 541.536 321.162 546.72 325.606 553.384 C 327.077 555.589 328.002 558.117 328.968 560.566 C 329.171 561.078 329.038 562.064 329.364 562.463 C 327.261 566.646 323.309 569.965 319.682 572.76 C 306.857 582.639 289.923 583.849 274.476 585.055 C 272.954 584.391 277.662 582.837 278.365 582.633 Z" fill="#E27932"/>
+                            <path d="M 294.345 552.785 C 297.62 550.817 298.906 548.559 300.869 545.495 C 304.235 561.815 293.495 577.17 278.365 582.633 C 278.646 582.156 278.521 581.572 278.815 581.092 C 280.055 579.067 283.041 577.554 284.733 575.85 C 287.424 573.138 289.952 569.848 291.515 566.345 C 292.783 563.507 293.335 560.635 293.559 557.55 C 293.663 556.131 293.358 553.914 294.345 552.785 Z" fill="#AF411F"/>
+                            <path d="M 328.82 550.619 C 326.76 545.908 321.957 542.226 317.823 539.446 C 307.636 532.595 295.739 529.606 285.021 523.926 C 282.293 522.216 286.847 522.766 287.969 522.992 C 291.451 523.697 294.828 524.809 298.181 525.961 C 307.764 529.255 317.734 533.067 324.538 540.923 C 326.302 542.959 327.614 545.577 328.566 548.085 C 328.867 548.878 329.246 549.807 328.82 550.619 Z" fill="#F5B85A"/>
+                            <path d="M 285.021 523.926 C 295.739 529.606 307.636 532.595 317.823 539.446 C 321.957 542.226 326.76 545.908 328.82 550.619 C 329.67 552.88 332.101 556.481 331.284 558.947 C 330.991 560.15 330.179 561.538 329.364 562.463 C 329.038 562.064 329.171 561.078 328.968 560.566 C 328.002 558.117 327.077 555.589 325.606 553.384 C 321.162 546.72 312.329 541.536 305.087 538.503 C 302.938 537.603 299.688 535.475 297.315 536.01 C 295.044 533.413 293 530.927 290.228 528.805 C 288.456 527.449 286.058 526.603 284.462 525.084 C 284.578 524.637 284.77 524.313 285.021 523.926 Z" fill="#B63F1A"/>
+                        </svg>
+                        <span class="footer-brand-text">Supera<span style="color: var(--supera-orange);">.</span></span>
+                    </a>
+                    <p class="footer-description">Educación en IA para hispanohablantes. Transformando carreras, impulsando el futuro.</p>
+                </div>
+
+                <div>
+                    <h4>Plataforma</h4>
+                    <ul class="footer-links">
+                        <li><a href="#cursos">Cursos</a></li>
+                        <li><a href="#precios">Precios</a></li>
+                        <li><a href="#caracteristicas">Características</a></li>
+                        <li><a href="#" onclick="showToast('Blog próximamente', 'info')">Blog</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4>Empresa</h4>
+                    <ul class="footer-links">
+                        <li><a href="#" onclick="showToast('Sobre nosotros próximamente', 'info')">Sobre Nosotros</a></li>
+                        <li><a href="#" onclick="showToast('Carreras próximamente', 'info')">Carreras</a></li>
+                        <li><a href="#contacto">Contacto</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4>Síguenos</h4>
+                    <div class="footer-social">
+                        <a href="#" class="social-link" onclick="showToast('Twitter próximamente', 'info')" aria-label="Twitter">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link" onclick="showToast('LinkedIn próximamente', 'info')" aria-label="LinkedIn">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link" onclick="showToast('YouTube próximamente', 'info')" aria-label="YouTube">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p class="footer-copyright">© 2026 Supera Learning LLC. Todos los derechos reservados.</p>
+                <div class="footer-legal">
+                    <a href="#" onclick="showToast('Privacidad próximamente', 'info')">Privacidad</a>
+                    <a href="#" onclick="showToast('Términos próximamente', 'info')">Términos</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Newsletter Modal -->
+    <div class="modal" id="newsletterModal">
+        <div class="modal-backdrop" onclick="closeModal('newsletterModal')"></div>
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('newsletterModal')" aria-label="Cerrar">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+            
+            <div class="modal-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                    <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+            </div>
+            
+            <h3 class="modal-title">Únete a Supera</h3>
+            <p class="modal-description">Comienza tu viaje en IA. Recibe acceso gratuito a nuestra clase introductoria.</p>
+            
+            <form onsubmit="handleSubmit(event)">
+                <div class="form-group">
+                    <label class="form-label" for="name">Nombre completo</label>
+                    <input type="text" id="name" class="form-input" placeholder="Tu nombre" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="email">Correo electrónico</label>
+                    <input type="email" id="email" class="form-input" placeholder="tu@email.com" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="experience">Nivel de experiencia</label>
+                    <select id="experience" class="form-select" required>
+                        <option value="">Selecciona tu nivel</option>
+                        <option value="principiante">Principiante (sin experiencia)</option>
+                        <option value="basico">Básico (algún conocimiento)</option>
+                        <option value="intermedio">Intermedio (uso regular de IA)</option>
+                        <option value="avanzado">Avanzado (desarrollo/proyectos)</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-primary form-submit" id="submitBtn">
+                    Obtener Acceso Gratuito
+                </button>
+            </form>
+            
+            <p class="form-note">Al registrarte, aceptas recibir correos sobre nuestros cursos. Puedes darte de baja en cualquier momento.</p>
+        </div>
+    </div>
+
+    <script>
+        // Theme Toggle
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('supera-theme', newTheme);
+            updateThemeIcons();
+        }
+
+        function updateThemeIcons() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const sunIcon = document.getElementById('sunIcon');
+            const moonIcon = document.getElementById('moonIcon');
+            
+            if (currentTheme === 'dark') {
+                sunIcon.classList.remove('hidden');
+                moonIcon.classList.add('hidden');
+            } else {
+                sunIcon.classList.add('hidden');
+                moonIcon.classList.remove('hidden');
+            }
+        }
+
+        // Initialize theme
+        function initTheme() {
+            const savedTheme = localStorage.getItem('supera-theme');
+            const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            
+            if (savedTheme) {
+                document.documentElement.setAttribute('data-theme', savedTheme);
+            } else if (systemPrefersDark) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+            
+            updateThemeIcons();
+        }
+
+        initTheme();
+
+        // Mobile Menu
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('active');
+            document.body.style.overflow = menu.classList.contains('active') ? 'hidden' : '';
+        }
+
+        // Modal Functions
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Close modal on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.modal.active').forEach(modal => {
+                    modal.classList.remove('active');
+                });
+                document.body.style.overflow = '';
+            }
+        });
+
+        // Smooth Scroll
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // Toast Notifications
+        function showToast(message, type = 'success') {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            
+            toast.className = 'toast';
+            toast.innerHTML = `
+                <svg class="toast-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    ${type === 'success' 
+                        ? '<polyline points="20 6 9 17 4 12"></polyline>'
+                        : '<circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line>'
+                    }
+                </svg>
+                <span>${message}</span>
+            `;
+            
+            container.appendChild(toast);
+            
+            setTimeout(() => toast.classList.add('show'), 10);
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => toast.remove(), 400);
+            }, 3000);
+        }
+
+        // Form Submit
+        function handleSubmit(e) {
+            e.preventDefault();
+            const btn = document.getElementById('submitBtn');
+            const originalText = btn.textContent;
+            
+            btn.textContent = 'Enviando...';
+            btn.disabled = true;
+            
+            setTimeout(() => {
+                closeModal('newsletterModal');
+                showToast('¡Bienvenido a Supera! Revisa tu correo para confirmar.', 'success');
+                btn.textContent = originalText;
+                btn.disabled = false;
+                e.target.reset();
+            }, 1500);
+        }
+
+        // Feature Details
+        function showFeatureDetails(feature) {
+            const details = {
+                aprende: 'Aprende los fundamentos de Machine Learning, Deep Learning y Neural Networks con proyectos prácticos.',
+                automatizacion: 'Automatiza tareas repetitivas y aumenta tu productividad con herramientas de IA.',
+                prompts: 'Domina el arte de comunicarte con IA y obtén resultados profesionales.',
+                proyectos: 'Construye un portafolio sólido con proyectos reales y revisión personalizada.',
+                comunidad: 'Conecta con hispanohablantes apasionados por la IA y crea relaciones profesionales.',
+                certificacion: 'Obtén certificados reconocidos que validen tus habilidades ante empleadores.'
+            };
+            showToast(details[feature], 'info');
+        }
+
+        // Counter Animation
+        function animateCounters() {
+            const counters = document.querySelectorAll('[data-count]');
+            
+            counters.forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-count'));
+                const duration = 2000;
+                const step = target / (duration / 16);
+                let current = 0;
+                
+                const updateCounter = () => {
+                    current += step;
+                    if (current < target) {
+                        counter.textContent = Math.floor(current).toLocaleString();
+                        requestAnimationFrame(updateCounter);
+                    } else {
+                        counter.textContent = target.toLocaleString();
+                    }
+                };
+                
+                updateCounter();
+            });
+        }
+
+        // Scroll Reveal
+        function initReveal() {
+            const reveals = document.querySelectorAll('.reveal');
+            
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.classList.add('active');
+                        }, index * 100);
+                        revealObserver.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+            
+            reveals.forEach(reveal => revealObserver.observe(reveal));
+        }
+
+        // Stats Counter Observer
+        function initStatsObserver() {
+            const statsSection = document.getElementById('stats');
+            if (!statsSection) return;
+            
+            const statsObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateCounters();
+                        statsObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            statsObserver.observe(statsSection);
+        }
+
+        // Navbar Scroll Effect
+        function initNavbar() {
+            const navbar = document.getElementById('navbar');
+            
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 100) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+        }
+
+        // Initialize everything
+        document.addEventListener('DOMContentLoaded', () => {
+            initReveal();
+            initStatsObserver();
+            initNavbar();
+        });
+    </script>
+</body>
+</html>
