@@ -4,8 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Supera — Transforma tu Aprendizaje</title>
-    <meta name="description" content="Aprende inteligencia artificial en español con Supera. Cursos prácticos diseñados para impulsar tu carrera.">
+    <title>Supera — Sin Complicarte. Supérate.</title>
+    <meta name="description" content="Supera es una comunidad educativa que te enseña a usar inteligencia artificial en tu vida diaria, de forma simple y práctica. Para personas que quieren empezar desde cero.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="icon_color.png">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,45 +16,60 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
     <style>
-        /* CSS Variables for theming */
+        /* CSS Variables — animation-matched, dark-first */
         :root {
-            /* Brand Colors */
-            --supera-orange: #EA8E3F;
-            --supera-orange-light: #F4A855;
-            --supera-orange-dark: #D47A2E;
-            --supera-teal: #139294;
-            --supera-teal-light: #1BA8AA;
-            --supera-teal-dark: #0E7A7C;
-            --supera-cream: #FDFCFC;
-            --supera-cream-dark: #F5F3F0;
-            --supera-dark: #1A1A2E;
-            --supera-gray: #4A4A5A;
-            --supera-gray-light: #6A6A7A;
-            
-            /* Light theme (default) */
-            --bg-primary: #FDFCFC;
-            --bg-secondary: #FFFFFF;
-            --bg-card: #FFFFFF;
-            --bg-dark: #1A1A2E;
-            --text-primary: #1A1A2E;
-            --text-secondary: #4A4A5A;
-            --text-light: #FFFFFF;
-            --border-color: rgba(26, 26, 46, 0.1);
-            --shadow-color: rgba(234, 142, 63, 0.25);
-            --shadow-color-teal: rgba(19, 146, 148, 0.25);
+            /* Brand — exact animation palette */
+            --supera-orange:       #F08C39;
+            --supera-orange-light: #FFB07A;
+            --supera-orange-dark:  #C97230;
+            --supera-teal:         #139494;
+            --supera-teal-light:   #1AABAB;
+            --supera-teal-dark:    #0E7A7C;
+            --supera-cream:        #F4F1ED;
+            --supera-cream-dark:   #111010;
+            --supera-dark:         #0D0C0B;
+            --supera-gray:         #2A2826;
+            --supera-gray-light:   #3A3835;
+
+            /* Dark theme (default — matches animation exactly) */
+            --bg-primary:    #0D0C0B;
+            --bg-secondary:  #111010;
+            --bg-card:       #161514;
+            --bg-dark:       #0D0C0B;
+            --text-primary:  #F4F1ED;
+            --text-secondary: rgba(244, 241, 237, 0.48);
+            --text-light:    #F4F1ED;
+            --border-color:  rgba(244, 241, 237, 0.07);
+            --shadow-color:  rgba(240, 140, 57, 0.18);
+            --shadow-color-teal: rgba(19, 148, 148, 0.18);
         }
 
+        /* Explicit dark — mirrors :root so toggle stays consistent */
         [data-theme="dark"] {
-            --bg-primary: #1A1A2E;
-            --bg-secondary: #2A2A3E;
-            --bg-card: #2A2A3E;
-            --bg-dark: #1A1A2E;
-            --text-primary: #FDFCFC;
-            --text-secondary: #B0B0C0;
-            --text-light: #FDFCFC;
-            --border-color: rgba(253, 252, 252, 0.1);
-            --shadow-color: rgba(234, 142, 63, 0.15);
-            --shadow-color-teal: rgba(19, 146, 148, 0.15);
+            --bg-primary:    #0D0C0B;
+            --bg-secondary:  #111010;
+            --bg-card:       #161514;
+            --bg-dark:       #0D0C0B;
+            --text-primary:  #F4F1ED;
+            --text-secondary: rgba(244, 241, 237, 0.48);
+            --text-light:    #F4F1ED;
+            --border-color:  rgba(244, 241, 237, 0.07);
+            --shadow-color:  rgba(240, 140, 57, 0.18);
+            --shadow-color-teal: rgba(19, 148, 148, 0.18);
+        }
+
+        /* Light override */
+        [data-theme="light"] {
+            --bg-primary:    #FDFCFC;
+            --bg-secondary:  #F5F3F0;
+            --bg-card:       #FFFFFF;
+            --bg-dark:       #0D0C0B;
+            --text-primary:  #1A1A1A;
+            --text-secondary: #4A4A5A;
+            --text-light:    #FFFFFF;
+            --border-color:  rgba(26, 26, 26, 0.1);
+            --shadow-color:  rgba(240, 140, 57, 0.25);
+            --shadow-color-teal: rgba(19, 148, 148, 0.25);
         }
 
         * {
@@ -67,6 +85,7 @@
             color: var(--text-primary);
             overflow-x: hidden;
             line-height: 1.6;
+            scrollbar-gutter: stable;
         }
 
         /* Utility Classes */
@@ -76,14 +95,14 @@
             padding: 0 24px;
         }
 
-        /* Gradient Text */
+        /* Gradient Text — warm orange, animation-matched */
         .gradient-text {
-            background: linear-gradient(135deg, var(--supera-orange) 0%, var(--supera-orange-light) 25%, var(--supera-teal) 50%, var(--supera-teal-light) 75%, var(--supera-orange) 100%);
-            background-size: 300% 300%;
+            background: linear-gradient(135deg, var(--supera-orange) 0%, var(--supera-orange-light) 50%, var(--supera-orange) 100%);
+            background-size: 200% 200%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            animation: gradientShift 6s ease infinite;
+            animation: gradientShift 5s ease infinite;
         }
 
         @keyframes gradientShift {
@@ -91,15 +110,17 @@
             50% { background-position: 100% 50%; }
         }
 
-        /* Glass Effect */
+        /* Glass Effect — dark glass matching animation bg */
         .glass {
-            background: rgba(253, 252, 252, 0.85);
+            background: rgba(13, 12, 11, 0.82);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(244, 241, 237, 0.06);
         }
 
-        [data-theme="dark"] .glass {
-            background: rgba(42, 42, 62, 0.9);
+        [data-theme="light"] .glass {
+            background: rgba(253, 252, 252, 0.88);
+            border-bottom: 1px solid rgba(26, 26, 26, 0.08);
         }
 
         /* Buttons */
@@ -126,10 +147,10 @@
 
         .btn-secondary {
             background: transparent;
-            color: var(--supera-teal);
+            color: rgba(244, 241, 237, 0.72);
             padding: 12px 30px;
             border-radius: 50px;
-            border: 2px solid var(--supera-teal);
+            border: 1.5px solid rgba(244, 241, 237, 0.22);
             font-weight: 600;
             font-size: 16px;
             cursor: pointer;
@@ -141,13 +162,19 @@
         }
 
         .btn-secondary:hover {
-            background: var(--supera-teal);
-            color: white;
+            background: rgba(244, 241, 237, 0.07);
+            border-color: rgba(244, 241, 237, 0.4);
+            color: var(--text-primary);
             transform: translateY(-2px);
         }
 
-        [data-theme="dark"] .btn-secondary:hover {
-            color: var(--text-light);
+        [data-theme="light"] .btn-secondary {
+            color: var(--supera-teal);
+            border-color: var(--supera-teal);
+        }
+        [data-theme="light"] .btn-secondary:hover {
+            background: var(--supera-teal);
+            color: white;
         }
 
         /* Navigation */
@@ -162,7 +189,7 @@
         }
 
         .navbar.scrolled {
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 1px 32px rgba(0, 0, 0, 0.55);
         }
 
         .nav-container {
@@ -180,7 +207,8 @@
 
         .logo-text {
             font-size: 24px;
-            font-weight: 800;
+            font-weight: 700;
+            letter-spacing: -0.03em;
             color: var(--text-primary);
         }
 
@@ -192,7 +220,7 @@
 
         .nav-link {
             text-decoration: none;
-            color: var(--text-secondary);
+            color: rgba(244, 241, 237, 0.52);
             font-weight: 500;
             font-size: 14px;
             transition: color 0.3s ease;
@@ -209,8 +237,8 @@
             bottom: -4px;
             left: 0;
             width: 0;
-            height: 2px;
-            background: linear-gradient(90deg, var(--supera-orange), var(--supera-teal));
+            height: 1px;
+            background: var(--supera-orange);
             transition: width 0.3s ease;
         }
 
@@ -218,10 +246,14 @@
             width: 100%;
         }
 
+        [data-theme="light"] .nav-link {
+            color: var(--text-secondary);
+        }
+
         /* Theme Toggle */
         .theme-toggle {
-            width: 44px;
-            height: 44px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -229,23 +261,22 @@
             cursor: pointer;
             transition: all 0.3s ease;
             background: transparent;
-            border: 2px solid var(--supera-teal);
-            color: var(--supera-teal);
+            border: 1.5px solid rgba(244, 241, 237, 0.2);
+            color: rgba(244, 241, 237, 0.52);
         }
 
-        [data-theme="dark"] .theme-toggle {
+        .theme-toggle:hover {
+            transform: scale(1.08);
             border-color: var(--supera-orange);
             color: var(--supera-orange);
         }
 
-        .theme-toggle:hover {
-            transform: scale(1.1);
-            background: var(--supera-teal);
-            color: white;
+        [data-theme="light"] .theme-toggle {
+            border-color: var(--supera-teal);
+            color: var(--supera-teal);
         }
-
-        [data-theme="dark"] .theme-toggle:hover {
-            background: var(--supera-orange);
+        [data-theme="light"] .theme-toggle:hover {
+            background: var(--supera-teal);
             color: white;
         }
 
@@ -267,9 +298,9 @@
 
         .mobile-toggle span {
             display: block;
-            width: 24px;
-            height: 2px;
-            background: var(--text-primary);
+            width: 22px;
+            height: 1.5px;
+            background: rgba(244, 241, 237, 0.7);
             transition: all 0.3s ease;
         }
 
@@ -332,9 +363,9 @@
         .blob {
             position: absolute;
             border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.5;
-            animation: float 10s ease-in-out infinite;
+            filter: blur(100px);
+            opacity: 0.09;
+            animation: float 18s ease-in-out infinite;
         }
 
         .blob-orange {
@@ -377,6 +408,26 @@
             max-width: 800px;
         }
 
+        /* Hero entrance — starts hidden, JS triggers reveal after animation exits */
+        .hero-enter {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.9s ease, transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .hero-enter.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Navbar starts hidden, fades in after animation */
+        .navbar-enter {
+            opacity: 0;
+            transition: opacity 0.8s ease;
+        }
+        .navbar-enter.visible {
+            opacity: 1;
+        }
+
         .hero-badge {
             display: inline-flex;
             align-items: center;
@@ -393,37 +444,36 @@
         }
 
         .hero-badge-text {
-            font-size: 13px;
+            font-size: 11px;
             font-weight: 500;
-            color: var(--text-secondary);
-            letter-spacing: 0.05em;
+            color: var(--supera-orange);
+            letter-spacing: 0.12em;
             text-transform: uppercase;
-            opacity: 0.8;
-        }
-
-        [data-theme="dark"] .hero-badge-text {
-            color: var(--supera-orange-light);
+            opacity: 0.9;
         }
 
         .hero-title {
             font-size: clamp(40px, 8vw, 72px);
             font-weight: 800;
-            line-height: 1.1;
-            margin-bottom: 24px;
+            letter-spacing: -0.02em;
+            line-height: 1.08;
+            margin-bottom: 20px;
         }
 
         .hero-subtitle {
-            font-size: clamp(28px, 5vw, 48px);
+            font-size: clamp(22px, 4vw, 38px);
             font-weight: 300;
-            color: var(--supera-teal);
-            margin-bottom: 24px;
+            color: rgba(244, 241, 237, 0.38);
+            margin-bottom: 28px;
+            letter-spacing: -0.01em;
         }
 
         .hero-description {
-            font-size: 18px;
+            font-size: 17px;
             color: var(--text-secondary);
-            max-width: 600px;
+            max-width: 540px;
             margin: 0 auto 40px;
+            line-height: 1.65;
         }
 
         .hero-buttons {
@@ -507,17 +557,19 @@
 
         .section-label {
             display: inline-block;
-            font-size: 14px;
+            font-size: 11px;
             font-weight: 600;
             color: var(--supera-orange);
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 0.12em;
             margin-bottom: 16px;
+            opacity: 0.9;
         }
 
         .section-title {
-            font-size: clamp(32px, 5vw, 48px);
+            font-size: clamp(28px, 4.5vw, 44px);
             font-weight: 800;
+            letter-spacing: -0.02em;
             color: var(--text-primary);
             margin-bottom: 16px;
         }
@@ -538,22 +590,24 @@
         .feature-card {
             background: var(--bg-card);
             padding: 40px 32px;
-            border-radius: 24px;
+            border-radius: 20px;
             border: 1px solid var(--border-color);
             transition: all 0.4s ease;
             cursor: pointer;
         }
 
         .feature-card:hover {
-            transform: translateY(-12px);
-            box-shadow: 0 25px 50px -12px var(--shadow-color);
+            transform: translateY(-8px);
+            border-color: rgba(240, 140, 57, 0.22);
+            box-shadow: 0 20px 48px -16px rgba(0, 0, 0, 0.6);
         }
 
         .feature-icon {
-            width: 64px;
-            height: 64px;
-            border-radius: 16px;
-            background: linear-gradient(135deg, rgba(234, 142, 63, 0.2) 0%, rgba(234, 142, 63, 0.05) 100%);
+            width: 56px;
+            height: 56px;
+            border-radius: 14px;
+            background: rgba(240, 140, 57, 0.1);
+            border: 1px solid rgba(240, 140, 57, 0.15);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -562,17 +616,18 @@
         }
 
         .feature-card:hover .feature-icon {
-            transform: scale(1.1) rotate(5deg);
+            transform: scale(1.08);
         }
 
         .feature-icon svg {
-            width: 28px;
-            height: 28px;
+            width: 24px;
+            height: 24px;
             color: var(--supera-orange);
         }
 
         .feature-card:nth-child(even) .feature-icon {
-            background: linear-gradient(135deg, rgba(19, 146, 148, 0.2) 0%, rgba(19, 146, 148, 0.05) 100%);
+            background: rgba(19, 148, 148, 0.1);
+            border-color: rgba(19, 148, 148, 0.15);
         }
 
         .feature-card:nth-child(even) .feature-icon svg {
@@ -580,8 +635,9 @@
         }
 
         .feature-title {
-            font-size: 20px;
+            font-size: 18px;
             font-weight: 700;
+            letter-spacing: -0.01em;
             color: var(--text-primary);
             margin-bottom: 12px;
         }
@@ -595,11 +651,11 @@
         /* Courses Section */
         .courses {
             padding: 120px 24px;
-            background: var(--supera-cream-dark);
+            background: var(--bg-secondary);
         }
 
-        [data-theme="dark"] .courses {
-            background: #252540;
+        [data-theme="light"] .courses {
+            background: #F5F3F0;
         }
 
         .courses-header {
@@ -628,7 +684,7 @@
 
         .course-card {
             background: var(--bg-card);
-            border-radius: 24px;
+            border-radius: 20px;
             overflow: hidden;
             border: 1px solid var(--border-color);
             transition: all 0.4s ease;
@@ -636,8 +692,9 @@
         }
 
         .course-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+            transform: translateY(-6px);
+            border-color: rgba(240, 140, 57, 0.2);
+            box-shadow: 0 24px 48px -16px rgba(0, 0, 0, 0.65);
         }
 
         .course-image {
@@ -651,7 +708,7 @@
 
         .course-image-1 { background: linear-gradient(135deg, var(--supera-orange) 0%, var(--supera-orange-light) 100%); }
         .course-image-2 { background: linear-gradient(135deg, var(--supera-teal) 0%, var(--supera-teal-light) 100%); }
-        .course-image-3 { background: linear-gradient(135deg, var(--supera-dark) 0%, var(--supera-gray) 100%); }
+        .course-image-3 { background: linear-gradient(135deg, #0D0C0B 0%, #2A2826 100%); border-bottom: 1px solid rgba(244,241,237,0.08); }
 
         .course-badge {
             position: absolute;
@@ -738,9 +795,10 @@
         }
 
         .pricing-card.popular {
-            background: var(--supera-dark);
-            border-color: var(--supera-orange);
+            background: #1A1210;
+            border-color: rgba(240, 140, 57, 0.45);
             transform: scale(1.05);
+            box-shadow: 0 0 48px -12px rgba(240, 140, 57, 0.14);
         }
 
         .pricing-card.popular:hover {
@@ -878,11 +936,11 @@
         /* Testimonials Section */
         .testimonials {
             padding: 120px 24px;
-            background: var(--supera-cream-dark);
+            background: var(--bg-secondary);
         }
 
-        [data-theme="dark"] .testimonials {
-            background: #252540;
+        [data-theme="light"] .testimonials {
+            background: #F5F3F0;
         }
 
         .testimonials-grid {
@@ -893,15 +951,16 @@
 
         .testimonial-card {
             background: var(--bg-card);
-            border-radius: 20px;
+            border-radius: 18px;
             padding: 32px;
             border: 1px solid var(--border-color);
             transition: all 0.4s ease;
         }
 
         .testimonial-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.1);
+            transform: translateY(-6px);
+            border-color: rgba(240, 140, 57, 0.18);
+            box-shadow: 0 20px 48px -16px rgba(0, 0, 0, 0.6);
         }
 
         .testimonial-header {
@@ -925,7 +984,7 @@
 
         .avatar-1 { background: linear-gradient(135deg, var(--supera-orange) 0%, var(--supera-orange-light) 100%); }
         .avatar-2 { background: linear-gradient(135deg, var(--supera-teal) 0%, var(--supera-teal-light) 100%); }
-        .avatar-3 { background: linear-gradient(135deg, var(--supera-dark) 0%, var(--supera-gray) 100%); }
+        .avatar-3 { background: linear-gradient(135deg, #0D0C0B 0%, #2A2826 100%); border: 1px solid rgba(244,241,237,0.1); }
 
         .testimonial-name {
             font-size: 16px;
@@ -976,7 +1035,7 @@
             width: 80%;
             height: 150%;
             background: radial-gradient(circle, var(--supera-orange) 0%, transparent 60%);
-            opacity: 0.2;
+            opacity: 0.08;
         }
 
         .cta-blob-2 {
@@ -985,8 +1044,8 @@
             right: -20%;
             width: 80%;
             height: 150%;
-            background: radial-gradient(circle, var(--supera-teal) 0%, transparent 60%);
-            opacity: 0.2;
+            background: radial-gradient(circle, var(--supera-orange) 0%, transparent 60%);
+            opacity: 0.06;
         }
 
         .cta-content {
@@ -1195,8 +1254,8 @@
         .modal-backdrop {
             position: absolute;
             inset: 0;
-            background: rgba(26, 26, 46, 0.8);
-            backdrop-filter: blur(5px);
+            background: rgba(0, 0, 0, 0.72);
+            backdrop-filter: blur(8px);
         }
 
         .modal-content {
@@ -1239,12 +1298,8 @@
         }
 
         .modal-close:hover {
-            background: var(--supera-cream-dark);
+            background: rgba(244, 241, 237, 0.07);
             color: var(--text-primary);
-        }
-
-        [data-theme="dark"] .modal-close:hover {
-            background: #3A3A4E;
         }
 
         .modal-icon {
@@ -1480,6 +1535,135 @@
             }
         }
 
+        /* Mission / Vision / Values Section */
+        .mvv {
+            padding: 120px 24px;
+            background: var(--bg-primary);
+        }
+
+        .mvv-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 60px;
+        }
+
+        .mvv-card {
+            background: var(--bg-card);
+            border-radius: 20px;
+            padding: 40px 32px;
+            border: 1px solid var(--border-color);
+            transition: all 0.4s ease;
+        }
+
+        .mvv-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(19, 148, 148, 0.25);
+            box-shadow: 0 20px 48px -16px rgba(0, 0, 0, 0.6);
+        }
+
+        .mvv-card:first-child:hover {
+            border-color: rgba(240, 140, 57, 0.25);
+        }
+
+        .mvv-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 14px;
+            background: rgba(19, 148, 148, 0.1);
+            border: 1px solid rgba(19, 148, 148, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+        }
+
+        .mvv-card:first-child .mvv-icon {
+            background: rgba(240, 140, 57, 0.1);
+            border-color: rgba(240, 140, 57, 0.15);
+        }
+
+        .mvv-card:first-child .mvv-icon svg { color: var(--supera-orange); }
+        .mvv-card:not(:first-child) .mvv-icon svg { color: var(--supera-teal); }
+
+        .mvv-icon svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .mvv-label {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--supera-orange);
+            margin-bottom: 10px;
+            opacity: 0.9;
+        }
+
+        .mvv-card:not(:first-child) .mvv-label {
+            color: var(--supera-teal);
+        }
+
+        .mvv-title {
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            color: var(--text-primary);
+            margin-bottom: 14px;
+        }
+
+        .mvv-text {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.75;
+        }
+
+        .mvv-values-list {
+            list-style: none;
+            margin-top: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .mvv-values-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        .mvv-values-list li::before {
+            content: '';
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--supera-teal);
+            margin-top: 6px;
+            flex-shrink: 0;
+        }
+
+        .mvv-values-list li strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        @media (max-width: 1024px) {
+            .mvv-grid {
+                grid-template-columns: 1fr;
+                max-width: 560px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+
+        /* Utility */
+        .hidden { display: none; }
+
         /* Accessibility */
         *:focus-visible {
             outline: 2px solid var(--supera-orange);
@@ -1497,8 +1681,69 @@
             }
         }
     </style>
+
+    <!-- ── Intro animation ── -->
+    <style>
+        #intro-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: #0D0C0B;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 1.4s ease;
+        }
+        #intro-overlay.fade-out { opacity: 0; pointer-events: none; }
+        #intro-overlay.gone    { display: none; }
+        #intro-canvas { position: absolute; inset: 0; pointer-events: none; }
+
+        .intro-stage { position: relative; z-index: 2; text-align: center; }
+
+        .intro-logo {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            font-size: clamp(52px, 9vw, 128px);
+            letter-spacing: -0.03em;
+            line-height: 1;
+            color: #F4F1ED;
+            display: inline-flex;
+            align-items: baseline;
+        }
+        .intro-ch {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(0.22em);
+            will-change: transform, opacity;
+        }
+        .intro-dot { color: #F08C39; }
+
+        @keyframes introDotBreathe {
+            0%,100% { filter: drop-shadow(0 0 0px rgba(240,140,57,0)); }
+            50%      { filter: drop-shadow(0 0 14px rgba(240,140,57,.85))
+                               drop-shadow(0 0 35px rgba(240,140,57,.25)); }
+        }
+        .intro-dot-alive { animation: introDotBreathe 3s ease-in-out infinite; }
+
+    </style>
 </head>
-<body>
+<body style="overflow:hidden">
+    <!-- ── Intro overlay ── -->
+    <div id="intro-overlay">
+        <canvas id="intro-canvas"></canvas>
+        <div class="intro-stage">
+            <div class="intro-logo" id="intro-logo">
+                <span class="intro-ch" id="ich-S">S</span><span
+                class="intro-ch" id="ich-u">u</span><span
+                class="intro-ch" id="ich-p">p</span><span
+                class="intro-ch" id="ich-e">e</span><span
+                class="intro-ch" id="ich-r">r</span><span
+                class="intro-ch" id="ich-a">a</span><span
+                class="intro-ch intro-dot" id="ich-dot">.</span>
+            </div>
+        </div>
+    </div>
+
     <!-- Toast Container -->
     <div class="toast-container" id="toastContainer"></div>
 
@@ -1511,15 +1756,15 @@
             </svg>
         </button>
         <a href="#inicio" onclick="toggleMobileMenu()">Inicio</a>
-        <a href="#cursos" onclick="toggleMobileMenu()">Cursos</a>
-        <a href="#caracteristicas" onclick="toggleMobileMenu()">Características</a>
-        <a href="#precios" onclick="toggleMobileMenu()">Precios</a>
+        <a href="#cursos" onclick="toggleMobileMenu()">Aprende</a>
+        <a href="#caracteristicas" onclick="toggleMobileMenu()">¿Por qué Supera?</a>
+        <a href="#precios" onclick="toggleMobileMenu()">Membresía</a>
         <a href="#contacto" onclick="toggleMobileMenu()">Contacto</a>
         <button class="btn-primary" onclick="openModal('newsletterModal'); toggleMobileMenu()">Comienza Ahora</button>
     </div>
 
     <!-- Navigation -->
-    <nav class="navbar glass" id="navbar">
+    <nav class="navbar glass navbar-enter" id="navbar">
         <div class="container nav-container">
             <a href="#inicio" class="logo">
                 <!-- Supera Flame Icon SVG -->
@@ -1541,9 +1786,9 @@
             
             <div class="nav-links">
                 <a href="#inicio" class="nav-link">Inicio</a>
-                <a href="#cursos" class="nav-link">Cursos</a>
-                <a href="#caracteristicas" class="nav-link">Características</a>
-                <a href="#precios" class="nav-link">Precios</a>
+                <a href="#cursos" class="nav-link">Aprende</a>
+                <a href="#caracteristicas" class="nav-link">¿Por qué Supera?</a>
+                <a href="#precios" class="nav-link">Membresía</a>
                 <a href="#contacto" class="nav-link">Contacto</a>
                 
                 <!-- Dark Mode Toggle -->
@@ -1581,28 +1826,26 @@
     <section id="inicio" class="hero">
         <div class="hero-bg">
             <div class="blob blob-orange"></div>
-            <div class="blob blob-teal"></div>
             <div class="blob blob-orange-2"></div>
         </div>
         
         <div class="hero-content">
-            <div class="hero-badge">
+            <div class="hero-badge hero-enter">
                 <span></span>
-                <span class="hero-badge-text">Educación IA para Hispanohablantes</span>
+                <span class="hero-badge-text">Comunidad educativa de IA en español</span>
             </div>
-            
-            <h1 class="hero-title">
-                <span class="gradient-text">Transforma tu</span><br>
-                Aprendizaje
+
+            <h1 class="hero-title hero-enter">
+                <span class="gradient-text">Aprende IA</span><br>
+                Sin Complicarte.
             </h1>
-            <h2 class="hero-subtitle">Enciende tu Éxito</h2>
-            
-            <p class="hero-description">
-                Aprende inteligencia artificial en español con cursos prácticos diseñados para impulsar tu carrera. 
-                De principiante a experto, a tu ritmo.
+            <h2 class="hero-subtitle hero-enter">Supérate.</h2>
+
+            <p class="hero-description hero-enter">
+                ¿Sientes que la inteligencia artificial te está dejando atrás? En Supera te enseñamos a usarla en tu vida diaria, paso a paso, de forma simple y sin conocimientos previos.
             </p>
-            
-            <div class="hero-buttons">
+
+            <div class="hero-buttons hero-enter">
                 <button class="btn-primary" onclick="openModal('newsletterModal')">
                     Comienza Ahora
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -1618,14 +1861,8 @@
                 </button>
             </div>
 
-            <div class="hero-trust">
-                <span>Confiado por estudiantes de:</span>
-                <div class="trust-logos">
-                    <span class="trust-logo">Google</span>
-                    <span class="trust-logo">Microsoft</span>
-                    <span class="trust-logo">Meta</span>
-                    <span class="trust-logo">Amazon</span>
-                </div>
+            <div class="hero-trust hero-enter">
+                <span>Aprende con personas como tú, paso a paso.</span>
             </div>
         </div>
     </section>
@@ -1640,11 +1877,11 @@
                 </div>
                 <div class="stat-item reveal">
                     <div class="stat-number"><span data-count="94">0</span>%</div>
-                    <div class="stat-label">Empleabilidad</div>
+                    <div class="stat-label">Satisfacción</div>
                 </div>
                 <div class="stat-item reveal">
                     <div class="stat-number" data-count="50">0</div>
-                    <div class="stat-label">Cursos</div>
+                    <div class="stat-label">Herramientas</div>
                 </div>
                 <div class="stat-item reveal">
                     <div class="stat-number">4.9</div>
@@ -1660,7 +1897,7 @@
             <div class="section-header reveal">
                 <span class="section-label">Características</span>
                 <h2 class="section-title">¿Por qué Supera?</h2>
-                <p class="section-description">La plataforma de aprendizaje de IA diseñada específicamente para la comunidad hispanohablante</p>
+                <p class="section-description">No necesitas saber de tecnología. Solo necesitas querer aprender. Nosotros te guiamos en cada paso.</p>
             </div>
             
             <div class="features-grid">
@@ -1672,7 +1909,7 @@
                         </svg>
                     </div>
                     <h3 class="feature-title">Aprende IA</h3>
-                    <p class="feature-description">Domina los fundamentos de la inteligencia artificial, desde machine learning hasta deep learning, con proyectos prácticos.</p>
+                    <p class="feature-description">Entiende cómo funciona la inteligencia artificial y aprende a usarla en tu día a día, con ejemplos concretos y sin tecnicismos.</p>
                 </div>
 
                 <!-- Feature 2 -->
@@ -1683,7 +1920,7 @@
                         </svg>
                     </div>
                     <h3 class="feature-title">Automatización</h3>
-                    <p class="feature-description">Aprende a automatizar tareas repetitivas y aumenta tu productividad con herramientas de IA de última generación.</p>
+                    <p class="feature-description">Elimina las tareas que te quitan tiempo. Aprende a dejar que la IA haga el trabajo repetitivo para que tú te enfoques en lo que importa.</p>
                 </div>
 
                 <!-- Feature 3 -->
@@ -1693,8 +1930,8 @@
                             <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
                         </svg>
                     </div>
-                    <h3 class="feature-title">Ingeniería de Prompts</h3>
-                    <p class="feature-description">Conviértete en experto en comunicación con IA. Aprende a diseñar prompts efectivos para obtener resultados profesionales.</p>
+                    <h3 class="feature-title">Habla con la IA</h3>
+                    <p class="feature-description">Aprende a comunicarte con herramientas de IA de forma clara y efectiva. Descubre cómo pedirle exactamente lo que necesitas y obtener buenos resultados.</p>
                 </div>
 
                 <!-- Feature 4 -->
@@ -1708,8 +1945,8 @@
                             <polyline points="10 9 9 9 8 9"></polyline>
                         </svg>
                     </div>
-                    <h3 class="feature-title">Proyectos Prácticos</h3>
-                    <p class="feature-description">Construye un portafolio sólido con proyectos reales que demuestren tus habilidades a empleadores potenciales.</p>
+                    <h3 class="feature-title">Actividades Semanales</h3>
+                    <p class="feature-description">Cada semana practicas lo que aprendes con ejercicios reales. No solo teoría: aplicas la IA en situaciones concretas de tu vida personal o laboral.</p>
                 </div>
 
                 <!-- Feature 5 -->
@@ -1722,8 +1959,8 @@
                             <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
                         </svg>
                     </div>
-                    <h3 class="feature-title">Comunidad Latina</h3>
-                    <p class="feature-description">Únete a una comunidad vibrante de hispanohablantes apasionados por la IA. Networking, colaboración y crecimiento juntos.</p>
+                    <h3 class="feature-title">Comunidad Activa</h3>
+                    <p class="feature-description">No aprendes solo. Formas parte de una comunidad de personas que van al mismo ritmo que tú: comparten dudas, avances y herramientas útiles.</p>
                 </div>
 
                 <!-- Feature 6 -->
@@ -1734,8 +1971,8 @@
                             <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
                         </svg>
                     </div>
-                    <h3 class="feature-title">Certificación Oficial</h3>
-                    <p class="feature-description">Obtén certificados reconocidos por la industria que validan tus habilidades y potencian tu currículum profesional.</p>
+                    <h3 class="feature-title">Acompañamiento Continuo</h3>
+                    <p class="feature-description">No te dejamos solo después de una clase. Tenemos sesiones en vivo, tutorías y espacios donde puedes preguntar cuantas veces necesites.</p>
                 </div>
             </div>
         </div>
@@ -1747,11 +1984,11 @@
             <div class="courses-header reveal">
                 <div class="section-header">
                     <span class="section-label">Cursos</span>
-                    <h2 class="section-title">Explora nuestros cursos</h2>
-                    <p class="section-description">Desde fundamentos hasta especialización avanzada, tenemos el curso perfecto para tu nivel.</p>
+                    <h2 class="section-title">Aprende a tu ritmo</h2>
+                    <p class="section-description">Contenido guiado, claro y actualizado. Diseñado para personas que empiezan desde cero y quieren resultados reales.</p>
                 </div>
                 <button class="btn-secondary" onclick="scrollToSection('precios')">
-                    Ver todos los cursos
+                    Ver membresía
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <line x1="5" y1="12" x2="19" y2="12"></line>
                         <polyline points="12 5 19 12 12 19"></polyline>
@@ -1767,8 +2004,8 @@
                         <span class="course-badge">Principiante</span>
                     </div>
                     <div class="course-content">
-                        <h3 class="course-title">IA para Principiantes</h3>
-                        <p class="course-description">Domina los conceptos fundamentales de la inteligencia artificial sin necesidad de experiencia previa.</p>
+                        <h3 class="course-title">IA en tu Vida Diaria</h3>
+                        <p class="course-description">Aprende qué es la inteligencia artificial y cómo usarla para ahorrar tiempo, organizarte mejor y simplificar tareas del día a día.</p>
                         <div class="course-footer">
                             <div class="course-duration">
                                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -1790,7 +2027,7 @@
                     </div>
                     <div class="course-content">
                         <h3 class="course-title">Automatización con IA</h3>
-                        <p class="course-description">Aprende a automatizar flujos de trabajo complejos y aumenta tu productividad exponencialmente.</p>
+                        <p class="course-description">Descubre cómo dejar que la IA haga las tareas repetitivas por ti: responder correos, organizar información, crear contenido y mucho más.</p>
                         <div class="course-footer">
                             <div class="course-duration">
                                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -1811,8 +2048,8 @@
                         <span class="course-badge">Avanzado</span>
                     </div>
                     <div class="course-content">
-                        <h3 class="course-title">Prompt Engineering Pro</h3>
-                        <p class="course-description">Conviértete en experto en diseño de prompts y desbloquea todo el potencial de los LLMs.</p>
+                        <h3 class="course-title">Cómo Hablar con la IA</h3>
+                        <p class="course-description">Aprende a pedirle a la IA exactamente lo que necesitas y obtener respuestas útiles, claras y adaptadas a tu situación real.</p>
                         <div class="course-footer">
                             <div class="course-duration">
                                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -1834,15 +2071,15 @@
         <div class="container">
             <div class="section-header reveal">
                 <span class="section-label">Precios</span>
-                <h2 class="section-title">Inversión en tu futuro</h2>
-                <p class="section-description">Acceso ilimitado a todo nuestro catálogo de cursos por una tarifa mensual accesible.</p>
+                <h2 class="section-title">Tu membresía mensual</h2>
+                <p class="section-description">Una suscripción que crece contigo. Contenido nuevo cada mes, sesiones en vivo y una comunidad activa siempre disponible.</p>
             </div>
 
             <div class="pricing-grid">
                 <!-- Basic Plan -->
                 <div class="pricing-card reveal">
-                    <h3 class="pricing-name">Básico</h3>
-                    <p class="pricing-desc">Para empezar tu viaje en IA</p>
+                    <h3 class="pricing-name">Comunidad</h3>
+                    <p class="pricing-desc">Para dar tu primer paso con la IA</p>
                     <div class="pricing-price">
                         <span class="pricing-amount">$9</span>
                         <span class="pricing-period">/mes</span>
@@ -1852,29 +2089,29 @@
                             <svg class="check-teal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <polyline points="20 6 9 17 4 12"></polyline>
                             </svg>
-                            Acceso a 10 cursos básicos
+                            Acceso a contenido pregrabado
                         </li>
                         <li>
                             <svg class="check-teal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <polyline points="20 6 9 17 4 12"></polyline>
                             </svg>
-                            Certificados de finalización
+                            Actividades semanales prácticas
                         </li>
                         <li>
                             <svg class="check-teal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <polyline points="20 6 9 17 4 12"></polyline>
                             </svg>
-                            Foro de la comunidad
+                            Acceso a la comunidad activa
                         </li>
                     </ul>
-                    <button class="pricing-btn pricing-btn-outline" onclick="openModal('newsletterModal')">Elegir Plan</button>
+                    <button class="pricing-btn pricing-btn-outline" onclick="openModal('newsletterModal')">Unirme Ahora</button>
                 </div>
 
                 <!-- Popular Plan -->
                 <div class="pricing-card popular reveal">
                     <span class="popular-badge">Más Popular</span>
-                    <h3 class="pricing-name">Profesional</h3>
-                    <p class="pricing-desc">El favorito de nuestros estudiantes</p>
+                    <h3 class="pricing-name">Miembro</h3>
+                    <p class="pricing-desc">La experiencia completa de Supera</p>
                     <div class="pricing-price">
                         <span class="pricing-amount">$19</span>
                         <span class="pricing-period">/mes</span>
@@ -1884,34 +2121,34 @@
                             <svg class="check-orange" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <polyline points="20 6 9 17 4 12"></polyline>
                             </svg>
-                            Acceso a todos los cursos
+                            Todo el contenido pregrabado
                         </li>
                         <li>
                             <svg class="check-orange" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <polyline points="20 6 9 17 4 12"></polyline>
                             </svg>
-                            Certificados verificados
+                            2 sesiones en vivo al mes
                         </li>
                         <li>
                             <svg class="check-orange" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <polyline points="20 6 9 17 4 12"></polyline>
                             </svg>
-                            Sesiones de mentoría en vivo
+                            Actividades semanales con retroalimentación
                         </li>
                         <li>
                             <svg class="check-orange" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <polyline points="20 6 9 17 4 12"></polyline>
                             </svg>
-                            Proyectos con revisión personalizada
+                            Comunidad activa y tutorías mensuales
                         </li>
                     </ul>
-                    <button class="pricing-btn pricing-btn-primary" onclick="openModal('newsletterModal')">Suscribirse $19/mes</button>
+                    <button class="pricing-btn pricing-btn-primary" onclick="openModal('newsletterModal')">Quiero ser Miembro</button>
                 </div>
 
                 <!-- Enterprise Plan -->
                 <div class="pricing-card reveal">
-                    <h3 class="pricing-name">Empresas</h3>
-                    <p class="pricing-desc">Para equipos y organizaciones</p>
+                    <h3 class="pricing-name">Acompañamiento</h3>
+                    <p class="pricing-desc">Para quienes quieren apoyo personalizado</p>
                     <div class="pricing-price">
                         <span class="pricing-amount">$49</span>
                         <span class="pricing-period">/mes</span>
@@ -1921,32 +2158,32 @@
                             <svg class="check-teal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <polyline points="20 6 9 17 4 12"></polyline>
                             </svg>
-                            Todo el plan Profesional
+                            Todo el plan Miembro
                         </li>
                         <li>
                             <svg class="check-teal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <polyline points="20 6 9 17 4 12"></polyline>
                             </svg>
-                            Hasta 10 usuarios
+                            Sesión uno a uno mensual
                         </li>
                         <li>
                             <svg class="check-teal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <polyline points="20 6 9 17 4 12"></polyline>
                             </svg>
-                            Capacitación personalizada
+                            Plan de aprendizaje personalizado
                         </li>
                         <li>
                             <svg class="check-teal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <polyline points="20 6 9 17 4 12"></polyline>
                             </svg>
-                            Soporte prioritario
+                            Soporte directo vía mensaje
                         </li>
                     </ul>
-                    <button class="pricing-btn pricing-btn-outline" onclick="openModal('newsletterModal')">Contactar Ventas</button>
+                    <button class="pricing-btn pricing-btn-outline" onclick="openModal('newsletterModal')">Quiero Acompañamiento</button>
                 </div>
             </div>
 
-            <p class="pricing-note reveal">Cancela en cualquier momento. Sin compromisos.</p>
+            <p class="pricing-note reveal">Cancela cuando quieras. Sin compromisos. Sin letra pequeña.</p>
         </div>
     </section>
 
@@ -1965,10 +2202,10 @@
                         <div class="testimonial-avatar avatar-1">M</div>
                         <div>
                             <div class="testimonial-name">María González</div>
-                            <div class="testimonial-role">Marketing Digital → IA Specialist</div>
+                            <div class="testimonial-role">Contadora, 42 años</div>
                         </div>
                     </div>
-                    <p class="testimonial-text">"Supera cambió mi carrera completamente. En 3 meses pasé de no saber nada de IA a trabajar como especialista en una startup de tecnología."</p>
+                    <p class="testimonial-text">"Pensaba que la IA era para jóvenes o personas de tecnología. Supera me mostró que no es así. Hoy la uso todos los días para organizar mi trabajo y me ahorra horas."</p>
                     <div class="testimonial-stars">
                         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
                         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
@@ -1984,10 +2221,10 @@
                         <div class="testimonial-avatar avatar-2">C</div>
                         <div>
                             <div class="testimonial-name">Carlos Ruiz</div>
-                            <div class="testimonial-role">Estudiante → AI Developer</div>
+                            <div class="testimonial-role">Pequeño empresario, 38 años</div>
                         </div>
                     </div>
-                    <p class="testimonial-text">"La comunidad hispanohablante es increíble. Aprender en tu idioma nativo hace toda la diferencia. Los mentores son de primera."</p>
+                    <p class="testimonial-text">"Lo que más me gustó es que explican todo sin complicarte. Cada sesión en vivo me quedaba con algo concreto que podía aplicar ese mismo día en mi negocio."</p>
                     <div class="testimonial-stars">
                         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
                         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
@@ -2003,10 +2240,10 @@
                         <div class="testimonial-avatar avatar-3">A</div>
                         <div>
                             <div class="testimonial-name">Ana Martínez</div>
-                            <div class="testimonial-role">Empresaria → Tech Founder</div>
+                            <div class="testimonial-role">Mamá y emprendedora, 35 años</div>
                         </div>
                     </div>
-                    <p class="testimonial-text">"Implementé IA en mi negocio gracias a Supera. Ahorramos 40% en costos operativos y aumentamos la productividad del equipo."</p>
+                    <p class="testimonial-text">"Siempre sentí que me quedaba atrás con la tecnología. Supera me dio la confianza que necesitaba. Ahora uso IA para planificar, escribir y organizar mi tiempo. No volvería atrás."</p>
                     <div class="testimonial-stars">
                         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
                         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
@@ -2019,6 +2256,64 @@
         </div>
     </section>
 
+    <!-- Mission / Vision / Values Section -->
+    <section class="mvv">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-label">Quiénes somos</span>
+                <h2 class="section-title">Lo que nos guía</h2>
+                <p class="section-description">Supera no es solo un curso. Es una comunidad construida sobre valores claros y un propósito real.</p>
+            </div>
+
+            <div class="mvv-grid">
+                <!-- Misión -->
+                <div class="mvv-card reveal">
+                    <div class="mvv-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polygon points="10 8 16 12 10 16 10 8"></polygon>
+                        </svg>
+                    </div>
+                    <div class="mvv-label">Misión</div>
+                    <h3 class="mvv-title">Enseñar IA de forma simple y práctica</h3>
+                    <p class="mvv-text">Somos una comunidad educativa que enseña a usar herramientas de inteligencia artificial en la vida diaria, a través de contenido guiado, sesiones en vivo y acompañamiento continuo. Nos dirigimos a personas con poco conocimiento tecnológico que quieren aprender a su propio ritmo.</p>
+                </div>
+
+                <!-- Visión -->
+                <div class="mvv-card reveal">
+                    <div class="mvv-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                            <circle cx="12" cy="12" r="3"></circle>
+                        </svg>
+                    </div>
+                    <div class="mvv-label">Visión</div>
+                    <h3 class="mvv-title">La comunidad de referencia en educación de IA</h3>
+                    <p class="mvv-text">Queremos convertirnos en la plataforma líder en educación de inteligencia artificial en español: accesible, práctica y fácil de aplicar en la vida real. Aspiramos a cerrar la brecha digital para millones de personas que hoy se sienten alejadas de la tecnología.</p>
+                </div>
+
+                <!-- Valores -->
+                <div class="mvv-card reveal">
+                    <div class="mvv-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                        </svg>
+                    </div>
+                    <div class="mvv-label">Valores</div>
+                    <h3 class="mvv-title">Lo que define cómo trabajamos</h3>
+                    <ul class="mvv-values-list">
+                        <li><strong>Paciencia:</strong> enseñamos las veces que sea necesario.</li>
+                        <li><strong>Calidad sobre cantidad:</strong> contenido útil, claro y bien hecho.</li>
+                        <li><strong>Cercanía:</strong> somos comunidad, no una plataforma fría.</li>
+                        <li><strong>Simplicidad:</strong> hacemos que lo complejo sea fácil.</li>
+                        <li><strong>Integridad:</strong> tomamos decisiones honestas y sostenibles.</li>
+                        <li><strong>Acompañamiento:</strong> guiamos cada paso del camino.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- CTA Section -->
     <section class="cta">
         <div class="cta-bg">
@@ -2026,11 +2321,11 @@
             <div class="cta-blob-2"></div>
         </div>
         <div class="cta-content reveal">
-            <h2 class="cta-title">¿Listo para transformar tu carrera?</h2>
-            <p class="cta-description">Únete a miles de estudiantes que ya están construyendo el futuro con IA. Tu viaje comienza hoy.</p>
+            <h2 class="cta-title">¿Listo para usar IA en tu vida diaria?</h2>
+            <p class="cta-description">Empieza hoy. No necesitas experiencia previa, solo las ganas de aprender. Te acompañamos en cada paso del camino.</p>
             <div class="cta-buttons">
                 <button class="btn-white" onclick="openModal('newsletterModal')">
-                    Comienza Gratis
+                    Quiero Empezar
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <line x1="5" y1="12" x2="19" y2="12"></line>
                         <polyline points="12 5 19 12 12 19"></polyline>
@@ -2068,7 +2363,7 @@
                         </svg>
                         <span class="footer-brand-text">Supera<span style="color: var(--supera-orange);">.</span></span>
                     </a>
-                    <p class="footer-description">Educación en IA para hispanohablantes. Transformando carreras, impulsando el futuro.</p>
+                    <p class="footer-description">Aprendemos IA de forma simple y práctica. Sin complicarte. Supérate.</p>
                 </div>
 
                 <div>
@@ -2141,7 +2436,7 @@
             </div>
             
             <h3 class="modal-title">Únete a Supera</h3>
-            <p class="modal-description">Comienza tu viaje en IA. Recibe acceso gratuito a nuestra clase introductoria.</p>
+            <p class="modal-description">Da el primer paso hacia la IA. Es más fácil de lo que crees.</p>
             
             <form onsubmit="handleSubmit(event)">
                 <div class="form-group">
@@ -2172,42 +2467,33 @@
     </div>
 
     <script>
-        // Theme Toggle
+        // Theme Toggle — dark-first
         function toggleTheme() {
             const html = document.documentElement;
-            const currentTheme = html.getAttribute('data-theme');
+            const currentTheme = html.getAttribute('data-theme') || 'dark';
             const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            
             html.setAttribute('data-theme', newTheme);
             localStorage.setItem('supera-theme', newTheme);
             updateThemeIcons();
         }
 
         function updateThemeIcons() {
-            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
             const sunIcon = document.getElementById('sunIcon');
             const moonIcon = document.getElementById('moonIcon');
-            
             if (currentTheme === 'dark') {
-                sunIcon.classList.remove('hidden');
-                moonIcon.classList.add('hidden');
+                sunIcon.style.display = 'block';
+                moonIcon.style.display = 'none';
             } else {
-                sunIcon.classList.add('hidden');
-                moonIcon.classList.remove('hidden');
+                sunIcon.style.display = 'none';
+                moonIcon.style.display = 'block';
             }
         }
 
-        // Initialize theme
+        // Initialize — always start dark unless user previously chose light
         function initTheme() {
-            const savedTheme = localStorage.getItem('supera-theme');
-            const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            
-            if (savedTheme) {
-                document.documentElement.setAttribute('data-theme', savedTheme);
-            } else if (systemPrefersDark) {
-                document.documentElement.setAttribute('data-theme', 'dark');
-            }
-            
+            const savedTheme = localStorage.getItem('supera-theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', savedTheme);
             updateThemeIcons();
         }
 
@@ -2298,12 +2584,12 @@
         // Feature Details
         function showFeatureDetails(feature) {
             const details = {
-                aprende: 'Aprende los fundamentos de Machine Learning, Deep Learning y Neural Networks con proyectos prácticos.',
-                automatizacion: 'Automatiza tareas repetitivas y aumenta tu productividad con herramientas de IA.',
-                prompts: 'Domina el arte de comunicarte con IA y obtén resultados profesionales.',
-                proyectos: 'Construye un portafolio sólido con proyectos reales y revisión personalizada.',
-                comunidad: 'Conecta con hispanohablantes apasionados por la IA y crea relaciones profesionales.',
-                certificacion: 'Obtén certificados reconocidos que validen tus habilidades ante empleadores.'
+                aprende: 'Entiende cómo funciona la IA y aprende a usarla en tu vida diaria, con ejemplos concretos y sin tecnicismos.',
+                automatizacion: 'Deja que la IA haga las tareas repetitivas por ti y recupera tiempo para lo que de verdad importa.',
+                prompts: 'Aprende a pedirle a la IA exactamente lo que necesitas y obtener respuestas útiles y claras.',
+                proyectos: 'Cada semana practicas lo aprendido con actividades reales que puedes aplicar ese mismo día.',
+                comunidad: 'Aprende junto a personas como tú: sin juzgar, sin prisa, con ganas de crecer.',
+                certificacion: 'No te dejamos solo. Contamos con sesiones en vivo, tutorías y acompañamiento continuo.'
             };
             showToast(details[feature], 'info');
         }
@@ -2389,6 +2675,333 @@
             initStatsObserver();
             initNavbar();
         });
+    </script>
+
+    <!-- ── Intro dot animation ── -->
+    <script>
+    (function () {
+        'use strict';
+
+        const cv = document.getElementById('intro-canvas');
+        const g  = cv.getContext('2d');
+        let W, H, CX, CY, DIAG;
+
+        function resize() {
+            cv.width  = W  = window.innerWidth;
+            cv.height = H  = window.innerHeight;
+            CX   = W / 2; CY = H / 2;
+            DIAG = Math.hypot(W, H) / 2 * 1.06;
+        }
+        resize();
+        window.addEventListener('resize', () => { resize(); recalcDot(); });
+
+        const E = {
+            outExpo:    t => t >= 1 ? 1 : 1 - 2**(-10*t),
+            outBack:    t => { const s = 1.70158; return 1 + (s+1)*(t-1)**3 + s*(t-1)**2; },
+            inOutQuart: t => t < .5 ? 8*t**4 : 1 - (-2*t+2)**4/2,
+            inOutCubic: t => t < .5 ? 4*t**3 : 1 - (-2*t+2)**3/2,
+            outCubic:   t => 1 - (1-t)**3,
+            inExpo:     t => t === 0 ? 0 : 2**(10*t-10),
+        };
+        const lerp  = (a, b, t) => a + (b-a)*t;
+        const clamp = (v, lo=0, hi=1) => Math.min(hi, Math.max(lo, v));
+        const norm  = (t, a, b) => clamp((t-a)/(b-a));
+
+        let particles = [], rings = [];
+
+        function spawnBurst(x, y, n=20, o={}) {
+            const cols = o.colors || ['#F08C39','#FFB07A','#F4F1ED','#FFCF9D'];
+            for (let i = 0; i < n; i++) {
+                const angle = o.angle !== undefined
+                    ? o.angle + (Math.random()-.5)*(o.spread ?? Math.PI*2)
+                    : Math.random()*Math.PI*2;
+                const spd = lerp(o.minSpd??1, o.maxSpd??5, Math.random());
+                particles.push({
+                    x, y, vx: Math.cos(angle)*spd, vy: Math.sin(angle)*spd,
+                    life: 0, maxLife: lerp(o.minLife??30, o.maxLife??80, Math.random()),
+                    r: lerp(o.minR??1, o.maxR??4, Math.random()),
+                    color: cols[Math.floor(Math.random()*cols.length)],
+                    grav: o.grav??-0.04, drag: o.drag??0.97,
+                });
+            }
+        }
+
+        function spawnRing(x, y, o={}) {
+            rings.push({
+                x, y, r0: o.r0??0, r1: o.r1??150,
+                life: 0, maxLife: o.maxLife??60,
+                color: o.color??'#F08C39', lw: o.lw??2,
+            });
+        }
+
+        function tickParticles() {
+            for (let i = particles.length-1; i >= 0; i--) {
+                const p = particles[i];
+                p.x+=p.vx; p.y+=p.vy; p.vx*=p.drag; p.vy*=p.drag; p.vy+=p.grav;
+                if (++p.life >= p.maxLife) particles.splice(i,1);
+            }
+        }
+        function drawParticles() {
+            for (const p of particles) {
+                const t = p.life/p.maxLife;
+                g.globalAlpha = Math.sin(t*Math.PI)*.9;
+                g.fillStyle = p.color;
+                g.beginPath(); g.arc(p.x, p.y, Math.max(.1, p.r*(1-t*.35)), 0, Math.PI*2); g.fill();
+            }
+            g.globalAlpha = 1;
+        }
+
+        function tickRings() {
+            for (let i = rings.length-1; i >= 0; i--)
+                if (++rings[i].life >= rings[i].maxLife) rings.splice(i,1);
+        }
+        function drawRings() {
+            for (const r of rings) {
+                const t = r.life / r.maxLife;
+                // Snap to full opacity quickly, long clean fade.
+                const alpha = Math.pow(1 - t, 2.0) * Math.min(1, t * 6);
+                g.globalAlpha = alpha;
+                g.strokeStyle = r.color;
+                g.lineWidth = r.lw * (1 - Math.pow(t, 1.8) * 0.75);
+                g.beginPath();
+                g.arc(r.x, r.y, lerp(r.r0, r.r1, E.outExpo(t)), 0, Math.PI * 2);
+                g.stroke();
+            }
+            g.globalAlpha = 1;
+        }
+
+        let dot = { x:0, y:0, r:0 };
+        function recalcDot() {
+            const el = document.getElementById('ich-dot');
+            // Force to resting position so we always measure against the true final state.
+            const prev = el.style.transform;
+            el.style.transform = 'translateY(0)';
+            const rect = el.getBoundingClientRect();
+            el.style.transform = prev;
+            // Horizontal: period is centered in its advance-width box.
+            // Vertical: sits low in the line box (~78% down) at the baseline.
+            // Radius: period ink is ~36% of the advance width for Outfit Bold.
+            dot.x = rect.left + rect.width * 0.5;
+            dot.y = rect.top  + rect.height * 0.78;
+            dot.r = Math.max(rect.width * 0.36, 5);
+        }
+
+        let bd = { phase:'none', t0:0 };
+        function drawBigDot(now) {
+            if (bd.phase === 'none' || bd.phase === 'done') return;
+            const dt = now - bd.t0;
+            switch(bd.phase) {
+                case 'appear': {
+                    const t = clamp(dt/650);
+                    const r = 26*E.outBack(t);
+                    const grad = g.createRadialGradient(CX,CY,0,CX,CY,r*5.5);
+                    grad.addColorStop(0,   `rgba(240,140,57,${.6*t})`);
+                    grad.addColorStop(.45, `rgba(240,140,57,${.18*t})`);
+                    grad.addColorStop(1,   'rgba(240,140,57,0)');
+                    g.fillStyle = grad;
+                    g.beginPath(); g.arc(CX,CY,r*5.5,0,Math.PI*2); g.fill();
+                    g.fillStyle = '#F08C39';
+                    g.beginPath(); g.arc(CX,CY,r,0,Math.PI*2); g.fill();
+                    break;
+                }
+                case 'expand': {
+                    const t = clamp(dt/900);
+                    g.fillStyle = '#F08C39';
+                    g.beginPath(); g.arc(CX,CY,lerp(26,DIAG,E.inOutCubic(t)),0,Math.PI*2); g.fill();
+                    break;
+                }
+                case 'collapse': {
+                    const t = clamp(dt/900);
+                    g.fillStyle = '#F08C39';
+                    g.beginPath(); g.arc(CX,CY,lerp(DIAG,24,E.inOutQuart(t)),0,Math.PI*2); g.fill();
+                    break;
+                }
+                case 'fly': {
+                    const t = clamp(dt/420);
+                    const x = lerp(CX, dot.x, E.outExpo(t));
+                    const y = lerp(CY, dot.y, E.outExpo(t));
+                    const r = lerp(24, dot.r, E.outBack(t));
+                    for (let s = 3; s >= 1; s--) {
+                        const tt = clamp(t-s*.07);
+                        g.globalAlpha = (1-s/4)*.35;
+                        g.fillStyle = '#F08C39';
+                        g.beginPath(); g.arc(lerp(CX,dot.x,E.outExpo(tt)), lerp(CY,dot.y,E.outExpo(tt)), r*.55, 0, Math.PI*2); g.fill();
+                    }
+                    g.globalAlpha = 1;
+                    g.fillStyle = '#F08C39';
+                    g.beginPath(); g.arc(x,y,r,0,Math.PI*2); g.fill();
+                    break;
+                }
+            }
+        }
+
+        let lastRingAt = -9999;
+        function drawIdle(now) {
+            if (!dot.r) return;
+            const pulse = .5+.5*Math.sin(now*.0019);
+            const gr = g.createRadialGradient(dot.x,dot.y,0,dot.x,dot.y,dot.r*9);
+            gr.addColorStop(0,   `rgba(240,140,57,${.22*pulse})`);
+            gr.addColorStop(.55, `rgba(240,140,57,${.07*pulse})`);
+            gr.addColorStop(1,   'rgba(240,140,57,0)');
+            g.fillStyle = gr;
+            g.beginPath(); g.arc(dot.x,dot.y,dot.r*9,0,Math.PI*2); g.fill();
+            if (Math.random()<.2) {
+                spawnBurst(dot.x+(Math.random()-.5)*dot.r, dot.y, 1, {
+                    angle: -Math.PI/2+(Math.random()-.5)*1.3,
+                    minSpd:.2, maxSpd:1.1, minLife:18, maxLife:50,
+                    minR:.3, maxR:1.8, colors:['#F08C39','#FFB07A','#FFCF9D'], grav:-0.05,
+                });
+            }
+            if (now - lastRingAt > 3200) {
+                lastRingAt = now;
+                spawnRing(dot.x,dot.y,{r1:95, maxLife:55, color:'#F08C39', lw:1.6});
+                spawnRing(dot.x,dot.y,{r1:160, maxLife:72, color:'#FFB07A', lw:1, r0:22});
+                spawnBurst(dot.x,dot.y,12,{minSpd:.6,maxSpd:3,minLife:28,maxLife:58,minR:.4,maxR:2.5,colors:['#F08C39','#FFB07A'],grav:-0.05});
+            }
+        }
+
+        const TL = {
+            dotAppear:   280,
+            dotExpand:   1050,
+            screenFull:  1950,
+            dotCollapse: 2180,
+            lettersIn:   2420,
+            dotFly:      3100,
+            dotLand:     3560,
+            taglineIn:   3900,
+            idleStart:   4200,
+            exitAt:      5000,  // begin fade-out of overlay
+        };
+
+        let tStart = null, rafId = null, flags = {}, idleOn = false;
+
+        function resetIntroDOM() {
+            document.querySelectorAll('.intro-ch').forEach(el => {
+                el.style.transition = 'none';
+                el.style.opacity    = '0';
+                el.style.transform  = 'translateY(0.22em)';
+                el.classList.remove('intro-dot-alive');
+            });
+        }
+
+        function revealLetter(id, delay) {
+            setTimeout(() => {
+                const el = document.getElementById(id);
+                el.style.transition = 'opacity .48s ease, transform .58s cubic-bezier(.34,1.56,.64,1)';
+                el.style.opacity = '1'; el.style.transform = 'translateY(0)';
+            }, delay);
+        }
+
+        function frame(ts) {
+            if (!tStart) tStart = ts;
+            const now = ts - tStart;
+
+            g.clearRect(0,0,W,H);
+
+            if (now >= TL.dotAppear  && !flags.appear)  { flags.appear  = true; bd = {phase:'appear',  t0:now}; }
+            if (now >= TL.dotExpand  && !flags.expand)  { flags.expand  = true; bd = {phase:'expand',  t0:now}; }
+
+            if (now >= TL.screenFull && !flags.shock) {
+                flags.shock = true; flags.flashAt = now;
+                // ── Impact pulse: bold inner ring graduating to fine outer rings.
+                //    r0 offsets stagger the start radius so each wave has a beat. ──
+                [
+                  { r0:  0, r1: DIAG*0.38, lw: 6.0, maxLife:  80, delay:   0 },
+                  { r0: 18, r1: DIAG*0.62, lw: 4.0, maxLife:  96, delay:  80 },
+                  { r0: 36, r1: DIAG*0.90, lw: 2.5, maxLife: 110, delay: 170 },
+                  { r0: 55, r1: DIAG*1.22, lw: 1.4, maxLife: 124, delay: 275 },
+                ].forEach(({ r0, r1, lw, maxLife, delay }) => {
+                    setTimeout(() =>
+                        spawnRing(CX, CY, { r0, r1, maxLife, color: '#F4F1ED', lw }),
+                    delay);
+                });
+            }
+            if (flags.flashAt) {
+                const fa = Math.sin(norm(now,flags.flashAt,flags.flashAt+320)*Math.PI)*.38;
+                g.fillStyle = `rgba(244,241,237,${fa})`; g.fillRect(0,0,W,H);
+            }
+
+            if (now >= TL.dotCollapse && !flags.collapse) { flags.collapse = true; bd = {phase:'collapse', t0:now}; }
+
+            if (now >= TL.lettersIn && !flags.letters) {
+                flags.letters = true;
+                ['ich-S','ich-u','ich-p','ich-e','ich-r','ich-a'].forEach((id,i) => revealLetter(id, i*112));
+            }
+            if (now >= TL.dotFly && !flags.fly) {
+                flags.fly = true;
+                recalcDot(); // fresh measurement right before flight
+                bd = {phase:'fly', t0:now};
+            }
+
+            if (now >= TL.dotLand && !flags.land) {
+                flags.land = true;
+                bd = {phase:'done'};
+                const el = document.getElementById('ich-dot');
+                el.style.transition = 'opacity .12s ease';
+                el.style.opacity    = '1';
+                el.style.transform  = 'translateY(0)';
+                // Re-measure now that the element is at its true final position
+                // so landing burst and all idle rings are perfectly centred on the glyph.
+                recalcDot();
+                setTimeout(() => el.classList.add('intro-dot-alive'), 500);
+                // Burst only — no rings. Rings centered on the dot would span the
+                // entire wordmark and corrupt the final logo composition.
+                // Particles disperse outward and are fully gone before exitAt (5000ms).
+                spawnBurst(dot.x,dot.y,28,{minSpd:1.2,maxSpd:6,minLife:28,maxLife:65,minR:0.8,maxR:3.5,colors:['#F08C39','#FFB07A','#F4F1ED','#FFCF9D'],grav:-0.05});
+            }
+
+
+            // idleOn intentionally never activated — the CSS introDotBreathe animation
+            // on #ich-dot handles the breathing glow from this point, and canvas rings
+            // centered on the dot would span and obscure the wordmark.
+
+            // ── EXIT: fade overlay, stagger hero entrance ──
+            if (now >= TL.exitAt && !flags.exit) {
+                flags.exit = true;
+                const ov = document.getElementById('intro-overlay');
+                ov.classList.add('fade-out');
+                document.body.style.overflow = '';
+                ov.addEventListener('transitionend', () => {
+                    ov.classList.add('gone');
+                    cancelAnimationFrame(rafId);
+                }, { once: true });
+
+                // Staggered hero reveal — synchronized with overlay fade (1400ms).
+                // Elements begin rising in at ~50–95% through the fade so the
+                // page feels born out of the animation, not hidden behind it.
+                const heroEls = [
+                    { sel: '.navbar-enter',     delay: 200  },
+                    { sel: '.hero-badge',        delay: 650  },
+                    { sel: '.hero-title',        delay: 850  },
+                    { sel: '.hero-subtitle',     delay: 1000 },
+                    { sel: '.hero-description',  delay: 1150 },
+                    { sel: '.hero-buttons',      delay: 1300 },
+                    { sel: '.hero-trust',        delay: 1450 },
+                ];
+                heroEls.forEach(({ sel, delay }) => {
+                    setTimeout(() => {
+                        const el = document.querySelector(sel);
+                        if (el) el.classList.add('visible');
+                    }, delay);
+                });
+            }
+
+            drawBigDot(now);
+            if (idleOn) drawIdle(now);
+            tickRings(); drawRings();
+            tickParticles(); drawParticles();
+
+            rafId = requestAnimationFrame(frame);
+        }
+
+        document.fonts.ready.then(() => {
+            recalcDot();
+            resetIntroDOM();
+            rafId = requestAnimationFrame(frame);
+        });
+
+        window.addEventListener('resize', recalcDot);
+    })();
     </script>
 </body>
 </html>
