@@ -2812,8 +2812,11 @@
                 }
                 case 'collapse': {
                     const t = clamp(dt/900);
+                    const x = lerp(CX,   dot.x, E.inOutQuart(t));
+                    const y = lerp(CY,   dot.y, E.inOutQuart(t));
+                    const r = lerp(DIAG, dot.r, E.inOutQuart(t));
                     g.fillStyle = '#F08C39';
-                    g.beginPath(); g.arc(CX,CY,lerp(DIAG,24,E.inOutQuart(t)),0,Math.PI*2); g.fill();
+                    g.beginPath(); g.arc(x, y, r, 0, Math.PI*2); g.fill();
                     break;
                 }
                 case 'fly': {
@@ -2929,25 +2932,20 @@
             }
             if (now >= TL.dotFly && !flags.fly) {
                 flags.fly = true;
-                recalcDot(); // fresh measurement right before flight
-                bd = {phase:'fly', t0:now};
-            }
-
-            if (now >= TL.dotLand && !flags.land) {
-                flags.land = true;
                 bd = {phase:'done'};
+                // Collapse already landed on the dot — reveal the HTML glyph in-place.
                 const el = document.getElementById('ich-dot');
                 el.style.transition = 'opacity .12s ease';
                 el.style.opacity    = '1';
                 el.style.transform  = 'translateY(0)';
-                // Re-measure now that the element is at its true final position
-                // so landing burst and all idle rings are perfectly centred on the glyph.
                 recalcDot();
                 setTimeout(() => el.classList.add('intro-dot-alive'), 500);
-                // Burst only — no rings. Rings centered on the dot would span the
-                // entire wordmark and corrupt the final logo composition.
-                // Particles disperse outward and are fully gone before exitAt (5000ms).
                 spawnBurst(dot.x,dot.y,28,{minSpd:1.2,maxSpd:6,minLife:28,maxLife:65,minR:0.8,maxR:3.5,colors:['#F08C39','#FFB07A','#F4F1ED','#FFCF9D'],grav:-0.05});
+            }
+
+            if (now >= TL.dotLand && !flags.land) {
+                flags.land = true;
+                // dot already revealed in fly handler — nothing to do
             }
 
 
