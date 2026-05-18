@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Supera — Sin Complicarte. Supérate.</title>
-    <meta name="description" content="Supera es la comunidad educativa de IA en español. Aprende inteligencia artificial desde cero. +15,000 estudiantes. Desde $9/mes.">
+    <meta name="description" content="Supera es la comunidad educativa de IA en español. Aprende inteligencia artificial desde cero, sin complicarte, paso a paso. Lanzamiento Junio 2026.">
     <meta name="keywords" content="aprender inteligencia artificial, curso IA español, comunidad IA, ChatGPT español, IA para principiantes">
     <meta property="og:type" content="website">
     <meta property="og:title" content="Supera — Aprende IA Sin Complicarte">
-    <meta property="og:description" content="La comunidad educativa de IA en español. +15,000 estudiantes. Desde $9/mes.">
+    <meta property="og:description" content="La comunidad educativa de IA en español. Aprende paso a paso, sin conocimientos previos. Lanzamiento Junio 2026.">
     <meta property="og:locale" content="es_ES">
     <meta name="twitter:card" content="summary_large_image">
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"EducationalOrganization","name":"Supera Learning LLC","description":"Comunidad educativa de inteligencia artificial en español","offers":[{"@type":"Offer","name":"Comunidad","price":"9","priceCurrency":"USD"},{"@type":"Offer","name":"Miembro","price":"19","priceCurrency":"USD"},{"@type":"Offer","name":"Acompañamiento","price":"49","priceCurrency":"USD"}]}</script>
@@ -19,22 +19,57 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Outfit for headlines/UI (Bold 700 + Medium 500). DM Sans for body copy per Brand Kit v2.0. -->
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Outfit:wght@400;500;700&display=swap" rel="stylesheet">
     
     <style>
-        /* CSS Variables — animation-matched, dark-first */
+        /* CSS Variables — Supera Color System (official palette) */
         :root {
-            /* Brand — exact animation palette */
-            --supera-orange:       #F08C39;
-            --supera-orange-light: #FFB07A;
-            --supera-orange-dark:  #C97230;
-            --supera-teal:         #139494;
-            --supera-teal-light:   #1AABAB;
-            --supera-teal-dark:    #0E7A7C;
-            --supera-cream:        #F4F1ED;
+            /* PRIMARY palette */
+            --supera-jet-black:     #0D0C0B;  /* Background */
+            --supera-soft-cream:    #F4F1ED;  /* Background (light) */
+            --supera-orange:        #F08C39;  /* Primary — "Signature" */
+            --supera-burnt-orange:  #C9521D;  /* Accent — gradient start */
+            --supera-warm-sand:     #F5C96B;  /* Highlight — gradient end */
+
+            /* SECONDARY palette */
+            --supera-teal:          #139494;  /* Secondary */
+            --supera-deep-teal:     #0E7676;  /* Support */
+            --supera-light-gray:    #E1E5E0;  /* Surface */
+            --supera-charcoal:      #2A2826;  /* UI / Text */
+
+            /* ACCENT palette */
+            --supera-bright-orange: #F4682A;  /* CTA / Alert */
+            --supera-pale-aqua:     #BFD7D7;  /* UI / Data */
+            --supera-amber:         #F2814B;  /* Highlight */
+
+            /* RADIUS scale — Brand Kit v2.0: 4 / 8 / 16 / 24 (+ pill for buttons) */
+            --radius-xs:    4px;
+            --radius-sm:    8px;
+            --radius-md:   16px;
+            --radius-lg:   24px;
+            --radius-pill: 999px;
+
+            /* SPACING scale — Brand Kit v2.0: 4 / 8 / 16 / 24 / 40 (+ larger for sections) */
+            --space-1:   4px;
+            --space-2:   8px;
+            --space-3:  16px;
+            --space-4:  24px;
+            --space-5:  40px;
+            --space-6:  64px;
+            --space-7:  80px;
+            --space-8: 120px;
+
+            /* Legacy aliases — kept so existing rules don't break.
+               Mapped onto the canonical palette tokens above. */
+            --supera-orange-light: var(--supera-warm-sand);
+            --supera-orange-dark:  var(--supera-burnt-orange);
+            --supera-teal-light:   var(--supera-teal);
+            --supera-teal-dark:    var(--supera-deep-teal);
+            --supera-cream:        var(--supera-soft-cream);
             --supera-cream-dark:   #111010;
-            --supera-dark:         #0D0C0B;
-            --supera-gray:         #2A2826;
+            --supera-dark:         var(--supera-jet-black);
+            --supera-gray:         var(--supera-charcoal);
             --supera-gray-light:   #3A3835;
 
             /* Dark theme (default — matches animation exactly) */
@@ -86,12 +121,26 @@
         }
 
         body {
-            font-family: 'Outfit', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            /* Body copy uses DM Sans per Brand Kit v2.0. Headlines override to Outfit below. */
+            font-family: 'DM Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background-color: var(--bg-primary);
             color: var(--text-primary);
             overflow-x: hidden;
             line-height: 1.6;
             scrollbar-gutter: stable;
+        }
+
+        /* Headlines, subheads, buttons, nav, labels — all stay on Outfit */
+        h1, h2, h3, h4, h5, h6,
+        .hero-title, .hero-tagline, .hero-badge-text,
+        .section-title, .section-label,
+        .nav-link, .logo-text, .footer-brand-text,
+        .btn-primary, .btn-secondary, .btn-white, .btn-outline-white,
+        .pricing-name, .pricing-amount, .pricing-btn-primary, .pricing-btn-outline,
+        .feature-title, .course-title, .mvv-title, .mvv-label,
+        .cta-title, .footer h4, .popular-badge, .course-badge,
+        .stat-number, .stat-label, .hero-stat strong, .hero-stat span {
+            font-family: 'Outfit', sans-serif;
         }
 
         /* Utility Classes */
@@ -101,9 +150,10 @@
             padding: 0 24px;
         }
 
-        /* Gradient Text — warm orange, animation-matched */
+        /* Gradient Text — uses the official "Orange Gradient" from the Supera color system:
+           Burnt (#C9521D) → Signature (#F08C39) → Sand (#F5C96B). */
         .gradient-text {
-            background: linear-gradient(135deg, var(--supera-orange) 0%, var(--supera-orange-light) 50%, var(--supera-orange) 100%);
+            background: linear-gradient(135deg, var(--supera-burnt-orange) 0%, var(--supera-orange) 50%, var(--supera-warm-sand) 100%);
             background-size: 200% 200%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -127,63 +177,67 @@
         }
 
         /* Buttons */
-        .btn-primary {
-            background: linear-gradient(135deg, var(--supera-orange) 0%, var(--supera-orange-dark) 100%);
-            color: white;
+        /* ──────────────────────────────────────────────────────────────
+           BUTTON SYSTEM — Brand Kit v2.0: filled / outline / text
+           Two scopes:
+             • Page buttons:   .btn-primary, .btn-secondary
+             • Pricing cards:  .pricing-btn-primary, .pricing-btn-outline (full-width)
+             • CTA on color:   .btn-white, .btn-outline-white (inverted for orange bg)
+           All share base structure; only fill/border differ.
+           ────────────────────────────────────────────────────────────── */
+        .btn-primary, .btn-secondary,
+        .pricing-btn-primary, .pricing-btn-outline, .pricing-btn-vip {
             padding: 14px 32px;
-            border-radius: 50px;
-            border: none;
+            border-radius: var(--radius-pill);
             font-weight: 600;
             font-size: 16px;
             cursor: pointer;
             transition: all 0.3s ease;
             display: inline-flex;
             align-items: center;
-            gap: 8px;
+            justify-content: center;
+            gap: var(--space-2);
             text-decoration: none;
+            border: none;
         }
 
-        .btn-primary:hover {
+        /* FILLED — orange gradient */
+        .btn-primary, .pricing-btn-primary {
+            background: linear-gradient(135deg, var(--supera-orange) 0%, var(--supera-burnt-orange) 100%);
+            color: white;
+        }
+        .btn-primary:hover, .pricing-btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 30px -10px rgba(234, 142, 63, 0.5);
+            box-shadow: 0 10px 30px -10px rgba(240, 140, 57, 0.55);
         }
 
-        .btn-secondary {
+        /* OUTLINE — subtle border, fills on hover */
+        .btn-secondary, .pricing-btn-outline {
             background: transparent;
             color: rgba(244, 241, 237, 0.72);
-            padding: 12px 30px;
-            border-radius: 50px;
             border: 1.5px solid rgba(244, 241, 237, 0.22);
-            font-weight: 600;
-            font-size: 16px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            text-decoration: none;
         }
-
-        .btn-secondary:hover {
+        .btn-secondary:hover, .pricing-btn-outline:hover {
             background: rgba(244, 241, 237, 0.07);
             border-color: rgba(244, 241, 237, 0.4);
             color: var(--text-primary);
             transform: translateY(-2px);
         }
-
-        [data-theme="light"] .btn-secondary {
+        [data-theme="light"] .btn-secondary,
+        [data-theme="light"] .pricing-btn-outline {
             color: var(--supera-teal);
             border-color: var(--supera-teal);
         }
-        [data-theme="light"] .btn-secondary:hover {
+        [data-theme="light"] .btn-secondary:hover,
+        [data-theme="light"] .pricing-btn-outline:hover {
             background: var(--supera-teal);
             color: white;
         }
 
-        /* Navigation — sits below the .v3-bar marquee (~38px tall, 40px gives safe buffer) */
+        /* Navigation */
         .navbar {
             position: fixed;
-            top: 40px;
+            top: 0;
             left: 0;
             right: 0;
             z-index: 1000;
@@ -209,7 +263,7 @@
         }
 
         .logo-text {
-            font-size: 24px;
+            font-size: 32px;
             font-weight: 700;
             letter-spacing: -0.03em;
             color: var(--text-primary);
@@ -292,7 +346,7 @@
         .mobile-toggle {
             display: none;
             flex-direction: column;
-            gap: 6px;
+            gap: var(--space-2);
             cursor: pointer;
             padding: 8px;
             background: none;
@@ -463,11 +517,76 @@
             margin-bottom: 20px;
         }
 
+        /* Subhead tagline "Sin Complicarte. Supérate." — block under the H1 */
+        .hero-tagline {
+            font-size: clamp(16px, 2.4vw, 26px);
+            font-weight: 400;
+            letter-spacing: 0.01em;
+            line-height: 1.4;
+            color: rgba(244, 241, 237, 0.55);
+            margin: -8px 0 28px;
+        }
+        .hero-accent {
+            color: var(--supera-orange);
+            font-weight: 500;
+        }
+        [data-theme="light"] .hero-tagline {
+            color: rgba(26, 26, 26, 0.55);
+        }
+
+        /* Hero mini-stats row — matches Brand Kit v2.0 spec (2× / 52 / 1:1) */
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            align-items: stretch;
+            gap: var(--space-4);
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+        .hero-stat {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            min-width: 110px;
+        }
+        .hero-stat strong {
+            font-family: 'Outfit', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--supera-orange);
+            letter-spacing: -0.02em;
+            line-height: 1;
+        }
+        .hero-stat span {
+            font-size: 12px;
+            font-weight: 500;
+            color: rgba(244, 241, 237, 0.55);
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+        .hero-stat-divider {
+            width: 1px;
+            background: rgba(244, 241, 237, 0.08);
+        }
+        [data-theme="light"] .hero-stat span {
+            color: rgba(26, 26, 26, 0.55);
+        }
+        [data-theme="light"] .hero-stat-divider {
+            background: rgba(26, 26, 26, 0.12);
+        }
+        @media (max-width: 640px) {
+            .hero-stats { gap: 16px; }
+            .hero-stat-divider { display: none; }
+            .hero-stat { min-width: 90px; }
+            .hero-stat strong { font-size: 24px; }
+        }
+
         .hero-subtitle {
             font-size: clamp(22px, 4vw, 38px);
             font-weight: 300;
             color: rgba(244, 241, 237, 0.38);
-            margin-bottom: 28px;
+            margin-bottom: var(--space-4);
             letter-spacing: -0.01em;
         }
 
@@ -593,7 +712,7 @@
         .feature-card {
             background: var(--bg-card);
             padding: 40px 32px;
-            border-radius: 20px;
+            border-radius: var(--radius-md);
             border: 1px solid var(--border-color);
             transition: all 0.4s ease;
             cursor: pointer;
@@ -608,7 +727,7 @@
         .feature-icon {
             width: 56px;
             height: 56px;
-            border-radius: 14px;
+            border-radius: var(--radius-md);
             background: rgba(240, 140, 57, 0.1);
             border: 1px solid rgba(240, 140, 57, 0.15);
             display: flex;
@@ -687,7 +806,7 @@
 
         .course-card {
             background: var(--bg-card);
-            border-radius: 20px;
+            border-radius: var(--radius-md);
             overflow: hidden;
             border: 1px solid var(--border-color);
             transition: all 0.4s ease;
@@ -717,10 +836,10 @@
             position: absolute;
             top: 16px;
             left: 16px;
-            padding: 6px 12px;
+            padding: var(--space-2) 12px;
             background: rgba(255, 255, 255, 0.2);
             backdrop-filter: blur(10px);
-            border-radius: 50px;
+            border-radius: var(--radius-pill);
             font-size: 12px;
             font-weight: 600;
             color: white;
@@ -753,7 +872,7 @@
         .course-duration {
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: var(--space-2);
             font-size: 13px;
             color: var(--text-secondary);
         }
@@ -785,7 +904,7 @@
 
         .pricing-card {
             background: var(--bg-card);
-            border-radius: 24px;
+            border-radius: var(--radius-lg);
             padding: 40px 32px;
             border: 1px solid var(--border-color);
             transition: all 0.4s ease;
@@ -798,7 +917,7 @@
         }
 
         .pricing-card.popular {
-            background: #1A1210;
+            background: var(--supera-charcoal);
             border-color: rgba(240, 140, 57, 0.45);
             transform: scale(1.05);
             box-shadow: 0 0 48px -12px rgba(240, 140, 57, 0.14);
@@ -810,22 +929,26 @@
 
         .popular-badge {
             position: absolute;
-            top: -12px;
+            top: -14px;
             left: 50%;
             transform: translateX(-50%);
-            background: linear-gradient(135deg, var(--supera-orange) 0%, var(--supera-orange-dark) 100%);
+            background: linear-gradient(135deg, var(--supera-orange) 0%, var(--supera-burnt-orange) 100%);
             color: white;
-            padding: 6px 20px;
-            border-radius: 50px;
-            font-size: 12px;
-            font-weight: 600;
+            padding: 8px 18px;
+            border-radius: var(--radius-pill);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            white-space: nowrap;
+            box-shadow: 0 6px 20px -6px rgba(240, 140, 57, 0.6);
         }
 
         .pricing-name {
             font-size: 20px;
             font-weight: 700;
             color: var(--text-primary);
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
 
         .pricing-card.popular .pricing-name {
@@ -835,7 +958,7 @@
         .pricing-desc {
             font-size: 14px;
             color: var(--text-secondary);
-            margin-bottom: 24px;
+            margin-bottom: 0;
         }
 
         .pricing-card.popular .pricing-desc {
@@ -843,7 +966,7 @@
         }
 
         .pricing-price {
-            margin-bottom: 32px;
+            margin-bottom: 20px;
         }
 
         .pricing-amount {
@@ -867,16 +990,21 @@
 
         .pricing-features {
             list-style: none;
-            margin-bottom: 32px;
+            margin-bottom: var(--space-4);
         }
 
         .pricing-features li {
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             gap: 12px;
-            margin-bottom: 16px;
+            margin-bottom: 12px;
             font-size: 14px;
+            line-height: 1.5;
             color: var(--text-secondary);
+        }
+
+        .pricing-features li svg {
+            margin-top: 3px;   /* nudge checkmark to align visually with first line of text */
         }
 
         .pricing-card.popular .pricing-features li {
@@ -897,36 +1025,21 @@
             color: var(--supera-orange);
         }
 
-        .pricing-btn {
+        .pricing-features li svg.check-sand {
+            color: var(--supera-warm-sand);
+        }
+
+        .pricing-features li svg.check-burnt {
+            color: var(--supera-burnt-orange);
+        }
+
+        /* Pricing buttons inherit the unified styles defined above.
+           Only adds full-width behavior for the pricing grid layout. */
+        .pricing-btn,
+        .pricing-btn-primary,
+        .pricing-btn-outline,
+        .pricing-btn-vip {
             width: 100%;
-            padding: 14px 24px;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 15px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: none;
-        }
-
-        .pricing-btn-outline {
-            background: transparent;
-            border: 2px solid var(--text-primary);
-            color: var(--text-primary);
-        }
-
-        .pricing-btn-outline:hover {
-            background: var(--text-primary);
-            color: var(--bg-primary);
-        }
-
-        .pricing-btn-primary {
-            background: linear-gradient(135deg, var(--supera-orange) 0%, var(--supera-orange-dark) 100%);
-            color: white;
-        }
-
-        .pricing-btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px -10px rgba(234, 142, 63, 0.5);
         }
 
         .pricing-note {
@@ -954,7 +1067,7 @@
 
         .testimonial-card {
             background: var(--bg-card);
-            border-radius: 18px;
+            border-radius: var(--radius-md);
             padding: 32px;
             border: 1px solid var(--border-color);
             transition: all 0.4s ease;
@@ -1083,7 +1196,7 @@
             background: white;
             color: var(--supera-dark);
             padding: 14px 32px;
-            border-radius: 50px;
+            border-radius: var(--radius-pill);
             border: none;
             font-weight: 600;
             font-size: 16px;
@@ -1104,7 +1217,7 @@
             background: transparent;
             color: white;
             padding: 12px 30px;
-            border-radius: 50px;
+            border-radius: var(--radius-pill);
             border: 2px solid rgba(255, 255, 255, 0.3);
             font-weight: 600;
             font-size: 16px;
@@ -1264,7 +1377,7 @@
         .modal-content {
             position: relative;
             background: var(--bg-card);
-            border-radius: 24px;
+            border-radius: var(--radius-lg);
             padding: 48px;
             max-width: 480px;
             width: 100%;
@@ -1353,7 +1466,7 @@
             width: 100%;
             padding: 14px 18px;
             border: 1px solid var(--border-color);
-            border-radius: 12px;
+            border-radius: var(--radius-sm);
             font-size: 15px;
             background: var(--bg-primary);
             color: var(--text-primary);
@@ -1370,7 +1483,7 @@
             width: 100%;
             padding: 14px 18px;
             border: 1px solid var(--border-color);
-            border-radius: 12px;
+            border-radius: var(--radius-sm);
             font-size: 15px;
             background: var(--bg-primary);
             color: var(--text-primary);
@@ -1414,7 +1527,7 @@
             background: var(--supera-dark);
             color: white;
             padding: 16px 24px;
-            border-radius: 12px;
+            border-radius: var(--radius-sm);
             border-left: 4px solid var(--supera-orange);
             box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.3);
             display: flex;
@@ -1434,14 +1547,20 @@
             color: var(--supera-orange);
         }
 
-        /* Scroll Animations */
+        /* Scroll Animations — progressive enhancement:
+           Elements are visible by default. Only when JS has set up the reveal system
+           (and added .reveal-enabled to body) do they start hidden and animate in.
+           This guarantees the page is never blank if JS fails for any reason. */
         .reveal {
-            opacity: 0;
-            transform: translateY(40px);
             transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .reveal.active {
+        body.reveal-enabled .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+        }
+
+        body.reveal-enabled .reveal.active {
             opacity: 1;
             transform: translateY(0);
         }
@@ -1553,7 +1672,7 @@
 
         .mvv-card {
             background: var(--bg-card);
-            border-radius: 20px;
+            border-radius: var(--radius-md);
             padding: 40px 32px;
             border: 1px solid var(--border-color);
             transition: all 0.4s ease;
@@ -1572,7 +1691,7 @@
         .mvv-icon {
             width: 56px;
             height: 56px;
-            border-radius: 14px;
+            border-radius: var(--radius-md);
             background: rgba(19, 148, 148, 0.1);
             border: 1px solid rgba(19, 148, 148, 0.15);
             display: flex;
@@ -1622,6 +1741,7 @@
             line-height: 1.75;
         }
 
+        /* Old vertical values list — kept for backwards compatibility, no longer used */
         .mvv-values-list {
             list-style: none;
             margin-top: 16px;
@@ -1646,13 +1766,79 @@
             height: 6px;
             border-radius: 50%;
             background: var(--supera-teal);
-            margin-top: 6px;
+            margin-top: var(--space-2);
             flex-shrink: 0;
         }
 
         .mvv-values-list li strong {
             color: var(--text-primary);
             font-weight: 600;
+        }
+
+        /* ── Valores section (below the main MVV cards) ── */
+        .mvv-values-section {
+            margin-top: 64px;
+            padding-top: 48px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .mvv-values-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .mvv-values-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: -0.01em;
+            margin-top: 8px;
+        }
+
+        .mvv-values-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .mvv-value {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            padding: 24px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            border-left: 3px solid var(--supera-orange);
+            transition: border-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .mvv-value:hover {
+            transform: translateY(-2px);
+            border-left-color: var(--supera-burnt-orange);
+        }
+
+        .mvv-value strong {
+            font-family: 'Outfit', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: -0.01em;
+        }
+
+        .mvv-value span {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        @media (max-width: 1024px) {
+            .mvv-values-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 640px) {
+            .mvv-values-grid { grid-template-columns: 1fr; }
+            .mvv-values-section { margin-top: 40px; padding-top: 32px; }
         }
 
         @media (max-width: 1024px) {
@@ -1758,12 +1944,11 @@
                 <line x1="6" y1="6" x2="18" y2="18"></line>
             </svg>
         </button>
-        <a href="#inicio" onclick="toggleMobileMenu()">Inicio</a>
         <a href="#cursos" onclick="toggleMobileMenu()">Aprende</a>
+        <a href="#comofunciona" onclick="toggleMobileMenu()">Cómo Funciona</a>
         <a href="#caracteristicas" onclick="toggleMobileMenu()">¿Por qué Supera?</a>
-        <a href="#precios" onclick="toggleMobileMenu()">Membresía</a>
         <a href="#contacto" onclick="toggleMobileMenu()">Contacto</a>
-        <button class="btn-primary" onclick="openModal('newsletterModal'); toggleMobileMenu()">Comienza Ahora</button>
+        <button class="btn-primary" onclick="openModal('newsletterModal'); toggleMobileMenu()">Únete Ahora</button>
     </div>
 
     <!-- Navigation -->
@@ -1788,33 +1973,15 @@
             </a>
             
             <div class="nav-links">
-                <a href="#inicio" class="nav-link">Inicio</a>
                 <a href="#cursos" class="nav-link">Aprende</a>
+                <a href="#comofunciona" class="nav-link">Cómo Funciona</a>
                 <a href="#caracteristicas" class="nav-link">¿Por qué Supera?</a>
-                <a href="#precios" class="nav-link">Membresía</a>
                 <a href="#contacto" class="nav-link">Contacto</a>
-                
-                <!-- Dark Mode Toggle -->
-                <button class="theme-toggle" onclick="toggleTheme()" aria-label="Cambiar tema">
-                    <!-- Sun icon (shown in dark mode) -->
-                    <svg id="sunIcon" class="theme-icon hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="5"></circle>
-                        <line x1="12" y1="1" x2="12" y2="3"></line>
-                        <line x1="12" y1="21" x2="12" y2="23"></line>
-                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                        <line x1="1" y1="12" x2="3" y2="12"></line>
-                        <line x1="21" y1="12" x2="23" y2="12"></line>
-                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                    </svg>
-                    <!-- Moon icon (shown in light mode) -->
-                    <svg id="moonIcon" class="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                    </svg>
-                </button>
-                
-                <button class="btn-primary" onclick="openModal('newsletterModal')">Comienza Ahora</button>
+
+                <!-- Theme toggle removed — committed to dark mode per Brand Kit v2.0.
+                     toggleTheme() function still exists for programmatic use if needed. -->
+
+                <button class="btn-primary" onclick="openModal('newsletterModal')">Únete</button>
             </div>
             
             <button class="mobile-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menú">
@@ -1830,65 +1997,80 @@
         <div class="hero-bg">
             <div class="blob blob-orange"></div>
             <div class="blob blob-orange-2"></div>
+            <!-- Ambient floating particles — replaces the old static dot pattern -->
+            <div class="bg-particles" aria-hidden="true">
+                <span class="bg-particle"></span><span class="bg-particle"></span><span class="bg-particle"></span><span class="bg-particle"></span><span class="bg-particle"></span>
+                <span class="bg-particle"></span><span class="bg-particle"></span><span class="bg-particle"></span><span class="bg-particle"></span><span class="bg-particle"></span>
+                <span class="bg-particle"></span><span class="bg-particle"></span><span class="bg-particle"></span><span class="bg-particle"></span><span class="bg-particle"></span>
+                <span class="bg-particle"></span><span class="bg-particle"></span><span class="bg-particle"></span><span class="bg-particle"></span><span class="bg-particle"></span>
+            </div>
         </div>
         
         <div class="hero-content">
             <div class="hero-badge hero-enter">
                 <span></span>
-                <span class="hero-badge-text">Comunidad educativa de IA en español</span>
+                <span class="hero-badge-text">IA en español</span>
             </div>
 
             <h1 class="hero-title hero-enter">
-                <span class="gradient-text">Aprende IA</span><br>
-                Sin Complicarte.
+                AI sin complicarte<span class="hero-accent">.</span>
             </h1>
-            <h2 class="hero-subtitle hero-enter">Supérate.</h2>
+            <p class="hero-tagline hero-enter">Sin Complicarte. <span class="hero-accent">Supérate.</span></p>
 
             <p class="hero-description hero-enter">
-                ¿Sientes que la inteligencia artificial te está dejando atrás? En Supera te enseñamos a usarla en tu vida diaria, paso a paso, de forma simple y sin conocimientos previos.
+                La inteligencia artificial puede sonar complicada. Aquí no lo es. Te enseñamos a usarla en tu día a día — a tu ritmo, en español claro, paso a paso.
             </p>
 
             <div class="hero-buttons hero-enter">
                 <button class="btn-primary" onclick="openModal('newsletterModal')">
-                    Comienza Ahora
+                    Únete Ahora
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <line x1="5" y1="12" x2="19" y2="12"></line>
                         <polyline points="12 5 19 12 12 19"></polyline>
                     </svg>
                 </button>
-                <button class="btn-secondary" onclick="scrollToSection('cursos')">
-                    Ver Cursos
+                <button class="btn-secondary" onclick="scrollToSection('comofunciona')">
+                    Cómo Funciona
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <polyline points="6 9 12 15 18 9"></polyline>
                     </svg>
                 </button>
             </div>
 
-            <div class="hero-trust hero-enter">
-                <span>Aprende con personas como tú, paso a paso.</span>
+            <!-- Mini stats — matches the Brand Kit v2.0 Website Hero spec -->
+            <div class="hero-stats hero-enter">
+                <div class="hero-stat"><strong>2×</strong><span>clases en vivo / mes</span></div>
+                <div class="hero-stat-divider"></div>
+                <div class="hero-stat"><strong>52</strong><span>ejercicios al año</span></div>
+                <div class="hero-stat-divider"></div>
+                <div class="hero-stat"><strong>1:1</strong><span>con el founder</span></div>
             </div>
         </div>
     </section>
 
-    <!-- Stats Section -->
-    <section class="stats" id="stats">
+    <!-- Cómo funciona — el proceso en 3 pasos -->
+    <section id="comofunciona" class="v3-how">
         <div class="container">
-            <div class="stats-grid">
-                <div class="stat-item reveal">
-                    <div class="stat-number" data-count="15000">0</div>
-                    <div class="stat-label">Estudiantes</div>
+            <div class="section-header reveal">
+                <span class="section-label">El proceso</span>
+                <h2 class="section-title">¿Cómo funciona Supera?</h2>
+                <p class="section-description">En tres pasos simples pasas de no saber nada de I.A. a usarla todos los días.</p>
+            </div>
+            <div class="v3-steps">
+                <div class="v3-step reveal">
+                    <div class="v3-step-num">1</div>
+                    <h3>Te unes a la comunidad</h3>
+                    <p>Elige tu plan, crea tu cuenta en minutos y accede inmediatamente a todo el contenido y a la comunidad activa.</p>
                 </div>
-                <div class="stat-item reveal">
-                    <div class="stat-number"><span data-count="94">0</span>%</div>
-                    <div class="stat-label">Satisfacción</div>
+                <div class="v3-step reveal">
+                    <div class="v3-step-num">2</div>
+                    <h3>Aprendes paso a paso</h3>
+                    <p>Cada martes recibes un video-lección y un ejercicio práctico. Clases en vivo dos veces al mes para resolver dudas en tiempo real.</p>
                 </div>
-                <div class="stat-item reveal">
-                    <div class="stat-number" data-count="50">0</div>
-                    <div class="stat-label">Herramientas</div>
-                </div>
-                <div class="stat-item reveal">
-                    <div class="stat-number">4.9</div>
-                    <div class="stat-label">Valoración</div>
+                <div class="v3-step reveal">
+                    <div class="v3-step-num">3</div>
+                    <h3>Usas I.A. en tu día a día</h3>
+                    <p>En pocas semanas estarás automatizando tareas, ahorrando tiempo y aplicando I.A. en tu vida personal o profesional.</p>
                 </div>
             </div>
         </div>
@@ -2073,16 +2255,16 @@
     <section id="precios" class="pricing">
         <div class="container">
             <div class="section-header reveal">
-                <span class="section-label">Precios</span>
-                <h2 class="section-title">Tu membresía mensual</h2>
-                <p class="section-description">Una suscripción que crece contigo. Contenido nuevo cada mes, sesiones en vivo y una comunidad activa siempre disponible.</p>
+                <span class="section-label">Membresía</span>
+                <h2 class="section-title">Únete a Supera</h2>
+                <p class="section-description">Una suscripción que crece contigo. Contenido nuevo cada semana, sesiones en vivo y una comunidad activa siempre disponible.</p>
             </div>
 
             <div class="pricing-grid">
-                <!-- Basic Plan -->
+                <!-- Standard ($9) -->
                 <div class="pricing-card reveal">
-                    <h3 class="pricing-name">Comunidad</h3>
-                    <p class="pricing-desc">Para dar tu primer paso con la IA</p>
+                    <h3 class="pricing-name">Standard</h3>
+                    <p class="pricing-desc">Empieza a usar I.A. en tu día a día</p>
                     <div class="pricing-price">
                         <span class="pricing-amount">$9</span>
                         <span class="pricing-period">/mes</span>
@@ -2092,29 +2274,35 @@
                             <svg class="check-teal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <polyline points="20 6 9 17 4 12"></polyline>
                             </svg>
-                            Acceso a contenido pregrabado
+                            Un video-lección cada martes sobre herramientas, automatización o casos reales de I.A.
                         </li>
                         <li>
                             <svg class="check-teal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <polyline points="20 6 9 17 4 12"></polyline>
                             </svg>
-                            Actividades semanales prácticas
+                            Un ejercicio guiado semanal para aplicar lo aprendido en tu vida o trabajo
                         </li>
                         <li>
                             <svg class="check-teal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <polyline points="20 6 9 17 4 12"></polyline>
                             </svg>
-                            Acceso a la comunidad activa
+                            Comunidad activa para compartir tu progreso y aprender de otros
+                        </li>
+                        <li>
+                            <svg class="check-teal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            Biblioteca de plantillas y herramientas de I.A. listas para copiar y pegar
                         </li>
                     </ul>
-                    <button class="pricing-btn pricing-btn-outline" onclick="openModal('newsletterModal')">Unirme Ahora</button>
+                    <button class="pricing-btn pricing-btn-outline" onclick="openModal('newsletterModal')">Comenzar</button>
                 </div>
 
-                <!-- Popular Plan -->
+                <!-- Premium ($19) — Founding Member spot -->
                 <div class="pricing-card popular reveal">
-                    <span class="popular-badge">Más Popular</span>
-                    <h3 class="pricing-name">Miembro</h3>
-                    <p class="pricing-desc">La experiencia completa de Supera</p>
+                    <span class="popular-badge">Founding Member · Cupos limitados</span>
+                    <h3 class="pricing-name">Premium</h3>
+                    <p class="pricing-desc">La experiencia completa, con 1:1 personalizado</p>
                     <div class="pricing-price">
                         <span class="pricing-amount">$19</span>
                         <span class="pricing-period">/mes</span>
@@ -2124,138 +2312,64 @@
                             <svg class="check-orange" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <polyline points="20 6 9 17 4 12"></polyline>
                             </svg>
-                            Todo el contenido pregrabado
+                            Todo lo del plan Standard
                         </li>
                         <li>
                             <svg class="check-orange" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <polyline points="20 6 9 17 4 12"></polyline>
                             </svg>
-                            2 sesiones en vivo al mes
+                            2 clases en vivo al mes para resolver dudas y practicar I.A. en tiempo real
                         </li>
                         <li>
                             <svg class="check-orange" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <polyline points="20 6 9 17 4 12"></polyline>
                             </svg>
-                            Actividades semanales con retroalimentación
+                            <span><strong>1 sesión privada 1:1 cada mes</strong> (solo los primeros 50 miembros)</span>
                         </li>
                         <li>
                             <svg class="check-orange" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <polyline points="20 6 9 17 4 12"></polyline>
                             </svg>
-                            Comunidad activa y tutorías mensuales
+                            <span><strong>Tu precio queda bloqueado de por vida</strong> como miembro fundador</span>
                         </li>
                     </ul>
-                    <button class="pricing-btn pricing-btn-primary" onclick="openModal('newsletterModal')">Quiero ser Miembro</button>
+                    <button class="pricing-btn pricing-btn-primary" onclick="openModal('newsletterModal')">Soy Founding Member</button>
                 </div>
 
-                <!-- Enterprise Plan -->
-                <div class="pricing-card reveal">
-                    <h3 class="pricing-name">Acompañamiento</h3>
-                    <p class="pricing-desc">Para quienes quieren apoyo personalizado</p>
+                <!-- VIP ($49) — Executive tier, on-brand premium treatment -->
+                <div class="pricing-card vip reveal">
+                    <span class="vip-badge"><span class="vip-badge-diamond" aria-hidden="true">◆</span> Para Emprendedores <span class="vip-badge-diamond" aria-hidden="true">◆</span></span>
+                    <h3 class="pricing-name">VIP</h3>
+                    <p class="pricing-desc">Acompañamiento personalizado intensivo</p>
                     <div class="pricing-price">
                         <span class="pricing-amount">$49</span>
                         <span class="pricing-period">/mes</span>
                     </div>
                     <ul class="pricing-features">
                         <li>
-                            <svg class="check-teal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <svg class="check-burnt" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <polyline points="20 6 9 17 4 12"></polyline>
                             </svg>
-                            Todo el plan Miembro
+                            Todo lo del plan Premium y Standard
                         </li>
                         <li>
-                            <svg class="check-teal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <svg class="check-burnt" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <polyline points="20 6 9 17 4 12"></polyline>
                             </svg>
-                            Sesión uno a uno mensual
+                            Un video-lección extra al mes (5 videos en total) sobre temas avanzados
                         </li>
                         <li>
-                            <svg class="check-teal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <svg class="check-burnt" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <polyline points="20 6 9 17 4 12"></polyline>
                             </svg>
-                            Plan de aprendizaje personalizado
-                        </li>
-                        <li>
-                            <svg class="check-teal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg>
-                            Soporte directo vía mensaje
+                            <span><strong>2 sesiones 1:1 cada mes</strong> (1h por sesión) para acompañamiento personalizado</span>
                         </li>
                     </ul>
-                    <button class="pricing-btn pricing-btn-outline" onclick="openModal('newsletterModal')">Quiero Acompañamiento</button>
+                    <button class="pricing-btn pricing-btn-vip" onclick="openModal('newsletterModal')">Quiero VIP</button>
                 </div>
             </div>
 
             <p class="pricing-note reveal">Cancela cuando quieras. Sin compromisos. Sin letra pequeña.</p>
-        </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section class="testimonials">
-        <div class="container">
-            <div class="section-header reveal">
-                <span class="section-label">Testimonios</span>
-                <h2 class="section-title">Lo que dicen nuestros estudiantes</h2>
-            </div>
-
-            <div class="testimonials-grid">
-                <!-- Testimonial 1 -->
-                <div class="testimonial-card reveal">
-                    <div class="testimonial-header">
-                        <div class="testimonial-avatar avatar-1">M</div>
-                        <div>
-                            <div class="testimonial-name">María González</div>
-                            <div class="testimonial-role">Contadora, 42 años</div>
-                        </div>
-                    </div>
-                    <p class="testimonial-text">"Pensaba que la IA era para jóvenes o personas de tecnología. Supera me mostró que no es así. Hoy la uso todos los días para organizar mi trabajo y me ahorra horas."</p>
-                    <div class="testimonial-stars">
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                    </div>
-                </div>
-
-                <!-- Testimonial 2 -->
-                <div class="testimonial-card reveal">
-                    <div class="testimonial-header">
-                        <div class="testimonial-avatar avatar-2">C</div>
-                        <div>
-                            <div class="testimonial-name">Carlos Ruiz</div>
-                            <div class="testimonial-role">Pequeño empresario, 38 años</div>
-                        </div>
-                    </div>
-                    <p class="testimonial-text">"Lo que más me gustó es que explican todo sin complicarte. Cada sesión en vivo me quedaba con algo concreto que podía aplicar ese mismo día en mi negocio."</p>
-                    <div class="testimonial-stars">
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                    </div>
-                </div>
-
-                <!-- Testimonial 3 -->
-                <div class="testimonial-card reveal">
-                    <div class="testimonial-header">
-                        <div class="testimonial-avatar avatar-3">A</div>
-                        <div>
-                            <div class="testimonial-name">Ana Martínez</div>
-                            <div class="testimonial-role">Mamá y emprendedora, 35 años</div>
-                        </div>
-                    </div>
-                    <p class="testimonial-text">"Siempre sentí que me quedaba atrás con la tecnología. Supera me dio la confianza que necesitaba. Ahora uso IA para planificar, escribir y organizar mi tiempo. No volvería atrás."</p>
-                    <div class="testimonial-stars">
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                    </div>
-                </div>
-            </div>
         </div>
     </section>
 
@@ -2264,11 +2378,25 @@
         <div class="container">
             <div class="section-header reveal">
                 <span class="section-label">Quiénes somos</span>
-                <h2 class="section-title">Lo que nos guía</h2>
-                <p class="section-description">Supera no es solo un curso. Es una comunidad construida sobre valores claros y un propósito real.</p>
+                <h2 class="section-title">Cerrar la brecha entre las personas y la I.A.</h2>
+                <p class="section-description">Queremos que más gente pueda adaptarse, crecer y no quedarse atrás en la nueva economía digital — sin importar su nivel técnico de partida.</p>
             </div>
 
             <div class="mvv-grid">
+                <!-- Propósito -->
+                <div class="mvv-card reveal">
+                    <div class="mvv-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                            <path d="M2 17l10 5 10-5"></path>
+                            <path d="M2 12l10 5 10-5"></path>
+                        </svg>
+                    </div>
+                    <div class="mvv-label">Propósito</div>
+                    <h3 class="mvv-title">Ayudarte a integrar la I.A. en tu vida</h3>
+                    <p class="mvv-text">Existimos para ayudar a personas que no han adoptado la inteligencia artificial a integrarla en su día a día — para recuperar tiempo, aumentar su productividad y sentirse seguras en un mundo que cambia rápido.</p>
+                </div>
+
                 <!-- Misión -->
                 <div class="mvv-card reveal">
                     <div class="mvv-icon">
@@ -2278,8 +2406,8 @@
                         </svg>
                     </div>
                     <div class="mvv-label">Misión</div>
-                    <h3 class="mvv-title">Enseñar IA de forma simple y práctica</h3>
-                    <p class="mvv-text">Somos una comunidad educativa que enseña a usar herramientas de inteligencia artificial en la vida diaria, a través de contenido guiado, sesiones en vivo y acompañamiento continuo. Nos dirigimos a personas con poco conocimiento tecnológico que quieren aprender a su propio ritmo.</p>
+                    <h3 class="mvv-title">Enseñar I.A. de forma práctica</h3>
+                    <p class="mvv-text">Somos una comunidad educativa que enseña a usar herramientas de inteligencia artificial mediante contenido guiado, sesiones en vivo, tutorías mensuales y espacios interactivos donde se aprende implementando — no solo estudiando.</p>
                 </div>
 
                 <!-- Visión -->
@@ -2291,27 +2419,42 @@
                         </svg>
                     </div>
                     <div class="mvv-label">Visión</div>
-                    <h3 class="mvv-title">La comunidad de referencia en educación de IA</h3>
-                    <p class="mvv-text">Queremos convertirnos en la plataforma líder en educación de inteligencia artificial en español: accesible, práctica y fácil de aplicar en la vida real. Aspiramos a cerrar la brecha digital para millones de personas que hoy se sienten alejadas de la tecnología.</p>
+                    <h3 class="mvv-title">El estándar de excelencia en educación de I.A.</h3>
+                    <p class="mvv-text">Convertirnos en la plataforma líder en educación de I.A. — accesible, práctica y fácil de implementar. A largo plazo, expandirnos a espacios físicos en las principales ciudades donde las personas puedan aprender, aplicar y vivir la inteligencia artificial.</p>
                 </div>
+            </div>
 
-                <!-- Valores -->
-                <div class="mvv-card reveal">
-                    <div class="mvv-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-                        </svg>
+            <!-- Valores: 6 items, full-width grid below the main MVV cards -->
+            <div class="mvv-values-section reveal">
+                <div class="mvv-values-header">
+                    <span class="mvv-label">Valores</span>
+                    <h3 class="mvv-values-title">Cómo trabajamos, todos los días</h3>
+                </div>
+                <div class="mvv-values-grid">
+                    <div class="mvv-value">
+                        <strong>Paciencia</strong>
+                        <span>Enseñamos las veces que sea necesario.</span>
                     </div>
-                    <div class="mvv-label">Valores</div>
-                    <h3 class="mvv-title">Lo que define cómo trabajamos</h3>
-                    <ul class="mvv-values-list">
-                        <li><strong>Paciencia:</strong> enseñamos las veces que sea necesario.</li>
-                        <li><strong>Calidad sobre cantidad:</strong> contenido útil, claro y bien hecho.</li>
-                        <li><strong>Cercanía:</strong> somos comunidad, no una plataforma fría.</li>
-                        <li><strong>Simplicidad:</strong> hacemos que lo complejo sea fácil.</li>
-                        <li><strong>Integridad:</strong> tomamos decisiones honestas y sostenibles.</li>
-                        <li><strong>Acompañamiento:</strong> guiamos cada paso del camino.</li>
-                    </ul>
+                    <div class="mvv-value">
+                        <strong>Calidad sobre cantidad</strong>
+                        <span>Priorizamos contenido útil, claro y bien hecho.</span>
+                    </div>
+                    <div class="mvv-value">
+                        <strong>Cercanía</strong>
+                        <span>Tratamos a las personas como comunidad, no como clientes.</span>
+                    </div>
+                    <div class="mvv-value">
+                        <strong>Simplicidad</strong>
+                        <span>Hacemos que lo complejo sea fácil de entender y aplicar.</span>
+                    </div>
+                    <div class="mvv-value">
+                        <strong>Integridad</strong>
+                        <span>Decisiones con equilibrio entre propósito y sostenibilidad.</span>
+                    </div>
+                    <div class="mvv-value">
+                        <strong>Acompañamiento</strong>
+                        <span>No solo enseñamos: guiamos el proceso paso a paso.</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -2621,25 +2764,46 @@
             });
         }
 
-        // Scroll Reveal
+        // Scroll Reveal — progressive enhancement.
+        // We add `reveal-enabled` to <body> here so the CSS only hides .reveal items
+        // once we know JS is actually running. If anything in this function throws,
+        // the body class is never added and .reveal elements stay fully visible.
         function initReveal() {
-            const reveals = document.querySelectorAll('.reveal');
-            
+            document.body.classList.add('reveal-enabled');
+
+            const checkInViewport = (el) => {
+                const r = el.getBoundingClientRect();
+                return r.top < window.innerHeight && r.bottom > 0;
+            };
+
+            // Synchronously activate anything already in viewport.
+            document.querySelectorAll('.reveal').forEach(el => {
+                if (checkInViewport(el)) el.classList.add('active');
+            });
+
+            // IntersectionObserver for staggered fade-in as user scrolls.
             const revealObserver = new IntersectionObserver((entries) => {
                 entries.forEach((entry, index) => {
                     if (entry.isIntersecting) {
-                        setTimeout(() => {
-                            entry.target.classList.add('active');
-                        }, index * 100);
+                        setTimeout(() => entry.target.classList.add('active'), index * 80);
                         revealObserver.unobserve(entry.target);
                     }
                 });
-            }, {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            });
-            
-            reveals.forEach(reveal => revealObserver.observe(reveal));
+            }, { threshold: 0.01, rootMargin: '0px' });
+            document.querySelectorAll('.reveal:not(.active)').forEach(el => revealObserver.observe(el));
+
+            // Plain scroll-position fallback — guaranteed to fire on every browser/setup.
+            const scrollCheck = () => {
+                document.querySelectorAll('.reveal:not(.active)').forEach(el => {
+                    if (checkInViewport(el)) el.classList.add('active');
+                });
+            };
+            window.addEventListener('scroll', scrollCheck, { passive: true });
+
+            // Final safety net — anything still hidden at 10s gets force-revealed.
+            setTimeout(() => {
+                document.querySelectorAll('.reveal:not(.active)').forEach(el => el.classList.add('active'));
+            }, 10000);
         }
 
         // Stats Counter Observer
@@ -2971,13 +3135,13 @@
                 // Elements begin rising in at ~50–95% through the fade so the
                 // page feels born out of the animation, not hidden behind it.
                 const heroEls = [
-                    { sel: '.navbar-enter',     delay: 200  },
+                    { sel: '.navbar-enter',      delay: 200  },
                     { sel: '.hero-badge',        delay: 650  },
                     { sel: '.hero-title',        delay: 850  },
-                    { sel: '.hero-subtitle',     delay: 1000 },
+                    { sel: '.hero-tagline',      delay: 1000 },
                     { sel: '.hero-description',  delay: 1150 },
                     { sel: '.hero-buttons',      delay: 1300 },
-                    { sel: '.hero-trust',        delay: 1450 },
+                    { sel: '.hero-stats',        delay: 1450 },
                 ];
                 heroEls.forEach(({ sel, delay }) => {
                     setTimeout(() => {
@@ -3001,6 +3165,17 @@
             rafId = requestAnimationFrame(frame);
         });
 
+        // Safety net: if the intro never finishes (font load failure, JS error, etc.)
+        // force the hero into its visible state after 6s so the page is never blank.
+        setTimeout(() => {
+            document.querySelectorAll('.hero-enter, .navbar-enter').forEach(el => el.classList.add('visible'));
+            const ov = document.getElementById('intro-overlay');
+            if (ov && !ov.classList.contains('gone')) {
+                ov.classList.add('fade-out', 'gone');
+                document.body.style.overflow = '';
+            }
+        }, 6500);
+
         window.addEventListener('resize', recalcDot);
     })();
     </script>
@@ -3011,29 +3186,63 @@
 ═══════════════════════════════════════════════════════════════ -->
 <style>
 /* ── Skip link ── */
-.skip-link{position:absolute;top:-50px;left:0;background:var(--supera-orange);color:#fff;padding:10px 18px;z-index:10000;border-radius:0 0 10px 0;font-weight:700;transition:top .2s;text-decoration:none}
+.skip-link{position:absolute;top:-50px;left:0;background:var(--supera-orange);color:#fff;padding:10px 18px;z-index:10000;border-radius:0 0 var(--radius-sm) 0;font-weight:700;transition:top .2s;text-decoration:none}
 .skip-link:focus{top:0}
 
 /* ── Announcement bar ── */
-.v3-bar{background:var(--bg-primary);border-bottom:1px solid rgba(240,140,57,.18);padding:9px 0;overflow:hidden;position:fixed;top:0;left:0;right:0;z-index:1002}
+.v3-bar{background:var(--bg-primary);border-bottom:1px solid rgba(240,140,57,.18);padding:var(--space-2) 0;overflow:hidden;position:fixed;top:0;left:0;right:0;z-index:1002}
 .v3-bar-track{display:flex;width:max-content;animation:barScroll 28s linear infinite}
 .v3-bar-track span{font-size:12px;color:rgba(244,241,237,.65);padding:0 40px;white-space:nowrap}
 .v3-bar-track strong{color:var(--supera-orange)}
 @keyframes barScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
-/* push nav down for bar */
-#navbar{top:36px!important}
-.hero{padding-top:156px!important}
+/* Marquee bar removed (pre-launch) — navbar back at top:0, hero padding back to default */
 
 /* ── HERO v3 ── */
 /* Dot-grid overlay */
-.hero::after{content:'';position:absolute;inset:0;z-index:0;background-image:radial-gradient(circle,rgba(244,241,237,.055) 1px,transparent 1px);background-size:28px 28px;pointer-events:none}
+/* Static dot pattern removed — replaced by animated .bg-particles inside .hero-bg */
+
+/* ── Ambient background particles ── */
+.bg-particles{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.bg-particle{position:absolute;bottom:-10px;width:2px;height:2px;background:rgba(244,241,237,.35);border-radius:50%;animation:particleFloat linear infinite;will-change:transform,opacity}
+@keyframes particleFloat{
+  0%   { transform: translateY(0)      translateX(0);    opacity: 0; }
+  10%  { opacity: .55; }
+  50%  { transform: translateY(-50vh)  translateX(6px); }
+  90%  { opacity: .55; }
+  100% { transform: translateY(-110vh) translateX(-4px); opacity: 0; }
+}
+/* 20 particles — varied lanes, sizes, speeds, and start times so they never sync up */
+.bg-particle:nth-child(1)  { left:  4%; animation-duration: 28s; animation-delay:  0s }
+.bg-particle:nth-child(2)  { left: 11%; animation-duration: 36s; animation-delay:  4s; width:1px; height:1px }
+.bg-particle:nth-child(3)  { left: 18%; animation-duration: 22s; animation-delay:  1s }
+.bg-particle:nth-child(4)  { left: 26%; animation-duration: 32s; animation-delay:  7s; width:1px; height:1px }
+.bg-particle:nth-child(5)  { left: 33%; animation-duration: 26s; animation-delay:  2s }
+.bg-particle:nth-child(6)  { left: 41%; animation-duration: 40s; animation-delay:  9s; width:3px; height:3px; background:rgba(240,140,57,.22) }
+.bg-particle:nth-child(7)  { left: 48%; animation-duration: 24s; animation-delay:  5s }
+.bg-particle:nth-child(8)  { left: 55%; animation-duration: 34s; animation-delay:  0s; width:1px; height:1px }
+.bg-particle:nth-child(9)  { left: 63%; animation-duration: 27s; animation-delay:  8s }
+.bg-particle:nth-child(10) { left: 70%; animation-duration: 30s; animation-delay:  3s }
+.bg-particle:nth-child(11) { left: 78%; animation-duration: 38s; animation-delay:  6s; width:1px; height:1px }
+.bg-particle:nth-child(12) { left: 85%; animation-duration: 25s; animation-delay:  2s }
+.bg-particle:nth-child(13) { left: 93%; animation-duration: 33s; animation-delay: 11s }
+.bg-particle:nth-child(14) { left:  8%; animation-duration: 31s; animation-delay: 14s }
+.bg-particle:nth-child(15) { left: 23%; animation-duration: 29s; animation-delay: 17s; width:1px; height:1px }
+.bg-particle:nth-child(16) { left: 38%; animation-duration: 35s; animation-delay: 12s }
+.bg-particle:nth-child(17) { left: 53%; animation-duration: 26s; animation-delay: 16s; width:1px; height:1px }
+.bg-particle:nth-child(18) { left: 68%; animation-duration: 30s; animation-delay: 10s }
+.bg-particle:nth-child(19) { left: 82%; animation-duration: 37s; animation-delay: 13s; width:3px; height:3px; background:rgba(19,148,148,.18) }
+.bg-particle:nth-child(20) { left: 97%; animation-duration: 28s; animation-delay: 15s }
+/* Light theme — darken particles so they read on cream background */
+[data-theme="light"] .bg-particle{background:rgba(26,26,26,.18)}
+[data-theme="light"] .bg-particle:nth-child(6){background:rgba(240,140,57,.28)}
+[data-theme="light"] .bg-particle:nth-child(19){background:rgba(19,148,148,.22)}
 /* Teal blob back */
 .hero .blob-teal{opacity:.13!important;width:600px!important;height:600px!important}
 .hero .blob-orange{opacity:.11!important;width:500px!important;height:500px!important}
 
 /* Hero badge redesign */
-.hero-badge{background:rgba(240,140,57,.1)!important;border:1px solid rgba(240,140,57,.25)!important;border-radius:20px!important;padding:5px 14px!important;gap:7px!important;margin-bottom:22px!important}
+.hero-badge{background:rgba(240,140,57,.1)!important;border:1px solid rgba(240,140,57,.25)!important;border-radius:var(--radius-md)!important;padding:var(--space-1) 14px!important;gap:var(--space-2)!important;margin-bottom:var(--space-4)!important}
 .hero-badge span:first-child{display:inline-block!important;width:7px;height:7px;border-radius:50%;background:var(--supera-orange);animation:heroPulse 1.8s ease-in-out infinite;flex-shrink:0}
 @keyframes heroPulse{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(240,140,57,.5)}50%{opacity:.7;box-shadow:0 0 0 6px rgba(240,140,57,0)}}
 .hero-badge-text{font-size:12px!important;letter-spacing:.1em!important}
@@ -3057,19 +3266,19 @@
 
 /* ── STATS v3 ── */
 .stats{background:linear-gradient(180deg,var(--supera-dark) 0%,#0a0a0d 100%)!important;border-top:1px solid rgba(244,241,237,.04);border-bottom:1px solid rgba(244,241,237,.04)}
-.stats-grid{border:1px solid rgba(244,241,237,.06);border-radius:20px;padding:40px;gap:0!important;background:rgba(255,255,255,.02)}
+.stats-grid{border:1px solid rgba(244,241,237,.06);border-radius:var(--radius-md);padding:40px;gap:0!important;background:rgba(255,255,255,.02)}
 .stat-item{padding:24px 32px;position:relative}
 .stat-item:not(:last-child)::after{content:'';position:absolute;right:0;top:20%;height:60%;width:1px;background:rgba(244,241,237,.07)}
-.stat-number{font-size:52px!important;background:linear-gradient(135deg,#fff 0%,rgba(244,241,237,.7) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:6px!important}
+.stat-number{font-size:52px!important;background:linear-gradient(135deg,#fff 0%,rgba(244,241,237,.7) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:var(--space-2)!important}
 .stat-label{font-size:13px!important;letter-spacing:.05em;text-transform:uppercase;font-weight:600}
-@media(max-width:768px){.stats-grid{border-radius:14px;padding:20px;grid-template-columns:repeat(2,1fr)!important}.stat-item:nth-child(2)::after{display:none}}
+@media(max-width:768px){.stats-grid{border-radius:var(--radius-md);padding:20px;grid-template-columns:repeat(2,1fr)!important}.stat-item:nth-child(2)::after{display:none}}
 
 /* Announcement bar — light theme */
 [data-theme="light"] .v3-bar{border-bottom:1px solid rgba(240,140,57,.2)}
 [data-theme="light"] .v3-bar-track span{color:rgba(26,26,26,.6)}
 
 /* ── HOW IT WORKS section ── */
-.v3-how{padding:110px 24px;background:var(--bg-secondary);position:relative;overflow:hidden}
+.v3-how{padding:var(--space-8) 24px;background:var(--bg-secondary);position:relative;overflow:hidden}
 .v3-how::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(240,140,57,.3),transparent)}
 .v3-how::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(19,148,148,.3),transparent)}
 .v3-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:64px;position:relative}
@@ -3090,19 +3299,20 @@
 .feature-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--supera-orange),transparent);transform:scaleX(0);transition:transform .4s;transform-origin:left}
 .feature-card:hover::before{transform:scaleX(1)}
 .feature-card:hover{transform:translateY(-8px)!important;box-shadow:0 24px 60px -20px rgba(0,0,0,.8),0 0 0 1px rgba(240,140,57,.12)!important;border-color:rgba(240,140,57,.15)!important}
-.feature-icon{width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,rgba(240,140,57,.12),rgba(19,148,148,.08));border:1px solid rgba(240,140,57,.15);display:flex;align-items:center;justify-content:center;margin-bottom:22px}
+.feature-icon{width:52px;height:52px;border-radius:var(--radius-md);background:linear-gradient(135deg,rgba(240,140,57,.12),rgba(19,148,148,.08));border:1px solid rgba(240,140,57,.15);display:flex;align-items:center;justify-content:center;margin-bottom:var(--space-4)}
 .feature-icon svg{width:22px;height:22px;stroke:var(--supera-orange)}
 .feature-title{font-size:18px;font-weight:700;letter-spacing:-.01em;margin-bottom:10px;color:var(--text-primary)}
 .feature-description{font-size:14px;line-height:1.7;color:var(--text-secondary)}
 
 /* ── COURSES v3 ── */
 .course-image-1,.course-image-2,.course-image-3{height:180px!important;display:flex!important;align-items:center;justify-content:flex-end;flex-direction:column;padding-bottom:20px;position:relative;overflow:hidden}
-.course-image-1{background:linear-gradient(135deg,#0f2027,#203a43,#2c5364)!important}
-.course-image-2{background:linear-gradient(135deg,#1a0533,#2d1b69,#11998e)!important}
-.course-image-3{background:linear-gradient(135deg,#0d0c0b,#1a0a00,#c97230)!important}
+/* Course image gradients — drawn from the official Supera color system */
+.course-image-1{background:linear-gradient(135deg,var(--supera-burnt-orange) 0%,var(--supera-orange) 50%,var(--supera-warm-sand) 100%)!important}     /* Orange Gradient: Burnt → Signature → Sand */
+.course-image-2{background:linear-gradient(135deg,var(--supera-deep-teal) 0%,var(--supera-teal) 50%,var(--supera-orange) 100%)!important}             /* Teal → Orange */
+.course-image-3{background:linear-gradient(135deg,var(--supera-jet-black) 0%,var(--supera-charcoal) 50%,var(--supera-orange) 100%)!important}        /* Core Dark with orange highlight */
 .course-image-1::before,.course-image-2::before,.course-image-3::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,.04) 1px,transparent 1px);background-size:20px 20px}
 .course-image-1 span:first-child,.course-image-2 span:first-child,.course-image-3 span:first-child{font-size:52px!important;filter:drop-shadow(0 0 20px rgba(255,255,255,.3));position:relative;z-index:1;line-height:1}
-.course-card{border-radius:18px!important;overflow:hidden;transition:all .4s}
+.course-card{border-radius:var(--radius-md)!important;overflow:hidden;transition:all .4s}
 .course-card:hover{transform:translateY(-8px);box-shadow:0 28px 60px -16px rgba(0,0,0,.8)}
 .course-content{padding:24px!important}
 .course-title{font-size:18px!important;font-weight:700!important;letter-spacing:-.01em!important;margin-bottom:8px!important}
@@ -3110,30 +3320,194 @@
 
 /* ── PRICING v3 ── */
 .pricing{background:var(--bg-primary);padding:120px 24px}
-.pricing-grid{display:grid;grid-template-columns:1fr 1.12fr 1fr;gap:20px;align-items:start;max-width:960px;margin:60px auto 0}
+.pricing-grid{display:grid;grid-template-columns:1fr 1.12fr 1fr;gap:20px;align-items:stretch;max-width:960px;margin:60px auto 0}
+.pricing-card{display:flex;flex-direction:column}
+/* Button pushed to bottom via auto margin — keeps features list at natural size
+   instead of expanding it (which created internal empty space). */
+.pricing-card .pricing-btn,
+.pricing-card .pricing-btn-primary,
+.pricing-card .pricing-btn-outline,
+.pricing-card .pricing-btn-vip{margin-top:auto}
 @media(max-width:900px){.pricing-grid{grid-template-columns:1fr;max-width:420px;margin-left:auto;margin-right:auto}}
 
 /* Regular cards */
-.pricing-card{border-radius:20px!important;padding:36px 32px!important;transition:all .4s}
+.pricing-card{border-radius:var(--radius-md)!important;padding:32px 28px!important;transition:all .4s}
 .pricing-card:not(.popular){background:var(--bg-card)!important;border:1px solid var(--border-color)!important}
 .pricing-card:not(.popular):hover{border-color:rgba(19,148,148,.25)!important;transform:translateY(-4px)}
 
 /* Popular card — dramatic treatment */
 .pricing-card.popular{background:linear-gradient(160deg,rgba(240,140,57,.08) 0%,rgba(13,12,11,.95) 40%,rgba(19,148,148,.06) 100%)!important;border:1px solid rgba(240,140,57,.35)!important;box-shadow:0 0 0 1px rgba(240,140,57,.08),0 32px 80px -20px rgba(240,140,57,.2),inset 0 1px 0 rgba(240,140,57,.15)!important;transform:translateY(-8px);position:relative}
-.pricing-card.popular::before{content:'';position:absolute;top:-1px;left:10%;right:10%;height:2px;background:linear-gradient(90deg,transparent,var(--supera-orange),var(--supera-orange-light),var(--supera-orange),transparent);border-radius:2px}
+.pricing-card.popular::before{content:'';position:absolute;top:-1px;left:10%;right:10%;height:2px;background:linear-gradient(90deg,transparent,var(--supera-orange),var(--supera-orange-light),var(--supera-orange),transparent);border-radius:var(--radius-xs)}
 .pricing-card.popular:hover{transform:translateY(-14px)!important;box-shadow:0 0 0 1px rgba(240,140,57,.15),0 40px 100px -20px rgba(240,140,57,.3),inset 0 1px 0 rgba(240,140,57,.2)!important}
-.popular-badge{background:linear-gradient(135deg,var(--supera-orange),var(--supera-orange-dark))!important;color:#fff!important;border-radius:20px!important;font-size:11px!important;letter-spacing:.08em!important;font-weight:700!important;padding:5px 14px!important}
+.popular-badge{background:linear-gradient(135deg,var(--supera-orange),var(--supera-orange-dark))!important;color:#fff!important;border-radius:var(--radius-md)!important;font-size:11px!important;letter-spacing:.08em!important;font-weight:700!important;padding:var(--space-1) 14px!important}
 .pricing-name{font-size:22px!important;font-weight:800!important;letter-spacing:-.02em!important}
 .pricing-amount{font-size:54px!important;font-weight:800!important;letter-spacing:-.03em!important}
 .pricing-card.popular .pricing-amount{background:linear-gradient(135deg,var(--supera-orange-light),var(--supera-orange));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .pricing-btn-primary{background:linear-gradient(135deg,var(--supera-orange) 0%,var(--supera-orange-dark) 100%)!important;font-size:15px!important;font-weight:700!important;letter-spacing:.01em}
-.pricing-features li{font-size:14px!important;gap:10px!important}
-.urgency-row{display:flex;align-items:center;gap:7px;margin-bottom:18px;font-size:12px;font-weight:600;color:rgba(240,140,57,.8);letter-spacing:.04em}
+.pricing-features li{font-size:14px!important;gap:10px!important;margin-bottom:12px!important;line-height:1.5!important}
+.urgency-row{display:flex;align-items:center;gap:var(--space-2);margin-bottom:18px;font-size:12px;font-weight:600;color:rgba(240,140,57,.8);letter-spacing:.04em}
 .urgency-dot{width:7px;height:7px;background:var(--supera-orange);border-radius:50%;animation:pulse 1.5s ease-in-out infinite;flex-shrink:0}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.65)}}
 
+/* ── VIP card — refined premium treatment, fully on-brand ──
+   Quiet & exclusive vs Premium's loud & dramatic. The hierarchy is:
+   Standard (basic) → Premium (recommended, attention-grabbing) → VIP (refined).
+   VIP should defer to Premium visually, not compete with it. */
+.pricing-card.vip{
+  /* Same bg-card as Standard, but with ONE very subtle orange radial
+     at the bottom for a hint of atmosphere — no overpowering mist. */
+  background:
+    radial-gradient(100% 40% at 50% 100%, rgba(240,140,57,.04) 0%, transparent 70%),
+    var(--bg-card)!important;
+  border:1px solid rgba(240,140,57,.18)!important;
+  box-shadow:0 18px 50px -24px rgba(240,140,57,.10)!important;
+  position:relative;
+}
+
+/* Top accent line — same width and intensity as Premium's, but uses
+   burnt-orange in the center instead of orange-light to feel more executive. */
+.pricing-card.vip::before{
+  content:'';
+  position:absolute;
+  top:-1px;
+  left:10%;
+  right:10%;
+  height:2px;
+  background:linear-gradient(90deg,
+    transparent,
+    var(--supera-orange),
+    var(--supera-burnt-orange),
+    var(--supera-orange),
+    transparent);
+  border-radius:var(--radius-xs);
+  z-index:1;
+}
+
+/* "S" watermark — much smaller and more subtle than before.
+   Now reads as a "stamp" rather than a decorative element. */
+.pricing-card.vip::after{
+  content:'S';
+  position:absolute;
+  bottom:6px;
+  right:10px;
+  font-family:'Outfit',sans-serif;
+  font-size:90px;
+  font-weight:800;
+  line-height:1;
+  letter-spacing:-0.06em;
+  color:var(--supera-orange);
+  opacity:0.035;
+  pointer-events:none;
+  user-select:none;
+  z-index:0;
+}
+
+/* Ensure card content sits above the S watermark.
+   Exclude .vip-badge — that one needs to stay position:absolute to float
+   above the card border like Premium's popular-badge does. */
+.pricing-card.vip > *:not(.vip-badge){
+  position:relative;
+  z-index:1;
+}
+
+.pricing-card.vip:hover{
+  transform:translateY(-6px)!important;
+  border-color:rgba(240,140,57,.32)!important;
+  box-shadow:0 28px 70px -24px rgba(240,140,57,.18)!important;
+}
+.pricing-card.vip:hover::after{
+  opacity:0.06;
+}
+
+/* VIP badge — solid-filled sticker, mirrors Premium's popular-badge exactly
+   in structure (no border, same padding/radius/shadow/typography). The only
+   difference is the fill: charcoal (executive dark) instead of orange gradient. */
+.vip-badge{
+  position:absolute;
+  top:-14px;
+  left:50%;
+  transform:translateX(-50%);
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  font-family:'Outfit',sans-serif;
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  color:#fff;
+  background:var(--supera-charcoal);
+  padding:var(--space-1) 14px;
+  border-radius:var(--radius-md);
+  white-space:nowrap;
+  box-shadow:0 6px 20px -6px rgba(240, 140, 57, 0.55);
+  z-index:3;
+}
+
+/* Diamond accent inside the badge */
+.vip-badge-diamond{
+  color:var(--supera-orange);
+  font-size:9px;
+  line-height:1;
+  text-shadow:0 0 6px rgba(240,140,57,.5);
+  transform:translateY(-1px);
+}
+
+/* VIP name — refined typography */
+.pricing-card.vip .pricing-name{
+  letter-spacing:0.04em;
+  font-weight:800;
+}
+
+/* VIP price — orange gradient (signature → burnt) */
+.pricing-card.vip .pricing-amount{
+  background:linear-gradient(135deg,var(--supera-orange) 0%,var(--supera-burnt-orange) 100%);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+
+/* VIP features — clean cream text */
+.pricing-card.vip .pricing-features li{
+  color:rgba(244,241,237,.78)!important;
+}
+.pricing-card.vip .pricing-features li strong{
+  color:#fff;
+  font-weight:700;
+}
+
+/* VIP button — outlined orange, fills with gradient on hover */
+.pricing-btn-vip{
+  width:100%;
+  background:transparent;
+  color:var(--supera-orange);
+  border:1.5px solid var(--supera-orange)!important;
+  position:relative;
+  overflow:hidden;
+  isolation:isolate;
+}
+.pricing-btn-vip::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(135deg,var(--supera-orange) 0%,var(--supera-burnt-orange) 100%);
+  transform:scaleX(0);
+  transform-origin:left center;
+  transition:transform 0.5s cubic-bezier(.22,1,.36,1);
+  z-index:-1;
+}
+.pricing-btn-vip:hover{
+  color:#fff;
+  border-color:var(--supera-burnt-orange)!important;
+  transform:translateY(-2px);
+  box-shadow:0 14px 32px -10px rgba(240,140,57,.45);
+}
+.pricing-btn-vip:hover::before{
+  transform:scaleX(1);
+}
+
 /* ── TESTIMONIALS v3 ── */
-.testimonial-card{border-radius:18px!important;padding:32px!important;transition:all .4s;position:relative;overflow:hidden}
+.testimonial-card{border-radius:var(--radius-md)!important;padding:32px!important;transition:all .4s;position:relative;overflow:hidden}
 .testimonial-card::before{content:'"';position:absolute;top:-10px;right:20px;font-size:120px;font-weight:800;color:rgba(240,140,57,.06);font-family:'Outfit',sans-serif;line-height:1}
 .testimonial-card:hover{transform:translateY(-6px);border-color:rgba(240,140,57,.15)!important}
 .testimonial-text{font-size:15px!important;line-height:1.75!important;font-style:italic;position:relative;z-index:1}
@@ -3147,16 +3521,16 @@
 .cta{background:linear-gradient(160deg,#0a0a0d 0%,rgba(19,148,148,.06) 50%,rgba(240,140,57,.04) 100%)!important;border-top:1px solid rgba(244,241,237,.05);border-bottom:1px solid rgba(244,241,237,.05);padding:120px 24px}
 .cta-title{font-size:clamp(32px,5vw,56px)!important;font-weight:800!important;letter-spacing:-.03em!important;line-height:1.1!important}
 .cta-description{font-size:18px!important;max-width:520px!important;margin:0 auto 40px!important}
-.btn-white{border-radius:14px!important;padding:16px 36px!important;font-size:16px!important;font-weight:700!important}
-.btn-outline-white{border-radius:14px!important;padding:16px 32px!important;font-size:16px!important;font-weight:600!important}
+.btn-white{border-radius:var(--radius-md)!important;padding:16px 36px!important;font-size:16px!important;font-weight:700!important}
+.btn-outline-white{border-radius:var(--radius-md)!important;padding:16px 32px!important;font-size:16px!important;font-weight:600!important}
 
 /* ── FAQ v3 ── */
-.v3-faq{padding:110px 24px;background:var(--bg-secondary)}
+.v3-faq{padding:var(--space-8) 24px;background:var(--bg-secondary)}
 .v3-faq::before{content:'';display:block;height:1px;background:linear-gradient(90deg,transparent,rgba(240,140,57,.25),transparent);margin-bottom:0}
-.faq-item{background:var(--bg-card);border:1px solid var(--border-color);border-radius:16px;overflow:hidden;transition:border-color .3s}
+.faq-item{background:var(--bg-card);border:1px solid var(--border-color);border-radius:var(--radius-md);overflow:hidden;transition:border-color .3s}
 .faq-item:hover{border-color:rgba(240,140,57,.2)}
 .faq-item.open{border-color:rgba(240,140,57,.3)}
-.faq-question{width:100%;background:none;border:none;color:var(--text-primary);font-family:'Outfit',sans-serif;font-size:16px;font-weight:600;text-align:left;padding:22px 24px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;transition:color .2s}
+.faq-question{width:100%;background:none;border:none;color:var(--text-primary);font-family:'Outfit',sans-serif;font-size:16px;font-weight:600;text-align:left;padding:var(--space-4) 24px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;transition:color .2s}
 .faq-question:hover{color:var(--supera-orange)}
 .faq-chevron{flex-shrink:0;width:20px;height:20px;color:var(--supera-orange);transition:transform .35s cubic-bezier(.22,1,.36,1)}
 .faq-item.open .faq-chevron{transform:rotate(180deg)}
@@ -3168,7 +3542,7 @@
 .v3-wa.show{opacity:1;transform:scale(1) translateY(0)}
 .v3-wa:hover{transform:scale(1.1) translateY(-2px);box-shadow:0 8px 32px rgba(37,211,102,.55)}
 .v3-wa svg{width:30px;height:30px;fill:#fff}
-.v3-wa-tip{position:absolute;right:70px;background:rgba(13,12,11,.92);border:1px solid rgba(244,241,237,.1);color:#F4F1ED;font-size:13px;font-weight:500;padding:8px 14px;border-radius:10px;white-space:nowrap;opacity:0;transition:opacity .2s;pointer-events:none;font-family:'Outfit',sans-serif}
+.v3-wa-tip{position:absolute;right:70px;background:rgba(13,12,11,.92);border:1px solid rgba(244,241,237,.1);color:#F4F1ED;font-size:13px;font-weight:500;padding:8px 14px;border-radius:var(--radius-sm);white-space:nowrap;opacity:0;transition:opacity .2s;pointer-events:none;font-family:'Outfit',sans-serif}
 .v3-wa:hover .v3-wa-tip{opacity:1}
 
 /* ── MOBILE STICKY CTA ── */
@@ -3178,7 +3552,7 @@
   .v3-mobile-cta{display:block}
   .v3-wa{bottom:90px}
 }
-.v3-mobile-cta-btn{width:100%;background:linear-gradient(135deg,var(--supera-orange),var(--supera-orange-dark));color:#fff;border:none;border-radius:14px;padding:16px;font-size:16px;font-weight:700;font-family:'Outfit',sans-serif;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;letter-spacing:.01em}
+.v3-mobile-cta-btn{width:100%;background:linear-gradient(135deg,var(--supera-orange),var(--supera-orange-dark));color:#fff;border:none;border-radius:var(--radius-md);padding:16px;font-size:16px;font-weight:700;font-family:'Outfit',sans-serif;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;letter-spacing:.01em}
 
 /* ── FOOTER v3 ── */
 .footer{background:#080807!important;border-top:1px solid rgba(244,241,237,.05)!important}
@@ -3194,13 +3568,7 @@
 <!-- Skip link -->
 <a href="#inicio" class="skip-link">Saltar al contenido</a>
 
-<!-- Announcement bar -->
-<div class="v3-bar">
-  <div class="v3-bar-track">
-    <span>🔥 <strong>+247</strong> personas se unieron este mes &nbsp;·&nbsp; ⭐ Valoración <strong>4.9/5</strong> &nbsp;·&nbsp; 🌎 Estudiantes en <strong>18 países</strong> &nbsp;·&nbsp; ✅ <strong>94%</strong> de satisfacción &nbsp;·&nbsp; 🚀 Sin contratos · Cancela cuando quieras &nbsp;·&nbsp; 📱 Acceso desde cualquier dispositivo</span>
-    <span>🔥 <strong>+247</strong> personas se unieron este mes &nbsp;·&nbsp; ⭐ Valoración <strong>4.9/5</strong> &nbsp;·&nbsp; 🌎 Estudiantes en <strong>18 países</strong> &nbsp;·&nbsp; ✅ <strong>94%</strong> de satisfacción &nbsp;·&nbsp; 🚀 Sin contratos · Cancela cuando quieras &nbsp;·&nbsp; 📱 Acceso desde cualquier dispositivo</span>
-  </div>
-</div>
+<!-- Announcement bar removed (pre-launch) — restore once we have verifiable messaging -->
 
 <!-- WhatsApp button -->
 <a href="https://wa.me/15551234567?text=Hola%2C%20me%20interesa%20saber%20m%C3%A1s%20sobre%20Supera" target="_blank" rel="noopener noreferrer" class="v3-wa" id="v3wa" aria-label="Contactar por WhatsApp">
@@ -3218,64 +3586,10 @@
 
 <script>
 (function(){
-  // ── Hero social proof ──
-  const trust = document.querySelector('.hero-trust');
-  if(trust){
-    trust.innerHTML = `
-      <div class="v3-avatars">
-        <span>M</span><span>C</span><span>A</span><span>R</span><span>L</span>
-      </div>
-      <span>Más de <strong>15,000</strong> personas ya aprendieron con nosotros</span>
-    `;
-    trust.style.flexDirection='row';
-    trust.style.gap='10px';
-    trust.style.justifyContent='center';
-    trust.style.alignItems='center';
-  }
+  // Hero social proof + pricing urgency row removed — both contained unverified pre-launch claims
+  // (15,000 personas / 11 plazas disponibles este mes)
 
-  // ── Pricing urgency row on popular card ──
-  const pop = document.querySelector('.pricing-card.popular');
-  if(pop){
-    const urgRow = document.createElement('div');
-    urgRow.className='urgency-row';
-    urgRow.innerHTML='<span class="urgency-dot"></span>Solo quedan 11 plazas disponibles este mes';
-    const badge = pop.querySelector('.popular-badge');
-    if(badge) badge.after(urgRow);
-  }
-
-  // ── "Cómo funciona" section — inject after stats ──
-  const stats = document.getElementById('stats');
-  if(stats){
-    const how = document.createElement('section');
-    how.className='v3-how';
-    how.innerHTML=`
-      <div class="container">
-        <div class="section-header reveal">
-          <span class="section-label">El proceso</span>
-          <h2 class="section-title">¿Cómo funciona Supera?</h2>
-          <p class="section-description">En tres pasos simples pasas de no saber nada de IA a usarla todos los días.</p>
-        </div>
-        <div class="v3-steps">
-          <div class="v3-step reveal">
-            <div class="v3-step-num">1</div>
-            <h3>Te unes a la comunidad</h3>
-            <p>Elige tu plan, crea tu cuenta en minutos y accedes inmediatamente a todo el contenido.</p>
-          </div>
-          <div class="v3-step reveal">
-            <div class="v3-step-num">2</div>
-            <h3>Aprendes a tu ritmo</h3>
-            <p>Módulos cortos, sesiones en vivo cada semana y actividades prácticas que puedes aplicar ese mismo día.</p>
-          </div>
-          <div class="v3-step reveal">
-            <div class="v3-step-num">3</div>
-            <h3>Usas la IA en tu vida</h3>
-            <p>En pocas semanas ya estarás usando herramientas de IA para ahorrar tiempo y hacer más en menos horas.</p>
-          </div>
-        </div>
-      </div>
-    `;
-    stats.after(how);
-  }
+  // "Cómo funciona" section moved to static HTML — see <section id="comofunciona"> above.
 
   // ── FAQ section — inject before footer ──
   const footer = document.getElementById('contacto');
