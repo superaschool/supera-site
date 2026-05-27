@@ -3067,19 +3067,18 @@
                     </button>
                 </div>
 
-                <!-- STEP 2 — Name (after the foot-in-the-door commit) -->
+                <!-- STEP 2 — Name (required) -->
                 <div class="signup-pane" data-step="2">
                     <h3 class="modal-title">¡Genial!</h3>
                     <p class="modal-description">¿Cómo te llamas? Así te saludamos cuando lance.</p>
                     <div class="form-group">
                         <label class="form-label" for="signupName">Tu nombre</label>
-                        <input type="text" id="signupName" name="name" class="form-input" placeholder="Tu nombre" autocomplete="given-name">
+                        <input type="text" id="signupName" name="name" class="form-input" placeholder="Tu nombre" autocomplete="given-name" required minlength="2">
                     </div>
                     <button type="button" class="btn-primary form-submit" data-signup-btn="2">
                         Continuar
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
                     </button>
-                    <button type="button" class="signup-skip" data-signup-skip="2">Omitir este paso</button>
                 </div>
 
                 <!-- STEP 3 — Age range -->
@@ -3417,11 +3416,16 @@
             signupGoTo(2);
         }
 
-        function signupHandleStep2(skip) {
-            if (!skip) {
-                const nameInput = document.getElementById('signupName');
-                if (nameInput) signupState.name = nameInput.value.trim();
+        function signupHandleStep2() {
+            // Name is required — validate before advancing
+            const nameInput = document.getElementById('signupName');
+            if (!nameInput) return;
+            const value = nameInput.value.trim();
+            if (!value || value.length < 2) {
+                nameInput.reportValidity();
+                return;
             }
+            signupState.name = value;
             signupGoTo(3);
         }
 
@@ -3470,14 +3474,12 @@
                 if (!activePane) return;
                 const step = parseInt(activePane.dataset.step, 10);
                 if (step === 1) signupHandleStep1();
+                if (step === 2) signupHandleStep2();
             });
 
-            // Step 2 — Continue / Skip
+            // Step 2 — Continue (name is required, no skip)
             form.querySelectorAll('[data-signup-btn="2"]').forEach(btn => {
-                btn.addEventListener('click', () => signupHandleStep2(false));
-            });
-            form.querySelectorAll('[data-signup-skip="2"]').forEach(btn => {
-                btn.addEventListener('click', () => signupHandleStep2(true));
+                btn.addEventListener('click', () => signupHandleStep2());
             });
 
             // Step 3 — Age buttons
