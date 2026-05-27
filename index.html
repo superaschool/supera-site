@@ -3123,9 +3123,13 @@
         }
 
         function updateThemeIcons() {
-            const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+            // Theme toggle was removed from the navbar (committed to dark mode per Brand Kit).
+            // Guard so this function doesn't throw when the icon elements don't exist —
+            // a throw here was halting all subsequent script execution including initSignup.
             const sunIcon = document.getElementById('sunIcon');
             const moonIcon = document.getElementById('moonIcon');
+            if (!sunIcon || !moonIcon) return;
+            const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
             if (currentTheme === 'dark') {
                 sunIcon.style.display = 'block';
                 moonIcon.style.display = 'none';
