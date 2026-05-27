@@ -1357,7 +1357,7 @@
             display: none;
             position: fixed;
             inset: 0;
-            z-index: 2000;
+            z-index: 9700;  /* above the countdown gate (9500) and intro overlay (9999 only fades early) */
             align-items: center;
             justify-content: center;
             padding: 24px;
@@ -1512,12 +1512,126 @@
             margin-top: 16px;
         }
 
+        /* ── Multi-step signup form (micro-commitments) ──
+           Step 1 is shown ALONE (no progress bar) for lowest perceived friction.
+           Once user commits their email, progress bar fades in + steps 2/3 appear. */
+        .signup-progress {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: var(--space-4);
+            opacity: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: opacity 0.4s ease, max-height 0.4s ease, margin-bottom 0.4s ease;
+        }
+        .signup-progress.is-visible {
+            opacity: 1;
+            max-height: 12px;
+        }
+        .signup-dot {
+            width: 28px;
+            height: 4px;
+            border-radius: var(--radius-pill);
+            background: rgba(244, 241, 237, 0.12);
+            transition: background 0.3s ease, width 0.3s ease;
+        }
+        .signup-dot.is-active {
+            background: var(--supera-orange);
+            width: 44px;
+        }
+        .signup-dot.is-completed {
+            background: rgba(240, 140, 57, 0.4);
+        }
+
+        /* Panes — only the active one is visible. Smooth fade between steps. */
+        .signup-pane {
+            display: none;
+            opacity: 0;
+            transform: translateX(12px);
+            transition: opacity 0.35s ease, transform 0.35s ease;
+        }
+        .signup-pane.is-active {
+            display: block;
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Age range buttons — large, tappable, brand-colored */
+        .age-options {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+            margin-bottom: 4px;
+        }
+        .age-btn {
+            background: rgba(244, 241, 237, 0.04);
+            color: var(--text-primary);
+            border: 1px solid rgba(244, 241, 237, 0.12);
+            border-radius: var(--radius-md);
+            padding: 16px 20px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            text-align: left;
+        }
+        .age-btn:hover {
+            background: rgba(240, 140, 57, 0.08);
+            border-color: rgba(240, 140, 57, 0.35);
+            color: var(--supera-orange);
+            transform: translateX(2px);
+        }
+        .age-btn.selected {
+            background: rgba(240, 140, 57, 0.15);
+            border-color: var(--supera-orange);
+            color: var(--supera-orange);
+        }
+
+        /* Skip link — subtle, lets users move on without filling optional step */
+        .signup-skip {
+            display: block;
+            margin: 12px auto 0;
+            background: none;
+            border: none;
+            color: rgba(244, 241, 237, 0.4);
+            font-size: 13px;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            cursor: pointer;
+            font-family: 'DM Sans', sans-serif;
+        }
+        .signup-skip:hover {
+            color: var(--text-primary);
+        }
+
+        /* Success state */
+        .signup-success-icon {
+            width: 72px;
+            height: 72px;
+            margin: 0 auto var(--space-3);
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(240,140,57,.15), rgba(201,82,29,.15));
+            border: 1px solid rgba(240, 140, 57, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--supera-orange);
+            animation: signupSuccessPop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        @keyframes signupSuccessPop {
+            0%   { transform: scale(0.5); opacity: 0; }
+            70%  { transform: scale(1.1); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
         /* Toast Notifications */
         .toast-container {
             position: fixed;
             top: 100px;
             right: 24px;
-            z-index: 3000;
+            z-index: 9800;  /* above modal (9700) and countdown gate (9500) */
             display: flex;
             flex-direction: column;
             gap: 12px;
@@ -2927,34 +3041,73 @@
                 </svg>
             </div>
             
-            <h3 class="modal-title">Únete a Supera</h3>
-            <p class="modal-description">Da el primer paso hacia la IA. Es más fácil de lo que crees.</p>
-            
-            <form onsubmit="handleSubmit(event)">
-                <div class="form-group">
-                    <label class="form-label" for="name">Nombre completo</label>
-                    <input type="text" id="name" class="form-input" placeholder="Tu nombre" required>
+            <!-- Progress dots — hidden on step 1 (lowest friction).
+                 Revealed only after user has committed their email. -->
+            <div class="signup-progress" aria-hidden="true" id="signupProgress">
+                <span class="signup-dot"></span>
+                <span class="signup-dot"></span>
+                <span class="signup-dot"></span>
+            </div>
+
+            <form id="signupForm" onsubmit="return false;">
+                <!-- Honeypot — humans never see this. Bots fill it, get silently rejected. -->
+                <input type="text" name="_honey" id="signupHoney" style="display:none" tabindex="-1" autocomplete="off">
+
+                <!-- STEP 1 — Email (the only commitment that matters) -->
+                <div class="signup-pane is-active" data-step="1">
+                    <h3 class="modal-title">Únete a Supera</h3>
+                    <p class="modal-description">Te avisamos cuando lance, antes que nadie.</p>
+                    <div class="form-group">
+                        <label class="form-label" for="signupEmail">Tu email</label>
+                        <input type="email" id="signupEmail" name="email" class="form-input" placeholder="tu@email.com" required autocomplete="email">
+                    </div>
+                    <button type="submit" class="btn-primary form-submit" data-signup-btn="1">
+                        Apartar mi lugar
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </button>
                 </div>
-                <div class="form-group">
-                    <label class="form-label" for="email">Correo electrónico</label>
-                    <input type="email" id="email" class="form-input" placeholder="tu@email.com" required>
+
+                <!-- STEP 2 — Name (after the foot-in-the-door commit) -->
+                <div class="signup-pane" data-step="2">
+                    <h3 class="modal-title">¡Genial!</h3>
+                    <p class="modal-description">¿Cómo te llamas? Así te saludamos cuando lance.</p>
+                    <div class="form-group">
+                        <label class="form-label" for="signupName">Tu nombre</label>
+                        <input type="text" id="signupName" name="name" class="form-input" placeholder="Tu nombre" autocomplete="given-name">
+                    </div>
+                    <button type="button" class="btn-primary form-submit" data-signup-btn="2">
+                        Continuar
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </button>
+                    <button type="button" class="signup-skip" data-signup-skip="2">Omitir este paso</button>
                 </div>
-                <div class="form-group">
-                    <label class="form-label" for="experience">Nivel de experiencia</label>
-                    <select id="experience" class="form-select" required>
-                        <option value="">Selecciona tu nivel</option>
-                        <option value="principiante">Principiante (sin experiencia)</option>
-                        <option value="basico">Básico (algún conocimiento)</option>
-                        <option value="intermedio">Intermedio (uso regular de IA)</option>
-                        <option value="avanzado">Avanzado (desarrollo/proyectos)</option>
-                    </select>
+
+                <!-- STEP 3 — Age range -->
+                <div class="signup-pane" data-step="3">
+                    <h3 class="modal-title">Casi listo</h3>
+                    <p class="modal-description">¿En qué rango de edad estás?</p>
+                    <div class="age-options">
+                        <button type="button" class="age-btn" data-age="0-18">0–18 años</button>
+                        <button type="button" class="age-btn" data-age="18-30">18–30 años</button>
+                        <button type="button" class="age-btn" data-age="30+">30+ años</button>
+                    </div>
+                    <button type="button" class="signup-skip" data-signup-skip="3">Omitir este paso</button>
                 </div>
-                <button type="submit" class="btn-primary form-submit" id="submitBtn">
-                    Obtener Acceso Gratuito
-                </button>
+
+                <!-- STEP 4 — Success -->
+                <div class="signup-pane" data-step="4">
+                    <div class="signup-success-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                        </svg>
+                    </div>
+                    <h3 class="modal-title">¡Listo, <span id="signupNameEcho">amigo</span>!</h3>
+                    <p class="modal-description">Te avisamos el 1 de junio cuando lance Supera. Mientras tanto, prepárate para superarte.</p>
+                </div>
             </form>
-            
-            <p class="form-note">Al registrarte, aceptas recibir correos sobre nuestros cursos. Puedes darte de baja en cualquier momento.</p>
+
+            <p class="form-note">Sin spam. Sólo te avisamos cuando lancemos.</p>
         </div>
     </div>
 
@@ -3009,6 +3162,11 @@
             const modal = document.getElementById(modalId);
             modal.classList.remove('active');
             document.body.style.overflow = '';
+            // Reset multi-step signup so the next time someone opens it, they
+            // start fresh at step 1 instead of stuck on the success state.
+            if (modalId === 'newsletterModal' && typeof signupReset === 'function') {
+                setTimeout(signupReset, 300);  // wait for fade-out before resetting
+            }
         }
 
         // Close modal on escape key
@@ -3056,21 +3214,287 @@
         }
 
         // Form Submit
-        function handleSubmit(e) {
-            e.preventDefault();
-            const btn = document.getElementById('submitBtn');
-            const originalText = btn.textContent;
-            
-            btn.textContent = 'Enviando...';
-            btn.disabled = true;
-            
+        // ════════════════════════════════════════════════════════════════
+        // SIGNUP FLOW — multi-step micro-commitments pattern
+        // ════════════════════════════════════════════════════════════════
+        //
+        // UX: Step 1 shows ONLY the email field (no progress bar — minimum
+        // perceived friction). Email submit captures the lead immediately
+        // (so we never lose someone who bails after step 1). THEN the
+        // progress bar fades in and steps 2 (name) + 3 (age) appear.
+        //
+        // PROVIDER ABSTRACTION: All submissions go through LeadProvider.send().
+        // To migrate from FormSubmit → Beehiiv / Supabase / etc. in the future,
+        // change LEAD_PROVIDER below + implement the new adapter. No other
+        // code in this file needs to change.
+        // ════════════════════════════════════════════════════════════════
+
+        /* ─── Lead Provider abstraction ─────────────────────────────── */
+
+        const LEAD_PROVIDER = 'formsubmit';  // ← change this to switch providers
+
+        const LeadProviders = {
+            /**
+             * FormSubmit — current provider (pre-launch, low volume).
+             * NOTE: very first submission triggers a verification email to
+             * admin@supera.school — must click the link once to activate.
+             * After that, leads land directly in the inbox.
+             */
+            formsubmit: async function (data, opts) {
+                const payload = {
+                    ...data,
+                    _subject: `Nuevo lead Supera (${opts.stage}) — ${data.email}`,
+                    _captcha: 'false',
+                    _template: 'table',
+                    _autoresponse: 'Gracias por unirte a Supera. Te avisamos el 1 de junio cuando lance.'
+                };
+                const res = await fetch('https://formsubmit.co/ajax/admin@supera.school', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify(payload)
+                });
+                if (!res.ok) throw new Error('FormSubmit ' + res.status);
+                return res.json();
+            },
+
+            /**
+             * Beehiiv — future provider for proper email marketing.
+             * Activate by:
+             *   1. Creating a Beehiiv account + publication
+             *   2. Storing API key + Publication ID in the constants below
+             *   3. Setting LEAD_PROVIDER = 'beehiiv'
+             * Doc: https://developers.beehiiv.com/api-reference/subscriptions
+             */
+            beehiiv: async function (data, opts) {
+                const BEEHIIV_PUB_ID  = 'pub_XXXXXXXX';
+                const BEEHIIV_API_KEY = 'YOUR_API_KEY';
+                const res = await fetch(`https://api.beehiiv.com/v2/publications/${BEEHIIV_PUB_ID}/subscriptions`, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${BEEHIIV_API_KEY}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        email: data.email,
+                        send_welcome_email: opts.stage === 'complete',
+                        utm_source: 'supera.school',
+                        utm_medium: 'countdown',
+                        custom_fields: [
+                            { name: 'nombre', value: data.nombre || '' },
+                            { name: 'rango_edad', value: data.rango_edad || '' },
+                            { name: 'stage', value: opts.stage }
+                        ]
+                    })
+                });
+                if (!res.ok) throw new Error('Beehiiv ' + res.status);
+                return res.json();
+            },
+
+            /**
+             * Supabase — future provider for full data ownership.
+             * Activate by setting SUPABASE_URL + SUPABASE_ANON_KEY + creating
+             * a 'leads' table with columns: email, nombre, rango_edad, stage,
+             * source, created_at.
+             */
+            supabase: async function (data, opts) {
+                const SUPABASE_URL      = 'https://YOUR_PROJECT.supabase.co';
+                const SUPABASE_ANON_KEY = 'YOUR_ANON_KEY';
+                const res = await fetch(`${SUPABASE_URL}/rest/v1/leads`, {
+                    method: 'POST',
+                    headers: {
+                        'apikey': SUPABASE_ANON_KEY,
+                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                        'Content-Type': 'application/json',
+                        'Prefer': 'return=minimal,resolution=merge-duplicates'
+                    },
+                    body: JSON.stringify({
+                        email: data.email,
+                        nombre: data.nombre || null,
+                        rango_edad: data.rango_edad || null,
+                        stage: opts.stage,
+                        source: data.source
+                    })
+                });
+                if (!res.ok) throw new Error('Supabase ' + res.status);
+                return true;
+            }
+        };
+
+        /**
+         * The one public method the rest of the app calls.
+         * @param {Object} data    - { email, nombre?, rango_edad? }
+         * @param {Object} opts    - { stage: 'partial' | 'complete' }
+         */
+        async function sendLead(data, opts) {
+            const fn = LeadProviders[LEAD_PROVIDER];
+            if (!fn) {
+                console.error('[Supera] Unknown lead provider:', LEAD_PROVIDER);
+                return false;
+            }
+            const enriched = {
+                ...data,
+                source: window.location.href,
+                timestamp: new Date().toISOString()
+            };
+            try {
+                await fn(enriched, opts);
+                console.log(`[Supera] Lead saved via ${LEAD_PROVIDER} (${opts.stage}):`, data.email);
+                return true;
+            } catch (err) {
+                console.error(`[Supera] Lead send failed (${LEAD_PROVIDER}):`, err);
+                return false;
+            }
+        }
+
+        /* ─── Signup state + UI ─────────────────────────────────────── */
+
+        const signupState = { email: '', name: '', age: '', leadId: null, savedAtStep1: false };
+
+        function signupGoTo(step) {
+            const form = document.getElementById('signupForm');
+            if (!form) return;
+
+            form.querySelectorAll('.signup-pane').forEach(p => p.classList.remove('is-active'));
+            const target = form.querySelector(`.signup-pane[data-step="${step}"]`);
+            if (target) target.classList.add('is-active');
+
+            // Reveal progress bar starting at step 2 (after email commit)
+            const progress = document.getElementById('signupProgress');
+            if (progress) {
+                if (step >= 2 && step <= 3) progress.classList.add('is-visible');
+                else progress.classList.remove('is-visible');
+            }
+
+            // Light up dots based on current step (3 dots represent steps 1-3)
+            const dots = document.querySelectorAll('.signup-dot');
+            dots.forEach((dot, i) => {
+                dot.classList.remove('is-active', 'is-completed');
+                if (i < step - 1)  dot.classList.add('is-completed');
+                if (i === step - 1) dot.classList.add('is-active');
+            });
+
+            // Autofocus the input on the active step for fast UX
             setTimeout(() => {
+                const input = target ? target.querySelector('input[type="email"], input[type="text"]') : null;
+                if (input) input.focus();
+            }, 250);
+        }
+
+        async function signupHandleStep1() {
+            const emailInput = document.getElementById('signupEmail');
+            if (!emailInput) return;
+            if (!emailInput.value.trim() || !emailInput.checkValidity()) {
+                emailInput.reportValidity();
+                return;
+            }
+            // Honeypot check — bots fill the hidden field, real users don't
+            const honey = document.getElementById('signupHoney');
+            if (honey && honey.value) {
                 closeModal('newsletterModal');
-                showToast('¡Bienvenido a Supera! Revisa tu correo para confirmar.', 'success');
-                btn.textContent = originalText;
-                btn.disabled = false;
-                e.target.reset();
-            }, 1500);
+                return;
+            }
+
+            signupState.email = emailInput.value.trim();
+
+            // SAVE LEAD IMMEDIATELY — even if they bail on steps 2/3, we have them.
+            const btn = document.querySelector('[data-signup-btn="1"]');
+            if (btn) { btn.disabled = true; btn.style.opacity = '0.7'; }
+            const ok = await sendLead({ email: signupState.email }, { stage: 'partial' });
+            if (btn) { btn.disabled = false; btn.style.opacity = ''; }
+
+            if (!ok) {
+                showToast('No pudimos guardar tu email. Intenta de nuevo.', 'error');
+                return;
+            }
+            signupState.savedAtStep1 = true;
+            signupGoTo(2);
+        }
+
+        function signupHandleStep2(skip) {
+            if (!skip) {
+                const nameInput = document.getElementById('signupName');
+                if (nameInput) signupState.name = nameInput.value.trim();
+            }
+            signupGoTo(3);
+        }
+
+        async function signupHandleStep3(age) {
+            signupState.age = age || '';
+
+            // Show success immediately — submit complete profile in background
+            const echo = document.getElementById('signupNameEcho');
+            if (echo) echo.textContent = signupState.name || 'amigo';
+            signupGoTo(4);
+
+            // Only send the COMPLETE payload if we have anything new beyond email.
+            // (If they skipped both name and age, no need to double-submit.)
+            if (signupState.name || signupState.age) {
+                await sendLead({
+                    email: signupState.email,
+                    nombre: signupState.name,
+                    rango_edad: signupState.age
+                }, { stage: 'complete' });
+            }
+
+            setTimeout(() => closeModal('newsletterModal'), 3500);
+        }
+
+        function signupReset() {
+            signupState.email = '';
+            signupState.name = '';
+            signupState.age = '';
+            signupState.leadId = null;
+            signupState.savedAtStep1 = false;
+            const form = document.getElementById('signupForm');
+            if (form) form.reset();
+            signupGoTo(1);
+        }
+
+        /* ─── Bind handlers via addEventListener (robust, no scope issues) ─── */
+
+        function initSignup() {
+            const form = document.getElementById('signupForm');
+            if (!form) return;
+
+            // Submit handler on the form catches both button click AND Enter key
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const activePane = form.querySelector('.signup-pane.is-active');
+                if (!activePane) return;
+                const step = parseInt(activePane.dataset.step, 10);
+                if (step === 1) signupHandleStep1();
+            });
+
+            // Step 2 — Continue / Skip
+            form.querySelectorAll('[data-signup-btn="2"]').forEach(btn => {
+                btn.addEventListener('click', () => signupHandleStep2(false));
+            });
+            form.querySelectorAll('[data-signup-skip="2"]').forEach(btn => {
+                btn.addEventListener('click', () => signupHandleStep2(true));
+            });
+
+            // Step 3 — Age buttons
+            form.querySelectorAll('.age-btn').forEach(btn => {
+                btn.addEventListener('click', () => signupHandleStep3(btn.dataset.age));
+            });
+            form.querySelectorAll('[data-signup-skip="3"]').forEach(btn => {
+                btn.addEventListener('click', () => signupHandleStep3(''));
+            });
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initSignup);
+        } else {
+            initSignup();
+        }
+
+        // Legacy hook for any leftover inline callers — proxies to the new flow.
+        function handleSubmit(e) {
+            if (e) e.preventDefault();
+            signupHandleStep1();
         }
 
         // Feature Details
