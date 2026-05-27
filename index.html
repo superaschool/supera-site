@@ -1914,6 +1914,274 @@
         }
         .intro-dot-alive { animation: introDotBreathe 3s ease-in-out infinite; }
 
+        /* ─────────────────────────────────────────────────────────────
+           COUNTDOWN GATE — Pre-launch barrier until June 1, 2026
+           Sits at z-index 9500 (below the 9999 intro overlay so the intro
+           animation plays on top, then this is revealed when intro fades). */
+        .countdown-gate {
+            position: fixed;
+            inset: 0;
+            z-index: 9500;
+            background:
+                radial-gradient(80% 60% at 50% 0%, rgba(240,140,57,.08) 0%, transparent 60%),
+                radial-gradient(60% 60% at 50% 100%, rgba(240,140,57,.05) 0%, transparent 70%),
+                var(--supera-jet-black);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 32px 24px;
+            overflow: hidden;
+            transition: opacity 0.8s ease;
+        }
+        .countdown-gate.gone {
+            opacity: 0;
+            pointer-events: none;
+        }
+        .countdown-gate.removed {
+            display: none;
+        }
+
+        /* Ambient particles — same pattern as the hero, drifting up */
+        .countdown-bg {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        .cd-particle {
+            position: absolute;
+            bottom: -10px;
+            width: 2px;
+            height: 2px;
+            background: rgba(240, 140, 57, 0.5);
+            border-radius: 50%;
+            animation: cdParticleFloat linear infinite;
+        }
+        @keyframes cdParticleFloat {
+            0%   { transform: translateY(0); opacity: 0; }
+            10%  { opacity: 0.6; }
+            90%  { opacity: 0.6; }
+            100% { transform: translateY(-110vh); opacity: 0; }
+        }
+        .cd-particle:nth-child(1)  { left:  6%; animation-duration: 26s; animation-delay:  0s }
+        .cd-particle:nth-child(2)  { left: 12%; animation-duration: 34s; animation-delay:  3s; width:1px; height:1px }
+        .cd-particle:nth-child(3)  { left: 19%; animation-duration: 22s; animation-delay:  1s }
+        .cd-particle:nth-child(4)  { left: 27%; animation-duration: 30s; animation-delay:  6s; width:1px; height:1px }
+        .cd-particle:nth-child(5)  { left: 34%; animation-duration: 28s; animation-delay:  2s }
+        .cd-particle:nth-child(6)  { left: 42%; animation-duration: 38s; animation-delay:  8s; width:3px; height:3px }
+        .cd-particle:nth-child(7)  { left: 49%; animation-duration: 24s; animation-delay:  4s }
+        .cd-particle:nth-child(8)  { left: 56%; animation-duration: 32s; animation-delay:  0s; width:1px; height:1px }
+        .cd-particle:nth-child(9)  { left: 63%; animation-duration: 27s; animation-delay:  7s }
+        .cd-particle:nth-child(10) { left: 71%; animation-duration: 33s; animation-delay:  3s }
+        .cd-particle:nth-child(11) { left: 78%; animation-duration: 29s; animation-delay:  5s; width:1px; height:1px }
+        .cd-particle:nth-child(12) { left: 85%; animation-duration: 25s; animation-delay:  2s }
+        .cd-particle:nth-child(13) { left: 93%; animation-duration: 36s; animation-delay: 10s }
+        .cd-particle:nth-child(14) { left:  9%; animation-duration: 31s; animation-delay: 13s }
+        .cd-particle:nth-child(15) { left: 23%; animation-duration: 28s; animation-delay: 16s; width:1px; height:1px }
+        .cd-particle:nth-child(16) { left: 53%; animation-duration: 35s; animation-delay: 11s }
+        .cd-particle:nth-child(17) { left: 68%; animation-duration: 30s; animation-delay: 14s }
+        .cd-particle:nth-child(18) { left: 88%; animation-duration: 32s; animation-delay:  9s }
+
+        /* Content stack */
+        .countdown-content {
+            position: relative;
+            z-index: 1;
+            max-width: 720px;
+            width: 100%;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 24px;
+        }
+
+        /* Wordmark — same treatment as the navbar logo */
+        .countdown-wordmark {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(28px, 4vw, 36px);
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            color: var(--supera-soft-cream);
+        }
+        .cd-dot {
+            color: var(--supera-orange);
+        }
+
+        /* Kicker — "Lanzamiento · 1 de junio 2026" */
+        .countdown-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--supera-orange);
+            padding: 6px 16px;
+            border: 1px solid rgba(240, 140, 57, 0.25);
+            border-radius: var(--radius-pill);
+            background: rgba(240, 140, 57, 0.05);
+        }
+        .cd-pulse-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--supera-orange);
+            animation: cdPulse 1.6s ease-in-out infinite;
+            flex-shrink: 0;
+        }
+        @keyframes cdPulse {
+            0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(240,140,57,.6); }
+            50%      { opacity: .6; box-shadow: 0 0 0 8px rgba(240,140,57,0); }
+        }
+
+        /* Main title */
+        .countdown-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(34px, 6vw, 64px);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1.05;
+            color: var(--supera-soft-cream);
+            margin: 0;
+        }
+        .cd-orange {
+            color: var(--supera-orange);
+        }
+        .cd-orange-bold {
+            color: var(--supera-orange);
+            font-weight: 500;
+        }
+        .countdown-tagline {
+            font-size: clamp(16px, 2.2vw, 22px);
+            font-weight: 400;
+            color: rgba(244, 241, 237, 0.55);
+            margin: -8px 0 8px;
+        }
+
+        /* Countdown timer */
+        .countdown-timer {
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            gap: 16px;
+            margin: 8px 0;
+        }
+        .cd-block {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            min-width: 80px;
+            padding: 20px 16px;
+            background: rgba(244, 241, 237, 0.03);
+            border: 1px solid rgba(240, 140, 57, 0.12);
+            border-radius: var(--radius-md);
+        }
+        .cd-num {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(32px, 5vw, 52px);
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            line-height: 1;
+            background: linear-gradient(135deg, var(--supera-soft-cream) 0%, rgba(244,241,237,.7) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-variant-numeric: tabular-nums;
+        }
+        .cd-unit {
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: rgba(244, 241, 237, 0.45);
+        }
+        .cd-sep {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(28px, 4vw, 44px);
+            font-weight: 300;
+            color: rgba(240, 140, 57, 0.35);
+            line-height: 1;
+            padding-top: 18px;
+        }
+
+        /* AI hint — typewriter terminal style */
+        .countdown-hint {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'DM Sans', monospace;
+            font-size: 14px;
+            color: rgba(244, 241, 237, 0.55);
+            padding: 8px 16px;
+            background: rgba(244, 241, 237, 0.02);
+            border: 1px solid rgba(244, 241, 237, 0.06);
+            border-radius: var(--radius-sm);
+            min-height: 36px;
+        }
+        .cd-hint-prefix {
+            color: var(--supera-orange);
+            font-weight: 700;
+        }
+        .cd-hint-text {
+            color: rgba(244, 241, 237, 0.75);
+            font-style: italic;
+        }
+        .cd-cursor {
+            color: var(--supera-orange);
+            animation: cdBlink 0.9s steps(2) infinite;
+            font-size: 12px;
+            line-height: 1;
+        }
+        @keyframes cdBlink {
+            50% { opacity: 0; }
+        }
+
+        /* CTA button */
+        .countdown-cta {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: linear-gradient(135deg, var(--supera-orange) 0%, var(--supera-burnt-orange) 100%);
+            color: white;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            font-size: 15px;
+            letter-spacing: 0.01em;
+            padding: 14px 28px;
+            border: none;
+            border-radius: var(--radius-pill);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 8px;
+            box-shadow: 0 10px 30px -10px rgba(240, 140, 57, 0.5);
+        }
+        .countdown-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 16px 40px -12px rgba(240, 140, 57, 0.7);
+        }
+
+        /* Footer note */
+        .countdown-footer-note {
+            font-size: 12px;
+            color: rgba(244, 241, 237, 0.35);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-top: 16px;
+        }
+
+        /* Mobile tweaks */
+        @media (max-width: 640px) {
+            .countdown-timer { gap: 8px; }
+            .cd-block { min-width: 64px; padding: 14px 8px; }
+            .cd-sep { font-size: 22px; padding-top: 12px; }
+            .cd-unit { font-size: 9px; letter-spacing: 0.12em; }
+            .countdown-hint { font-size: 12px; padding: 6px 12px; }
+            .countdown-content { gap: 18px; }
+        }
+
     </style>
 </head>
 <body style="overflow:hidden">
@@ -1930,6 +2198,84 @@
                 class="intro-ch" id="ich-a">a</span><span
                 class="intro-ch intro-dot" id="ich-dot">.</span>
             </div>
+        </div>
+    </div>
+
+    <!-- ── Countdown gate — blocks the page until June 1, 2026 ── -->
+    <div id="countdown-gate" class="countdown-gate" aria-live="polite">
+        <!-- Ambient particles -->
+        <div class="countdown-bg" aria-hidden="true">
+            <span class="cd-particle"></span><span class="cd-particle"></span><span class="cd-particle"></span>
+            <span class="cd-particle"></span><span class="cd-particle"></span><span class="cd-particle"></span>
+            <span class="cd-particle"></span><span class="cd-particle"></span><span class="cd-particle"></span>
+            <span class="cd-particle"></span><span class="cd-particle"></span><span class="cd-particle"></span>
+            <span class="cd-particle"></span><span class="cd-particle"></span><span class="cd-particle"></span>
+            <span class="cd-particle"></span><span class="cd-particle"></span><span class="cd-particle"></span>
+        </div>
+
+        <div class="countdown-content">
+            <!-- Wordmark -->
+            <div class="countdown-wordmark">
+                <span>Supera<span class="cd-dot">.</span></span>
+            </div>
+
+            <!-- Kicker -->
+            <p class="countdown-kicker">
+                <span class="cd-pulse-dot"></span>
+                Lanzamiento · 1 de junio 2026
+            </p>
+
+            <!-- Main statement -->
+            <h1 class="countdown-title">
+                La I.A. sin complicarte<span class="cd-orange">.</span>
+            </h1>
+            <p class="countdown-tagline">
+                Sin Complicarte. <span class="cd-orange-bold">Supérate.</span>
+            </p>
+
+            <!-- Countdown -->
+            <div class="countdown-timer">
+                <div class="cd-block">
+                    <span class="cd-num" id="cd-days">--</span>
+                    <span class="cd-unit">días</span>
+                </div>
+                <div class="cd-sep">:</div>
+                <div class="cd-block">
+                    <span class="cd-num" id="cd-hours">--</span>
+                    <span class="cd-unit">horas</span>
+                </div>
+                <div class="cd-sep">:</div>
+                <div class="cd-block">
+                    <span class="cd-num" id="cd-mins">--</span>
+                    <span class="cd-unit">minutos</span>
+                </div>
+                <div class="cd-sep">:</div>
+                <div class="cd-block">
+                    <span class="cd-num" id="cd-secs">--</span>
+                    <span class="cd-unit">segundos</span>
+                </div>
+            </div>
+
+            <!-- Rotating AI hints — typewriter effect -->
+            <div class="countdown-hint">
+                <span class="cd-hint-prefix">&gt;</span>
+                <span class="cd-hint-text" id="cd-hint-text">aprende a usar ChatGPT en español</span>
+                <span class="cd-cursor">▊</span>
+            </div>
+
+            <!-- CTA -->
+            <button class="countdown-cta" onclick="openModal('newsletterModal')">
+                Avísame cuando lance
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+            </button>
+
+            <!-- Footer note -->
+            <p class="countdown-footer-note">
+                Comunidad educativa de I.A. en español · Sin jerga · Sin presión
+            </p>
         </div>
     </div>
 
@@ -3177,6 +3523,119 @@
         }, 6500);
 
         window.addEventListener('resize', recalcDot);
+    })();
+    </script>
+
+    <!-- ── Countdown gate — pre-launch barrier until June 1, 2026 ── -->
+    <script>
+    (function () {
+        'use strict';
+
+        // Launch target: June 1, 2026 — Bogotá time (Colombia, UTC-5).
+        // Adjust the UTC offset string below if launch should be in a different TZ.
+        const LAUNCH_DATE = new Date('2026-06-01T00:00:00-05:00');
+
+        const gate     = document.getElementById('countdown-gate');
+        const elDays   = document.getElementById('cd-days');
+        const elHours  = document.getElementById('cd-hours');
+        const elMins   = document.getElementById('cd-mins');
+        const elSecs   = document.getElementById('cd-secs');
+        const elHint   = document.getElementById('cd-hint-text');
+
+        // AI-themed rotating hints — what they'll learn once Supera launches.
+        const HINTS = [
+            'aprende a usar ChatGPT en español',
+            'crea prompts efectivos para tu día a día',
+            'automatiza tareas con I.A. sin código',
+            'convierte horas de trabajo en minutos',
+            'habla con la I.A. como un experto',
+            'tu asistente personal de I.A.',
+            'domina las herramientas que cambian todo',
+            'la I.A. simple, aplicada a tu vida',
+            'paso a paso, sin tecnicismos',
+            'el futuro del aprendizaje, sin presión',
+        ];
+
+        function pad(n) { return String(n).padStart(2, '0'); }
+
+        function updateCountdown() {
+            const now = new Date();
+            const diff = LAUNCH_DATE - now;
+
+            if (diff <= 0) {
+                // Launch! Unlock the page.
+                unlock();
+                return;
+            }
+
+            const days  = Math.floor(diff / 86400000);
+            const hours = Math.floor((diff / 3600000) % 24);
+            const mins  = Math.floor((diff / 60000) % 60);
+            const secs  = Math.floor((diff / 1000) % 60);
+
+            if (elDays)  elDays.textContent  = pad(days);
+            if (elHours) elHours.textContent = pad(hours);
+            if (elMins)  elMins.textContent  = pad(mins);
+            if (elSecs)  elSecs.textContent  = pad(secs);
+        }
+
+        function unlock() {
+            if (!gate) return;
+            gate.classList.add('gone');
+            document.body.style.overflow = '';
+            setTimeout(() => gate.classList.add('removed'), 800);
+        }
+
+        function lockBody() {
+            // Keep body un-scrollable while the gate is showing — overrides the
+            // intro animation's safety-net which would otherwise unlock at 6.5s.
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Hint rotation with subtle typewriter feel
+        let hintIndex = 0;
+        function rotateHint() {
+            if (!elHint) return;
+            elHint.style.opacity = '0';
+            setTimeout(() => {
+                hintIndex = (hintIndex + 1) % HINTS.length;
+                elHint.textContent = HINTS[hintIndex];
+                elHint.style.opacity = '1';
+            }, 400);
+        }
+
+        // Initialize
+        function init() {
+            // If we're already past launch, just hide the gate immediately.
+            if (Date.now() >= LAUNCH_DATE.getTime()) {
+                if (gate) gate.classList.add('removed');
+                return;
+            }
+
+            lockBody();
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+
+            // Watch for the intro's safety net trying to unlock body overflow,
+            // and re-lock immediately while the gate is still active.
+            const overflowGuard = setInterval(() => {
+                if (gate && !gate.classList.contains('gone')) {
+                    if (document.body.style.overflow !== 'hidden') lockBody();
+                } else {
+                    clearInterval(overflowGuard);
+                }
+            }, 500);
+
+            // Style transition for hint fades
+            if (elHint) elHint.style.transition = 'opacity 0.4s ease';
+            setInterval(rotateHint, 3200);
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', init);
+        } else {
+            init();
+        }
     })();
     </script>
 
