@@ -3073,7 +3073,10 @@
                     <p class="modal-description">¿Cómo te llamas? Así te saludamos cuando lance.</p>
                     <div class="form-group">
                         <label class="form-label" for="signupName">Tu nombre</label>
-                        <input type="text" id="signupName" name="name" class="form-input" placeholder="Tu nombre" autocomplete="given-name" required minlength="2">
+                        <!-- Validation is JS-only (signupHandleStep2). HTML5 `required` here
+                             would block the step 1 form submit because the browser validates ALL
+                             required fields including this hidden one. -->
+                        <input type="text" id="signupName" name="name" class="form-input" placeholder="Tu nombre" autocomplete="given-name">
                     </div>
                     <button type="button" class="btn-primary form-submit" data-signup-btn="2">
                         Continuar
@@ -3417,12 +3420,16 @@
         }
 
         function signupHandleStep2() {
-            // Name is required — validate before advancing
+            // Name is required at the JS layer (HTML `required` would block step 1 submit
+            // because the field would still validate even while hidden).
             const nameInput = document.getElementById('signupName');
             if (!nameInput) return;
             const value = nameInput.value.trim();
+            nameInput.setCustomValidity('');
             if (!value || value.length < 2) {
+                nameInput.setCustomValidity('Por favor escribe tu nombre para continuar.');
                 nameInput.reportValidity();
+                nameInput.focus();
                 return;
             }
             signupState.name = value;
