@@ -1243,9 +1243,10 @@
 
         .footer-grid {
             display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
+            grid-template-columns: 2fr 1fr;
             gap: 60px;
             margin-bottom: 60px;
+            align-items: start;
         }
 
         .footer-brand {
@@ -2404,11 +2405,11 @@
                 <line x1="6" y1="6" x2="18" y2="18"></line>
             </svg>
         </button>
-        <a href="#cursos" onclick="toggleMobileMenu()">Aprende</a>
+        <a href="#caracteristicas" onclick="toggleMobileMenu()">¿Por qué Supera?</a>
         <a href="#comofunciona" onclick="toggleMobileMenu()">Cómo Funciona</a>
         <a href="#caracteristicas" onclick="toggleMobileMenu()">¿Por qué Supera?</a>
         <a href="#contacto" onclick="toggleMobileMenu()">Contacto</a>
-        <button class="btn-primary" onclick="openModal('newsletterModal'); toggleMobileMenu()">Únete Ahora</button>
+        <button class="btn-primary" onclick="goToSkool(); toggleMobileMenu()">Únete Ahora</button>
     </div>
 
     <!-- Navigation -->
@@ -2433,15 +2434,15 @@
             </a>
             
             <div class="nav-links">
-                <a href="#cursos" class="nav-link">Aprende</a>
                 <a href="#comofunciona" class="nav-link">Cómo Funciona</a>
                 <a href="#caracteristicas" class="nav-link">¿Por qué Supera?</a>
+                <a href="#precios" class="nav-link">Membresía</a>
                 <a href="#contacto" class="nav-link">Contacto</a>
 
                 <!-- Theme toggle removed — committed to dark mode per Brand Kit v2.0.
                      toggleTheme() function still exists for programmatic use if needed. -->
 
-                <button class="btn-primary" onclick="openModal('newsletterModal')">Únete</button>
+                <button class="btn-primary" onclick="goToSkool()">Únete</button>
             </div>
             
             <button class="mobile-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menú">
@@ -2482,7 +2483,7 @@
             </p>
 
             <div class="hero-buttons hero-enter">
-                <button class="btn-primary" onclick="openModal('newsletterModal')">
+                <button class="btn-primary" onclick="goToSkool()">
                     Únete Ahora
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -2623,94 +2624,6 @@
         </div>
     </section>
 
-    <!-- Courses Section -->
-    <section id="cursos" class="courses">
-        <div class="container">
-            <div class="courses-header reveal">
-                <div class="section-header">
-                    <span class="section-label">Cursos</span>
-                    <h2 class="section-title">Aprende a tu ritmo</h2>
-                    <p class="section-description">Contenido guiado, claro y actualizado. Diseñado para personas que empiezan desde cero y quieren resultados reales.</p>
-                </div>
-                <button class="btn-secondary" onclick="scrollToSection('precios')">
-                    Ver membresía
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="5" y1="12" x2="19" y2="12"></line>
-                        <polyline points="12 5 19 12 12 19"></polyline>
-                    </svg>
-                </button>
-            </div>
-
-            <div class="courses-grid">
-                <!-- Course 1 -->
-                <div class="course-card reveal">
-                    <div class="course-image course-image-1">
-                        <span>🤖</span>
-                        <span class="course-badge">Principiante</span>
-                    </div>
-                    <div class="course-content">
-                        <h3 class="course-title">IA en tu Vida Diaria</h3>
-                        <p class="course-description">Aprende qué es la inteligencia artificial y cómo usarla para ahorrar tiempo, organizarte mejor y simplificar tareas del día a día.</p>
-                        <div class="course-footer">
-                            <div class="course-duration">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <circle cx="12" cy="12" r="10"></circle>
-                                    <polyline points="12 6 12 12 16 14"></polyline>
-                                </svg>
-                                8 semanas
-                            </div>
-                            <a href="#" class="course-link" onclick="showToast('Detalles del curso próximamente', 'info')">Ver más →</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Course 2 -->
-                <div class="course-card reveal">
-                    <div class="course-image course-image-2">
-                        <span>⚡</span>
-                        <span class="course-badge">Intermedio</span>
-                    </div>
-                    <div class="course-content">
-                        <h3 class="course-title">Automatización con IA</h3>
-                        <p class="course-description">Descubre cómo dejar que la IA haga las tareas repetitivas por ti: responder correos, organizar información, crear contenido y mucho más.</p>
-                        <div class="course-footer">
-                            <div class="course-duration">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <circle cx="12" cy="12" r="10"></circle>
-                                    <polyline points="12 6 12 12 16 14"></polyline>
-                                </svg>
-                                6 semanas
-                            </div>
-                            <a href="#" class="course-link" onclick="showToast('Detalles del curso próximamente', 'info')">Ver más →</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Course 3 -->
-                <div class="course-card reveal">
-                    <div class="course-image course-image-3">
-                        <span>🚀</span>
-                        <span class="course-badge">Avanzado</span>
-                    </div>
-                    <div class="course-content">
-                        <h3 class="course-title">Cómo Hablar con la IA</h3>
-                        <p class="course-description">Aprende a pedirle a la IA exactamente lo que necesitas y obtener respuestas útiles, claras y adaptadas a tu situación real.</p>
-                        <div class="course-footer">
-                            <div class="course-duration">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <circle cx="12" cy="12" r="10"></circle>
-                                    <polyline points="12 6 12 12 16 14"></polyline>
-                                </svg>
-                                4 semanas
-                            </div>
-                            <a href="#" class="course-link" onclick="showToast('Detalles del curso próximamente', 'info')">Ver más →</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Pricing Section -->
     <section id="precios" class="pricing">
         <div class="container">
@@ -2755,7 +2668,7 @@
                             Biblioteca de plantillas y herramientas de I.A. listas para copiar y pegar
                         </li>
                     </ul>
-                    <button class="pricing-btn pricing-btn-outline" onclick="openModal('newsletterModal')">Comenzar</button>
+                    <button class="pricing-btn pricing-btn-outline" onclick="goToSkool()">Comenzar</button>
                 </div>
 
                 <!-- Premium ($19) — Founding Member spot -->
@@ -2793,7 +2706,7 @@
                             <span><strong>Tu precio queda bloqueado de por vida</strong> como miembro fundador</span>
                         </li>
                     </ul>
-                    <button class="pricing-btn pricing-btn-primary" onclick="openModal('newsletterModal')">Soy Founding Member</button>
+                    <button class="pricing-btn pricing-btn-primary" onclick="goToSkool()">Soy Founding Member</button>
                 </div>
 
                 <!-- VIP ($49) — Executive tier, on-brand premium treatment -->
@@ -2825,7 +2738,7 @@
                             <span><strong>2 sesiones 1:1 cada mes</strong> (1h por sesión) para acompañamiento personalizado</span>
                         </li>
                     </ul>
-                    <button class="pricing-btn pricing-btn-vip" onclick="openModal('newsletterModal')">Quiero VIP</button>
+                    <button class="pricing-btn pricing-btn-vip" onclick="goToSkool()">Quiero VIP</button>
                 </div>
             </div>
 
@@ -2930,19 +2843,12 @@
             <h2 class="cta-title">¿Listo para usar IA en tu vida diaria?</h2>
             <p class="cta-description">Empieza hoy. No necesitas experiencia previa, solo las ganas de aprender. Te acompañamos en cada paso del camino.</p>
             <div class="cta-buttons">
-                <button class="btn-white" onclick="openModal('newsletterModal')">
+                <button class="btn-white" onclick="goToSkool()">
                     Quiero Empezar
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <line x1="5" y1="12" x2="19" y2="12"></line>
                         <polyline points="12 5 19 12 12 19"></polyline>
                     </svg>
-                </button>
-                <button class="btn-outline-white" onclick="showToast('Demo próximamente', 'info')">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="10"></circle>
-                        <polygon points="10 8 16 12 10 16 10 8"></polygon>
-                    </svg>
-                    Ver Demo
                 </button>
             </div>
         </div>
@@ -2969,56 +2875,37 @@
                         </svg>
                         <span class="footer-brand-text">Supera<span style="color: var(--supera-orange);">.</span></span>
                     </a>
-                    <p class="footer-description">Aprendemos IA de forma simple y práctica. Sin complicarte. Supérate.</p>
+                    <p class="footer-description">Aprende a usar I.A. en tu día a día. Sin complicarte. Supérate.</p>
                 </div>
 
-                <div>
-                    <h4>Plataforma</h4>
+                <div class="footer-contact-block">
+                    <h4>Contacto</h4>
                     <ul class="footer-links">
-                        <li><a href="#cursos">Cursos</a></li>
-                        <li><a href="#precios">Precios</a></li>
-                        <li><a href="#caracteristicas">Características</a></li>
-                        <li><a href="#" onclick="showToast('Blog próximamente', 'info')">Blog</a></li>
+                        <li>
+                            <a href="https://instagram.com/supera.school" target="_blank" rel="noopener noreferrer" class="footer-link-inline">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                                </svg>
+                                @supera.school
+                            </a>
+                        </li>
+                        <li>
+                            <a href="mailto:admin@supera.school" class="footer-link-inline">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                    <polyline points="22,6 12,13 2,6"></polyline>
+                                </svg>
+                                admin@supera.school
+                            </a>
+                        </li>
                     </ul>
-                </div>
-
-                <div>
-                    <h4>Empresa</h4>
-                    <ul class="footer-links">
-                        <li><a href="#" onclick="showToast('Sobre nosotros próximamente', 'info')">Sobre Nosotros</a></li>
-                        <li><a href="#" onclick="showToast('Carreras próximamente', 'info')">Carreras</a></li>
-                        <li><a href="#contacto">Contacto</a></li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h4>Síguenos</h4>
-                    <div class="footer-social">
-                        <a href="#" class="social-link" onclick="showToast('Twitter próximamente', 'info')" aria-label="Twitter">
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-                            </svg>
-                        </a>
-                        <a href="#" class="social-link" onclick="showToast('LinkedIn próximamente', 'info')" aria-label="LinkedIn">
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                            </svg>
-                        </a>
-                        <a href="#" class="social-link" onclick="showToast('YouTube próximamente', 'info')" aria-label="YouTube">
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                            </svg>
-                        </a>
-                    </div>
                 </div>
             </div>
 
             <div class="footer-bottom">
                 <p class="footer-copyright">© 2026 Supera Learning LLC. Todos los derechos reservados.</p>
-                <div class="footer-legal">
-                    <a href="#" onclick="showToast('Privacidad próximamente', 'info')">Privacidad</a>
-                    <a href="#" onclick="showToast('Términos próximamente', 'info')">Términos</a>
-                </div>
             </div>
         </div>
     </footer>
@@ -3238,6 +3125,15 @@
         /* ─── Lead Provider abstraction ─────────────────────────────── */
 
         const LEAD_PROVIDER = 'formsubmit';  // ← change this to switch providers
+
+        // ⚠️ UPDATE THIS with the real Skool community URL when ready.
+        // Every "Únete" / "Comenzar" / "Soy Founding Member" / "Quiero VIP" / etc.
+        // on the main page funnels through this single constant.
+        const SKOOL_URL = 'https://www.skool.com/supera';
+
+        function goToSkool() {
+            window.open(SKOOL_URL, '_blank', 'noopener,noreferrer');
+        }
 
         const LeadProviders = {
             /**
@@ -4043,6 +3939,15 @@
 
         // Initialize
         function init() {
+            // Preview bypass — append ?preview=supera to the URL to skip the gate
+            // and see the live site behind it during pre-launch.
+            // Example: https://supera.school/?preview=supera
+            const params = new URLSearchParams(window.location.search);
+            if (params.get('preview') === 'supera') {
+                if (gate) gate.classList.add('removed');
+                return;
+            }
+
             // If we're already past launch, just hide the gate immediately.
             if (Date.now() >= LAUNCH_DATE.getTime()) {
                 if (gate) gate.classList.add('removed');
@@ -4454,6 +4359,11 @@
 .footer{background:#080807!important;border-top:1px solid rgba(244,241,237,.05)!important}
 .footer h4{font-size:12px!important;letter-spacing:.1em!important;text-transform:uppercase!important;color:rgba(244,241,237,.35)!important;margin-bottom:16px!important;font-weight:600!important}
 .footer-links a{font-size:14px!important;transition:color .2s!important}
+.footer-link-inline{display:inline-flex;align-items:center;gap:10px;color:var(--text-secondary);transition:color .2s ease}
+.footer-link-inline:hover{color:var(--supera-orange)}
+.footer-link-inline svg{flex-shrink:0;opacity:.7;transition:opacity .2s ease}
+.footer-link-inline:hover svg{opacity:1}
+.footer-contact-block ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:12px}
 .footer-links a:hover{color:var(--supera-orange)!important}
 
 /* ── ACCESSIBILITY ── */
@@ -4474,8 +4384,8 @@
 
 <!-- Mobile sticky CTA -->
 <div class="v3-mobile-cta" id="v3mobilecta">
-  <button class="v3-mobile-cta-btn" onclick="openModal('newsletterModal')">
-    Comienza Ahora — desde $9/mes
+  <button class="v3-mobile-cta-btn" onclick="goToSkool()">
+    Únete Ahora — desde $9/mes
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
   </button>
 </div>
