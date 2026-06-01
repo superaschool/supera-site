@@ -507,6 +507,12 @@
             letter-spacing: 0.12em;
             text-transform: uppercase;
             opacity: 0.9;
+            white-space: nowrap;
+            text-align: center;
+        }
+        /* On small phones, ease the tracking + size so the long badge still fits one line */
+        @media (max-width: 420px) {
+            .hero-badge-text { font-size: 9.5px; letter-spacing: 0.08em; }
         }
 
         .hero-title {
@@ -2496,16 +2502,16 @@
         <div class="hero-content">
             <div class="hero-badge hero-enter">
                 <span></span>
-                <span class="hero-badge-text">I.A. en español</span>
+                <span class="hero-badge-text">Comunidad de Inteligencia Artificial</span>
             </div>
 
-            <h1 class="hero-title hero-enter" aria-label="I.A. sin complicarte.">
-                <span class="hero-ia" aria-hidden="true">I.A.</span> <span class="hero-typed" id="heroTyped" aria-hidden="true">sin complicarte.</span><span class="hero-cursor" aria-hidden="true"></span>
+            <h1 class="hero-title hero-enter" aria-label="I.A. en español, desde cero, a tu ritmo.">
+                <span class="hero-ia" aria-hidden="true">I.A.</span> <span class="hero-typed" id="heroTyped" aria-hidden="true">en español.</span><span class="hero-cursor" aria-hidden="true"></span>
             </h1>
             <p class="hero-tagline hero-enter">Sin Complicarte. <span class="hero-accent">Supérate.</span></p>
 
             <p class="hero-description hero-enter">
-                La inteligencia artificial puede sonar complicada. Aquí no lo es. Te enseñamos a usarla en tu día a día — a tu ritmo, en español claro, paso a paso.
+                La I.A. no tiene que ser complicada. Te la explicamos fácil y sin enredos, para que la uses con confianza.
             </p>
 
             <div class="hero-buttons hero-enter">
@@ -4027,19 +4033,22 @@
 
         // Phrases that follow the fixed "I.A." anchor. Kept short so the headline
         // stays on one line and the layout below doesn't jump.
+        // Kept short + similar length so the headline stays on one line and the
+        // content below never shifts. "sin complicarte." is intentionally absent
+        // (the tagline already says it).
         const PHRASES = [
-            'sin complicarte.',
             'en español.',
+            'desde cero.',
             'a tu ritmo.',
-            'sin términos complicados.',
-            'en tu día a día.',
+            'para todos.',
+            'paso a paso.',
         ];
 
         const TYPE_SPEED   = 105;   // ms per character while typing (slower, more deliberate)
         const DELETE_SPEED = 45;    // ms per character while deleting
-        const HOLD_FULL    = 3600;  // pause once a phrase is fully typed (holds longer)
+        const HOLD_FULL    = 3000;  // pause once a phrase is fully typed
         const HOLD_EMPTY    = 450;  // pause when empty before the next phrase
-        const START_DELAY  = 3000;  // initial hold on the pre-filled phrase
+        const START_DELAY  = 2600;  // initial hold on the pre-filled phrase
 
         let phraseIndex = 0;
         let charIndex   = PHRASES[0].length;  // HTML already shows phrase 0 in full
