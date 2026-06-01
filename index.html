@@ -517,6 +517,32 @@
             margin-bottom: 20px;
         }
 
+        /* Hero typewriter — "I.A." stays as a fixed orange anchor, the phrase
+           after it types/deletes/retypes in a loop with a blinking caret. */
+        .hero-ia {
+            background: linear-gradient(135deg, var(--supera-orange) 0%, var(--supera-burnt-orange) 50%, var(--supera-orange) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            white-space: nowrap;
+        }
+        .hero-typed {
+            /* keeps the cream headline color from .hero-title */
+        }
+        .hero-cursor {
+            display: inline-block;
+            width: 0.055em;
+            height: 0.92em;
+            background: var(--supera-orange);
+            margin-left: 0.08em;
+            border-radius: 1px;
+            transform: translateY(0.1em);
+            animation: heroCursorBlink 0.9s steps(2, start) infinite;
+        }
+        @keyframes heroCursorBlink {
+            50% { opacity: 0; }
+        }
+
         /* Subhead tagline "Sin Complicarte. Supérate." — block under the H1 */
         .hero-tagline {
             font-size: clamp(16px, 2.4vw, 26px);
@@ -2473,8 +2499,8 @@
                 <span class="hero-badge-text">I.A. en español</span>
             </div>
 
-            <h1 class="hero-title hero-enter">
-                I.A. sin complicarte<span class="hero-accent">.</span>
+            <h1 class="hero-title hero-enter" aria-label="I.A. sin complicarte.">
+                <span class="hero-ia" aria-hidden="true">I.A.</span> <span class="hero-typed" id="heroTyped" aria-hidden="true">sin complicarte.</span><span class="hero-cursor" aria-hidden="true"></span>
             </h1>
             <p class="hero-tagline hero-enter">Sin Complicarte. <span class="hero-accent">Supérate.</span></p>
 
@@ -3985,6 +4011,67 @@
         } else {
             init();
         }
+    })();
+    </script>
+
+    <!-- ── Hero headline typewriter ── -->
+    <script>
+    (function () {
+        'use strict';
+
+        const typedEl = document.getElementById('heroTyped');
+        if (!typedEl) return;
+
+        // Respect reduced-motion: leave the static "sin complicarte." in place.
+        if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+        // Phrases that follow the fixed "I.A." anchor. Kept short so the headline
+        // stays on one line and the layout below doesn't jump.
+        const PHRASES = [
+            'sin complicarte.',
+            'en español.',
+            'a tu ritmo.',
+            'sin términos complicados.',
+            'en tu día a día.',
+        ];
+
+        const TYPE_SPEED   = 105;   // ms per character while typing (slower, more deliberate)
+        const DELETE_SPEED = 45;    // ms per character while deleting
+        const HOLD_FULL    = 3600;  // pause once a phrase is fully typed (holds longer)
+        const HOLD_EMPTY    = 450;  // pause when empty before the next phrase
+        const START_DELAY  = 3000;  // initial hold on the pre-filled phrase
+
+        let phraseIndex = 0;
+        let charIndex   = PHRASES[0].length;  // HTML already shows phrase 0 in full
+        let deleting    = true;               // first action is to erase it
+
+        function tick() {
+            const phrase = PHRASES[phraseIndex];
+
+            if (deleting) {
+                charIndex--;
+                typedEl.textContent = phrase.slice(0, charIndex);
+                if (charIndex <= 0) {
+                    deleting = false;
+                    phraseIndex = (phraseIndex + 1) % PHRASES.length;
+                    setTimeout(tick, HOLD_EMPTY);
+                    return;
+                }
+                setTimeout(tick, DELETE_SPEED);
+            } else {
+                charIndex++;
+                typedEl.textContent = phrase.slice(0, charIndex);
+                if (charIndex >= phrase.length) {
+                    deleting = true;
+                    setTimeout(tick, HOLD_FULL);
+                    return;
+                }
+                // Slight jitter on typing speed makes it feel hand-typed
+                setTimeout(tick, TYPE_SPEED + Math.floor((charIndex * 7) % 45));
+            }
+        }
+
+        setTimeout(tick, START_DELAY);
     })();
     </script>
 
