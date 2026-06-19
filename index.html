@@ -2701,6 +2701,7 @@
                         </li>
                     </ul>
                     <p class="vip-note">Para quien ya usa la I.A. a diario y quiere llevarla un nivel más allá. No necesitas saber programar, solo ganas de construir.</p>
+                    <p class="vip-claude">Construimos con Claude. Puedes usar otra I.A., pero algunas cosas salen mejor en Claude.</p>
                     <button class="pricing-btn pricing-btn-vip" onclick="goToSkool()">Quiero VIP</button>
                 </div>
             </div>
@@ -4102,6 +4103,15 @@
   border-top:1px solid rgba(240,140,57,.12);
   padding-top:16px;
   margin-top:4px;
+}
+
+/* VIP soft Claude mention — quieter than the note; sets the baseline without
+   shouting it on cold traffic. Full framing lives in the Skool description. */
+.vip-claude{
+  font-size:12px;
+  line-height:1.5;
+  color:rgba(244,241,237,.38);
+  margin-top:10px;
 }
 
 /* VIP button — outlined orange, fills with gradient on hover */
