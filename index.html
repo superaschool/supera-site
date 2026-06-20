@@ -1163,6 +1163,32 @@
             color: var(--supera-orange);
         }
 
+        /* Orange opening quote — the one branded touch per card */
+        .testimonial-quote-mark {
+            color: var(--supera-orange);
+            font-weight: 700;
+            font-style: normal;
+            margin-right: 1px;
+        }
+
+        /* Attribution: name in cream, "· Miembro de Supera" muted */
+        .testimonial-attrib {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-top: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        .testimonial-attrib span {
+            color: var(--text-secondary);
+            font-weight: 400;
+        }
+
+        @media (max-width: 860px) {
+            .testimonials-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
+        }
+
         /* CTA Section */
         .cta {
             padding: 120px 24px;
@@ -2575,6 +2601,31 @@
                     </div>
                     <h3 class="feature-title">Acompañamiento Continuo</h3>
                     <p class="feature-description">No te dejamos solo después de una clase. Tenemos sesiones en vivo, tutorías y espacios donde puedes preguntar cuantas veces necesites.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section — real, consented member quotes from the first live class -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-label">Testimonios</span>
+                <h2 class="section-title">Lo que dicen los miembros</h2>
+                <p class="section-description">De nuestra primera clase en vivo.</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card reveal">
+                    <p class="testimonial-text"><span class="testimonial-quote-mark">“</span>Yo creía que era terrible por puro desconocimiento, y resultó superfácil. Siguiendo las clases puedo lograr lo que me proponga de la mano con la inteligencia artificial, siendo yo la que la dirige y ella mi herramienta.”</p>
+                    <div class="testimonial-attrib">Adriana Q. <span>· Miembro de Supera</span></div>
+                </div>
+                <div class="testimonial-card reveal">
+                    <p class="testimonial-text"><span class="testimonial-quote-mark">“</span>Lo de las finanzas para mí fue algo muy wow. De verdad que es una ayuda muy grande.”</p>
+                    <div class="testimonial-attrib">Eduard R. <span>· Miembro de Supera</span></div>
+                </div>
+                <div class="testimonial-card reveal">
+                    <p class="testimonial-text"><span class="testimonial-quote-mark">“</span>La clase para mí fue magnífica. El tip de decirle las cosas con voz y no escribiendo es muy pero muy bueno.”</p>
+                    <div class="testimonial-attrib">Darian G. <span>· Miembro de Supera</span></div>
                 </div>
             </div>
         </div>
